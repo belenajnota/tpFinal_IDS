@@ -16,7 +16,7 @@ create table photocards_vendidas (
     costo_entrega int not null,
     fecha_entrega date not null,
     hora_entrega time,
-    id_photocard int references photocards (id)
+    id_photocard int references photocards (id) ON DELETE CASCADE
 );
 
 
@@ -27,7 +27,7 @@ create table compradores (
     usuario_instagram varchar(30),
     medio_de_pago varchar(20) not null ,
     localidad varchar(50) not null ,
-    id_photocard_comprada int references photocards_vendidas (id)
+    id_photocard_comprada int references photocards_vendidas (id) ON DELETE CASCADE
 );
 
 
