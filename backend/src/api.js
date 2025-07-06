@@ -15,6 +15,14 @@ const {
   updateTransaccion,
 } = require("./transacciones.js");
 
+const {
+  getAllCompradores,
+  getComprador,
+  createComprador,
+  deleteComprador,
+  updateComprador,
+} = require("./compradores.js");
+
 const app = express();
 app.use(express.json());
 
@@ -171,7 +179,7 @@ app.post("/api/v1/photocards_vendidas", async (req, res) => {
   if (transaccion == false) {
     res
       .status(500)
-      .send("An error occurred while attempting to create the photocard.");
+      .send("An error occurred while attempting to create the transaccion.");
   }
   res.status(201).send("Transaccion created successfully");
 });
@@ -198,6 +206,99 @@ app.put("/api/v1/photocards_vendidas/:id", async (req, res) => {
   const columns = Object.keys(req.body); //obtengo las llaves del json
   const values = Object.values(req.body); //obtengo los valores del json
   const status = await updateTransaccion(req.params.id, columns, values);
+
+  if (status == false) {
+    res.status(500).send("An error occurred ");
+  }
+  res.status(200).send("Changes saved successfully.");
+});
+
+//CRUD de compradores
+app.get("/api/v1/compradores", async (req, res) => {
+  const compradores = await getAllCompradores();
+  //verificador de errores de servidor
+  if (compradores == false) {
+    res.status(500).send("An error occurred");
+  }
+  res.json(compradores);
+});
+
+app.get("/api/v1/compradores/:id", async (req, res) => {
+  const comprador = await getComprador(req.params.id);
+  if (comprador == undefined) {
+    res.status(404).send("Comprador Not Found");
+  }
+  if (comprador == false) {
+    res.status(500).send("An error occurred");
+  }
+
+  res.json(comprador);
+});
+
+app.post("/api/v1/compradores", async (req, res) => {
+  if (!req.body.nombre) {
+    res.status(400).send("The nombre field is required.");
+  }
+  if (!req.body.numero_telefono) {
+    res.status(400).send("The numero_telefono field is required.");
+  }
+  if (!req.body.usuario_instagram) {
+    res.status(400).send("The usuario_instagram field is required.");
+  }
+  if (!req.body.medio_de_pago) {
+    res.status(400).send("The medio_de_pago field is required.");
+  }
+  if (!req.body.localidad) {
+    res.status(400).send("The localidad field is required.");
+  }
+  if (!req.body.id_photocard_comprada) {
+    res.status(400).send("The id_photocard_comprada field is required.");
+  }
+
+  const transaccion = await getTransaccion(req.body.id_photocard_comprada);
+
+  if (transaccion == undefined) {
+    res.status(404).send("Transaccion Not Found");
+  }
+
+  const comprador = await createComprador(
+    req.body.nombre,
+    req.body.numero_telefono,
+    req.body.usuario_instagram,
+    req.body.medio_de_pago,
+    req.body.localidad,
+    req.body.id_photocard_comprada
+  );
+  if (transaccion == false) {
+    res
+      .status(500)
+      .send("An error occurred while attempting to create the comprador.");
+  }
+  res.status(201).send("comprador created successfully");
+});
+
+app.delete("/api/v1/compradores/:id", async (req, res) => {
+  const comprador = await getComprador(req.params.id);
+  if (comprador == undefined) {
+    res.status(404).send("Not Found: The requested resource was not found.");
+  }
+
+  const status = await deleteComprador(req.params.id);
+  if (status == false) {
+    res.status(500).send("An error occurred ");
+  }
+  res.status(200).send("Item deleted successfully.");
+});
+
+app.put("/api/v1/compradores/:id", async (req, res) => {
+  const comprador = await getComprador(req.params.id);
+  if (comprador == undefined) {
+    res.status(404).send("Not Found: The requested resource was not found.");
+  }
+
+  const columns = Object.keys(req.body); //obtengo las llaves del json
+  const values = Object.values(req.body); //obtengo los valores del json
+  const status = await updateComprador(req.params.id, columns, values);
 
   if (status == false) {
     res.status(500).send("An error occurred ");

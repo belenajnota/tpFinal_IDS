@@ -56,7 +56,6 @@ async function deletePhotocard(id) {
     await dbClient.query("DELETE FROM photocards WHERE id = $1", [id]);
     return true;
   } catch (e) {
-    console.log(e);
     return false;
   }
 }

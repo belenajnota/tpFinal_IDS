@@ -8,19 +8,19 @@ const dbClient = new Pool({
   database: "k-cards",
 });
 
-async function getAllTransacciones() {
+async function getAllCompradores() {
   try {
-    const response = await dbClient.query("SELECT * FROM photocards_vendidas");
+    const response = await dbClient.query("SELECT * FROM compradores");
     return response.rows;
   } catch (e) {
     return false;
   }
 }
 
-async function getTransaccion(id) {
+async function getComprador(id) {
   try {
     const response = await dbClient.query(
-      "SELECT * FROM photocards_vendidas WHERE id = $1",
+      "SELECT * FROM compradores WHERE id = $1",
       [id]
     );
     if (response.rowCount === 0) {
@@ -32,24 +32,24 @@ async function getTransaccion(id) {
   }
 }
 
-async function createTransaccion(
-  tipo_entrega,
-  lugar_entrega,
-  costo_entrega,
-  fecha_entrega,
-  hora_entrega,
-  id_photocard
+async function createComprador(
+  nombre,
+  numero_telefono,
+  usuario_instagram,
+  medio_de_pago,
+  localidad,
+  id_photocard_comprada
 ) {
   try {
     await dbClient.query(
-      "INSERT INTO photocards_vendidas (tipo_entrega,lugar_entrega,costo_entrega,fecha_entrega,hora_entrega,id_photocard) VALUES ($1,$2,$3,$4,$5,$6)",
+      "INSERT INTO compradores (nombre,numero_telefono,usuario_instagram,medio_de_pago,localidad,id_photocard_comprada) VALUES ($1,$2,$3,$4,$5,$6)",
       [
-        tipo_entrega,
-        lugar_entrega,
-        costo_entrega,
-        fecha_entrega,
-        hora_entrega,
-        id_photocard,
+        nombre,
+        numero_telefono,
+        usuario_instagram,
+        medio_de_pago,
+        localidad,
+        id_photocard_comprada,
       ]
     );
     return true;
@@ -58,16 +58,16 @@ async function createTransaccion(
   }
 }
 
-async function deleteTransaccion(id) {
+async function deleteComprador(id) {
   try {
-    await dbClient.query("DELETE FROM photocards_vendidas WHERE id = $1", [id]);
+    await dbClient.query("DELETE FROM compradores WHERE id = $1", [id]);
     return true;
   } catch (e) {
     return false;
   }
 }
 
-async function updateTransaccion(id, columns, newValues) {
+async function updateComprador(id, columns, newValues) {
   let max = columns.length;
 
   try {
@@ -76,7 +76,7 @@ async function updateTransaccion(id, columns, newValues) {
       let column = columns[i];
       let newValue = newValues[i];
       await dbClient.query(
-        `UPDATE photocards_vendidas SET "${column}" = $1 WHERE id = $2`,
+        `UPDATE compradores SET "${column}" = $1 WHERE id = $2`,
         [newValue, id]
       );
     }
@@ -88,9 +88,9 @@ async function updateTransaccion(id, columns, newValues) {
 }
 
 module.exports = {
-  getAllTransacciones,
-  getTransaccion,
-  createTransaccion,
-  deleteTransaccion,
-  updateTransaccion,
+  getAllCompradores,
+  getComprador,
+  createComprador,
+  deleteComprador,
+  updateComprador,
 };
