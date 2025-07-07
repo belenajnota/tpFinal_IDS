@@ -8,7 +8,7 @@ CREATE TABLE albums (
     precio INT NOT NULL
 );
 
-nombre 30, version_album 30, grupo 20, imagen 200, fecha_lanzamiento, precio
+
 CREATE TABLE photocards (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(40) NOT NULL,
@@ -18,6 +18,7 @@ CREATE TABLE photocards (
     estado VARCHAR(15) NOT NULL,
     id_album INT REFERENCES albums(id) ON DELETE CASCADE
 );
+
 CREATE TABLE ventas (
     id SERIAL PRIMARY KEY,
     nombre_cliente VARCHAR(40) NOT NULL,
@@ -33,17 +34,6 @@ CREATE TABLE ventas (
     id_photocard INT REFERENCES photocards(id) ON DELETE SET NULL,
     id_album INT REFERENCES albums(id) ON DELETE SET NULL
 );
-
-    nombre_cliente 40,
-    telefono_cliente 15,
-    instagram_cliente 30 ?,
-    precio_venta ,
-    medio_de_pago 20,
-    lugar_entrega 30,
-    hora_entrega ?,
-    costo_entrega,
-    id_photocard,
-    id_album
 
 
 
