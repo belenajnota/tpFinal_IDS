@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/belenajnota/tpFinal_IDS#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "pg": "^8.16.3"
   },
