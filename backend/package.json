@@ -1,21 +1,13 @@
 {
-  "name": "tpfinal",
+  "name": "k-cards",
   "version": "1.0.0",
-  "description": "Backend de Intro al Desarrollo de Software",
+  "description": "Backend de tp de Intro al Desarrollo de Software",
   "main": "src/api.js",
   "scripts": {
     "dev": "nodemon src/api.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/belenajnota/tpFinal_IDS.git"
-  },
-  "author": "Los Emuladores",
+  "author": "Los emuladores",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/belenajnota/tpFinal_IDS/issues"
-  },
-  "homepage": "https://github.com/belenajnota/tpFinal_IDS#readme",
   "dependencies": {
     "express": "^5.1.0",
     "pg": "^8.16.3"
