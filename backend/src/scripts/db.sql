@@ -1,23 +1,38 @@
+/*
+un album puede tener como 2 photocards
+*/
+
 CREATE TABLE albums (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(30) NOT NULL,
+    grupo VARCHAR(30) NOT NULL,
     version_album VARCHAR(30) NOT NULL,
-    grupo VARCHAR(20) NOT NULL,
-    imagen VARCHAR(200),
-    fecha_lanzamiento DATE,
-    precio INT NOT NULL
+    imagen VARCHAR(200) NOT NULL,
+    pais VARCHAR(15),
+    empresa VARCHAR(15)
 );
+<<<<<<< Updated upstream
 
 
+=======
+nombre, version_album, imagen, pais, empresa
+>>>>>>> Stashed changes
 CREATE TABLE photocards (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(40) NOT NULL,
     imagen VARCHAR(200) NOT NULL,
     precio_comprada INT NOT NULL,
+<<<<<<< Updated upstream
     fecha_comprada DATE NOT NULL,
     estado VARCHAR(15) NOT NULL,
     id_album INT REFERENCES albums(id) ON DELETE CASCADE
+=======
+    album_id INT REFERENCES albums(id) ON DELETE CASCADE,
+    disponible BOOLEAN DEFAULT true
+>>>>>>> Stashed changes
 );
+
+nombre, grupo, imagen, precio_comprada, album_id, disponible
 
 CREATE TABLE ventas (
     id SERIAL PRIMARY KEY,
@@ -35,6 +50,7 @@ CREATE TABLE ventas (
     id_album INT REFERENCES albums(id) ON DELETE SET NULL
 );
 
+<<<<<<< Updated upstream
 
 
 INSERT INTO albums (nombre, version_album, grupo, imagen, fecha_lanzamiento, precio) VALUES
@@ -48,20 +64,47 @@ INSERT INTO albums (nombre, version_album, grupo, imagen, fecha_lanzamiento, pre
 ('OMG', 'Weverse ver.', 'NewJeans', NULL, NULL, 1450),       
 ('MAXIDENT', 'Case ver.', 'Stray Kids', NULL, NULL, 3500),    
 ('With YOU-th', 'Platform ver.', 'TWICE', NULL, NULL, 7100);  
+=======
+INSERT INTO albums (nombre, grupo, version_album, imagen, pais, empresa) VALUES
+('Formula of Love', 'TWICE', 'Version A', 'https://http2.mlstatic.com/D_613558-MLU69642152447_052023-C.jpg', 'Corea', 'JYP'),
+('Born Pink', 'BLACKPINK', 'Version Black', 'https://http2.mlstatic.com/D_NQ_NP_834996-MLA83204059508_042025-O.webp', 'Corea', 'YG'),
+('The Album', 'BLACKPINK', 'Version Pink', 'https://http2.mlstatic.com/D_NQ_NP_770845-MLA43693020978_102020-O.webp', 'Corea', 'YG'),
+('Sticker','NCT', 'Version Seoul City', 'https://cdn.dc5.ro/img-prod/1517545281-0.jpeg', 'Corea', 'SM'),
+('Maxident', 'Stray Kids', 'Version Heart', 'https://http2.mlstatic.com/D_NQ_NP_919578-MLA82640350825_022025-O.webp', 'Corea', 'JYP'),
+('Face the Sun', 'Seventeen', 'Compact', 'https://towerrecords.com/cdn/shop/files/4090695-2837374.jpg?v=1711763767', 'Corea', 'PLEDIS'),
+('Eyes Wide Open', 'TWICE','Version B', 'https://lightupk.com/cdn/shop/products/2_ae77f279-fd1f-4899-9187-e0a9f4a83270.png?v=1654139247', 'Corea', 'JYP'),
+('Get Up', 'New Jeans', 'Version Bunny', 'https://acdn-us.mitiendanube.com/stores/001/444/863/products/blac-6b08705ccbbfac6cf717162191891349-1024-1024.jpg', 'Corea', 'ADOR');
+>>>>>>> Stashed changes
 
+INSERT INTO photocards (nombre, grupo, imagen, precio_comprada, album_id) VALUES
+('Nayeon Formula A', 'TWICE', 'https://i.pinimg.com/736x/b4/63/75/b4637547a80b6659f379a345da8f2bf1.jpg', 1200, 1),
+('Dahyun Formula A', 'TWICE', 'https://i.pinimg.com/736x/69/d3/98/69d3982ac864cb083cc7152649fd9e45.jpg', 1000, 1),
+('Jeongyeon Formula A', 'TWICE', 'https://i.pinimg.com/736x/d1/fa/f7/d1faf719e5a16f3b075cefb5649c47f1.jpg', 900, 1),
+('Lisa Born Pink', 'BLACKPINK', 'https://pbs.twimg.com/media/FpgWIxhaMAUOq4Q.jpg:large', 1600, 2),
+('Jisoo The Album', 'BLACKPINK', 'https://i.pinimg.com/736x/8e/30/f7/8e30f7198f3d5ec978eac1b45b3de846.jpg', 1500, 3),
+('Taeyong Sticker', 'NCT 127', 'https://i.pinimg.com/736x/13/fb/24/13fb24ff7767dec846bd3da6c38f7e7a.jpg', 1100, 4),
+('Hyunjin Maxident', 'Stray Kids', 'https://i.pinimg.com/736x/b4/5a/dc/b45adc4ea1cf4f9e55dcb68e8332680b.jpg', 1400, 5),
+('Mingyu Face Compact', 'SEVENTEEN', 'https://www.suruga-ya.jp/database/pics_light/game/gl459199.jpg', 1300, 6),
+('Scoups Face Compact', 'SEVENTEEN', 'https://i.ebayimg.com/images/g/UD0AAOSwIS1nkZ~g/s-l1200.jpg', 1350, 6),
+('Sana Eyes B', 'TWICE', 'https://i.pinimg.com/736x/6b/a8/b9/6ba8b9057aa1efc629a3e20ddef6f5d4.jpg', 1100, 7),
+('Tzuyu Eyes B', 'TWICE', 'https://i.pinimg.com/736x/8f/a3/1c/8fa31c6bd4f1b4a93d9b78060bb3ca68.jpg', 1050, 7),
+('Danielle Get Up', 'NewJeans', 'https://i.pinimg.com/736x/4f/fc/fd/4ffcfd7c33263ab76393877be42e8f18.jpg', 2000, 8),
+('Hanni Get Up', 'NewJeans', 'https://i.pinimg.com/736x/ad/92/a8/ad92a8a6ac100aebec21e18630325346.jpg', 1900, 8);
 
-INSERT INTO photocards (nombre, imagen, precio_comprada, fecha_comprada, estado, id_album) VALUES
-('Jungkook', 'https://i.pinimg.com/736x/7c/6d/d3/7c6dd3005bddc0739a8d3aa8cc792ad7.jpg', 4200, '2025-07-01', 'vendida', 1),
-('Lisa', 'https://i.ebayimg.com/images/g/KJgAAOSwBEthO5Vy/s-l1200.jpg', 3500, '2025-07-01', 'vendida', 2),
-('Hyunjin', 'https://ndc.infludeo.com/media/photocard_blur/2024/07/24/29eb360f52a24d55bb7bebf21ae2a514.jpg?f=auto&q=75&w=640', 5100, '2025-07-01', 'vendida', 3),
-('Julie', 'https://i.ebayimg.com/images/g/JnoAAOSweHVnD90a/s-l1200.jpg', 2400, '2025-07-01', 'vendida', 4),
-('Karina', 'https://i.ebayimg.com/images/g/fokAAOSwf6pnIdMC/s-l1200.jpg', 5200, '2025-07-01', 'vendida', 5),
-('Jennie', 'https://i.pinimg.com/736x/0a/77/e7/0a77e741cb1b5293e2a1e8a434caa56d.jpg', 2500, '2025-07-01', 'vendida', 6),
-('Natty', 'https://d1sut5kn3lwnf7.cloudfront.net/media/photocard_blur/2024/07/01/17303e0935a64ff480690acc49e9e1ed.jpg', 2400, '2025-07-01', 'vendida', 7),
-('Hyein', 'https://64.media.tumblr.com/b926ea22adc9d91b76ab00e3c080c4e8/2a260927b365f5eb-08/s540x810/958ec958f8b7a8cdc551a35951202dd097f759c9.jpg', 1450, '2025-07-01', 'disponible', 8),
-('Changbin', 'https://i.pinimg.com/736x/fc/45/7c/fc457c599a93fe7d028e6b2e4f4da506.jpg', 3500, '2025-07-01', 'disponible', 9),
-('Nayeon', 'https://i.pinimg.com/736x/2c/07/3e/2c073eb48b786e5c85267b3f42c6c657.jpg', 7100, '2025-07-01', 'disponible', 10);
+INSERT INTO ventas (nombre_cliente, telefono_cliente, instagram_cliente, precio_venta, medio_de_pago, fecha_venta, lugar_entrega, fecha_entrega, hora_entrega, costo_entrega, id_photocard) VALUES
+('Lucía Fernández', '1134567890', '@lucia_kpop', 1800, 'MercadoPago', '2024-06-22', 'Caballito', '2024-06-24', '16:30', 300, 4),
+('Martina López', '1167894321', '@marti_blink', 1300, 'Efectivo', '2024-04-15', 'Recoleta', '2024-04-16', '14:00', 200, 6),
+('Sofía Kim', '1176543210', '@sofi_newjeans', 2300, 'Transferencia', '2024-07-03', 'Belgrano', '2024-07-04', '15:00', 400, 13),
+('Agustina Ramírez', '1143218765', '@agus_twice', 1200, 'Efectivo', '2024-05-16', 'Palermo', '2024-05-18', '13:00', 250, 3),
+('Lautaro Pérez', '1198765432', '@lau_svtn', 1600, 'MercadoPago', '2024-06-20', 'Almagro', '2024-06-21', '17:30', 300, 10),
+('Milagros Gómez', '1161111222', '@mila_twice', 1100, 'Efectivo', '2024-06-28', 'Villa Crespo', '2024-06-29', '15:00', 200, 2),
+('Camila Díaz', '1144445566', '@camidiaz_tw', 1150, 'MercadoPago', '2024-07-03', 'San Cristóbal', '2024-07-04', '17:00', 300, 2),
+('Josefina Vera', '1133334444', '@jose.newjeans', 2200, 'Transferencia', '2024-07-05', 'Villa Devoto', '2024-07-06', '18:00', 300, 12),
+('Bianca Suárez', '1155556677', '@bianca_dani', 2150, 'Efectivo', '2024-07-06', 'Caballito', '2024-07-07', '13:30', 250, 12),
+('Bruno Molina', '1122334455', '@bruno_svt', 1400, 'Transferencia', '2024-07-02', 'Chacarita', '2024-07-03', '19:00', 350, 9),
+('Valeria Núñez', '1166677788', '@valen_sco', 1380, 'MercadoPago', '2024-07-03', 'Villa Urquiza', '2024-07-05', '12:00', 300, 9);
 
+<<<<<<< Updated upstream
 
 INSERT INTO ventas 
 (nombre_cliente, telefono_cliente, instagram_cliente, precio_venta, medio_de_pago, fecha_venta, lugar_entrega, fecha_entrega, hora_entrega, costo_entrega, id_photocard, id_album)
@@ -75,3 +118,5 @@ VALUES
 ('Lucas Fernández', '1198765432', NULL, 4200, 'Tarjeta', '2025-07-09', 'Estación Central', '2025-07-11', '14:00:00', 3000, 7, 7);
 
 
+=======
+>>>>>>> Stashed changes

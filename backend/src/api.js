@@ -7,19 +7,62 @@ const PORT = process.env.PORT || 3000;
 
 const { getPhotocards, getPhotocard, createPhotocard, deletePhotocard, updatePhotocard } = require("./scripts/photocards");
 const { getAlbums, getAlbum, createAlbum, deleteAlbum, updateAlbum } = require("./scripts/albums");
+<<<<<<< Updated upstream
 const { getVentas, getVenta, createVenta, deleteVenta, updateVenta} = require("./scripts/ventas")
 
 const max_longitud_valor = {
+=======
+const { getVentas, getVenta, createVenta, deleteVenta, updateVenta} = require("./scripts/ventas");
+const { esPrecioValido, validarHora, extraerCamposPermitidos } = require('./utils/validaciones');
+
+const camposPhotocards = ['nombre', 'grupo', 'imagen', 'precio_comprada', 'id_album'];
+const camposObligatoriosAlbums = ['nombre', 'version_album', 'imagen'];
+const camposAlbums = ['nombre', 'grupo', 'version_album', 'imagen', 'pais', 'empresa'];
+
+const camposObligatoriosVentas = [
+  'nombre_cliente',
+  'telefono_cliente',
+  'precio_venta',
+  'medio_de_pago',
+  'fecha_venta',
+  'lugar_entrega',
+  'fecha_entrega',
+  'costo_entrega',
+  'id_photocard'
+];
+const camposVentas = [
+  'nombre_cliente',
+  'telefono_cliente',
+  'instagram_cliente',
+  'precio_venta',
+  'medio_de_pago',
+  'fecha_venta',
+  'lugar_entrega',
+  'fecha_entrega',
+  'hora_entrega',
+  'costo_entrega',
+  'id_photocard'
+];
+
+const longitud_valores_photocards = {
+>>>>>>> Stashed changes
         nombre: 40,
-        imagen: 200,
-        estado: 15
+        grupo: 30,
+        imagen: 200
 }
 
+<<<<<<< Updated upstream
 const max_caract_valores_albums = {
         nombre: 30, 
+=======
+const longitud_valores_albums = {
+        nombre: 30,
+        grupo: 30, 
+>>>>>>> Stashed changes
         version_album: 30,
-        grupo: 20,
-        imagen: 200
+        imagen: 200,
+        pais: 15,
+        empresa: 15
 }
 
 const max_caract_valores_ventas = {
@@ -31,11 +74,16 @@ const max_caract_valores_ventas = {
 }
 
 
+<<<<<<< Updated upstream
 const estadosValidos = ['vendida', 'disponible', 'entregada'];
 
+=======
+>>>>>>> Stashed changes
 app.get('/api/health', (req, res) => {
     res.json({status: 'OK'});
 });
+
+
 
 
 
@@ -70,6 +118,7 @@ app.get('/api/photocards/:id', async (req, res) => {
         }
         return res.json(photocard);
     } catch (e) {
+         console.error('Error al obtener photocard:', e); // 👈 IMPORTANTE
         return res.status(500).json({ error: 'Error interno del servidor' });
     }
     
@@ -115,21 +164,44 @@ app.post('/api/photocards', async (req, res) => {
         return res.status(400).json({ error: 'El estado de la photocard no puede tener más de ' + max_longitud_valor.estado + ' caracteres' });
     }
 
+<<<<<<< Updated upstream
     if (!Number.isInteger(precio_comprada) || precio_comprada < 0) {
         return res.status(400).json({ error: 'El precio debe ser un número entero positivo' });
     }
+=======
+    for (const campo of Object.keys(longitud_valores_photocards)) {
+        const valor = req.body[campo];
+        //no verifico que sea un string porque ya verifique que NO sea de tipo null o undefined y al estar en longitud_valores_photocards 
+        //me aseguro que contiene caracteres
+        if (valor.length > longitud_valores_photocards[campo]) {
+            return res.status(400).json({ 
+                error: `${campo} no puede tener más de ${longitud_valores_photocards[campo]} caracteres`
+            });
+        }
+    }
+    
+>>>>>>> Stashed changes
 
     if (isNaN(Date.parse(fecha_comprada))) {
         return res.status(400).json({ error: 'La fecha comprada no es válida' });
     }
 
+<<<<<<< Updated upstream
     if (!Number.isInteger(id_album) || id_album <= 0) {
         return res.status(400).json({ error: 'El id del album debe ser un número entero positivo' });
     }
 
+=======
+    if (!Number.isInteger(req.body.id_album) || req.body.id_album <= 0) {
+        return res.status(400).json({ error: 'El id del album debe ser un número entero positivo mayor a 0' });
+    }
+
+    const {nombre, grupo, imagen, precio_comprada, id_album} = req.body
+
+>>>>>>> Stashed changes
     try {
         const photocard = await createPhotocard(
-            nombre, imagen, precio_comprada, fecha_comprada, estado, id_album);
+            nombre, grupo, imagen, precio_comprada, id_album);
 
         if (!photocard) {
             return res.status(500).json({ error: 'Error al crear la photocard' });
@@ -198,6 +270,7 @@ app.patch('/api/photocards/:id', async (req, res) => {
         return res.status(400).json({ error: 'El precio debe ser un número entero positivo' });
     }
 
+<<<<<<< Updated upstream
     if (datos.fecha_comprada !== undefined && isNaN(Date.parse(datos.fecha_comprada))) {
         return res.status(400).json({ error: 'La fecha comprada no es válida' });
     }
@@ -209,6 +282,10 @@ app.patch('/api/photocards/:id', async (req, res) => {
     if (datos.id_album !== undefined &&
         (!Number.isInteger(datos.id_album) || datos.id_album <= 0)) {
         return res.status(400).json({ error: 'El id del álbum debe ser un número entero positivo' });
+=======
+    if (datos.id_album !== undefined && (!Number.isInteger(datos.id_album) || datos.id_album <= 0)) {
+        return res.status(400).json({ error: 'El id del álbum debe ser un número entero positivo mayor a 0' });
+>>>>>>> Stashed changes
     }
 
     try {
@@ -283,6 +360,7 @@ app.post('/api/albums', async (req, res) => {
         return res.status(400).json({ error: 'Faltan campos para crear el album'});
     }
 
+<<<<<<< Updated upstream
 
     if (nombre.length > max_caract_valores_albums.nombre) {
         return res.status(400).json({ error: 'El nombre no puede tener más de ' +  max_caract_valores_albums.nombre + ' caracteres' });
@@ -311,6 +389,17 @@ app.post('/api/albums', async (req, res) => {
     try {
         const album = await createAlbum(
             nombre, version_album , grupo , imagen , fecha_lanzamiento, precio);
+=======
+    const { nombre, grupo, version_album, imagen, pais, empresa } = req.body;
+
+    const imagenFinal = imagen != null && imagen !== '' ? imagen : null;
+    const paisFinal = pais != null && pais !== '' ? pais : null;
+    const empresaFinal = empresa != null && empresa !== '' ? empresa : null;
+
+    try {
+        const album = await createAlbum(
+            nombre, grupo, version_album , imagenFinal , paisFinal, empresaFinal);
+>>>>>>> Stashed changes
 
         if (!album) {
             return res.status(500).json({ error: 'Error al crear el album' });
@@ -368,6 +457,7 @@ app.patch('/api/albums/:id', async (req, res) => {
         return res.status(400).json({ error: `El nombre no puede tener más de ${max_caract_valores_albums.nombre} caracteres` });
     }
 
+<<<<<<< Updated upstream
     if (datos.version_album !== undefined && datos.version_album.length > max_caract_valores_albums.version_album) {
         return res.status(400).json({ error: `La versión del album no puede tener más de ${max_caract_valores_albums.version_album} caracteres` });
     }
@@ -388,6 +478,8 @@ app.patch('/api/albums/:id', async (req, res) => {
         return res.status(400).json({ error: 'El precio debe ser un número entero positivo' });
     }
 
+=======
+>>>>>>> Stashed changes
     try {
         const album = await updateAlbum(id, datos);
         if (!album) {

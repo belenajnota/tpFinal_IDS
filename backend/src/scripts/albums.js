@@ -9,32 +9,125 @@ const dbClient = new Pool({
     database: "k-cards",
 });
 
-async function getAlbums() {
+const { getPhotocardsByAlbumId } = require('./photocards')
 
-    const response = await dbClient.query("SELECT * FROM albums");
+
+async function getAlbums() {
+    const response = await dbClient.query(`
+        SELECT 
+            a.id AS album_id,
+            a.nombre AS album_nombre,
+            a.version_album,
+            a.imagen AS album_imagen,
+            a.pais,
+            a.empresa,
+
+            p.id AS photocard_id,
+            p.nombre AS photocard_nombre,
+            p.grupo,
+            p.imagen AS photocard_imagen,
+            p.precio_comprada,
+            p.disponible
+        FROM albums a
+        LEFT JOIN photocards p ON a.id = p.album_id
+        ORDER BY a.id, p.id
+    `);
+
     if (response.rowCount === 0) {
         return undefined;
     }
-    return response.rows;
+
+    const albums = {};
+
+    response.rows.forEach(row => {
+        if (!albums[row.album_id]) {
+            albums[row.album_id] = {
+                nombre: row.album_nombre,
+                version_album: row.version_album,
+                imagen: row.album_imagen,
+                pais: row.pais,
+                empresa: row.empresa,
+                photocards: []
+            };
+        }
+
+        if (row.photocard_id !== null) {
+            albums[row.album_id].photocards.push({
+                id: row.photocard_id,
+                nombre: row.photocard_nombre,
+                grupo: row.grupo,
+                imagen: row.photocard_imagen,
+                precio_comprada: row.precio_comprada,
+                disponible: row.disponible
+            });
+        }
+    });
+
+    return albums;
 }
 
 
+
 async function getAlbum(id) {
-    const response = await dbClient.query("SELECT * FROM albums WHERE id = $1", [id]);
+    const response = await dbClient.query(`
+        SELECT 
+            a.id AS album_id,
+            a.nombre AS album_nombre,
+            a.version_album,
+            a.imagen AS album_imagen,
+            a.pais,
+            a.empresa,
+
+            p.id AS photocard_id,
+            p.nombre AS photocard_nombre,
+            p.grupo,
+            p.imagen AS photocard_imagen,
+            p.precio_comprada,
+            p.disponible
+        FROM albums a
+        LEFT JOIN photocards p ON a.id = p.album_id
+        WHERE a.id = $1
+        ORDER BY p.id
+    `, [id]);
 
     if (response.rowCount === 0) {
         return undefined;
     }
-    return response.rows[0];
 
+    const rows = response.rows;
+
+    const album = {
+        id: rows[0].album_id,
+        nombre: rows[0].album_nombre,
+        version_album: rows[0].version_album,
+        imagen: rows[0].album_imagen,
+        pais: rows[0].pais,
+        empresa: rows[0].empresa,
+        photocards: []
+    };
+
+    rows.forEach(row => {
+        if (row.photocard_id !== null) {
+            album.photocards.push({
+                id: row.photocard_id,
+                nombre: row.photocard_nombre,
+                grupo: row.grupo,
+                imagen: row.photocard_imagen,
+                precio_comprada: row.precio_comprada,
+                disponible: row.disponible
+            });
+        }
+    });
+
+    return album;
 }
 
 
 //RETURNING * hace que PostgreSQL devuelva la fila recién insertada
-async function createAlbum(nombre, version_album, grupo, imagen, fecha_lanzamiento, precio) {
+async function createAlbum(nombre, grupo,version_album,  imagen, pais, empresa) {
     const response = await dbClient.query(
-        'INSERT INTO albums (nombre, version_album, grupo, imagen, fecha_lanzamiento, precio) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
-        [nombre, version_album, grupo, imagen, fecha_lanzamiento, precio]);
+        'INSERT INTO albums (nombre, grupo, version_album, imagen, pais, empresa) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+        [nombre, grupo, version_album, imagen, pais, empresa]);
 
     if (response.rowCount === 0) {
         return undefined;
@@ -42,7 +135,6 @@ async function createAlbum(nombre, version_album, grupo, imagen, fecha_lanzamien
     return response.rows[0];  
 
 }
-
 
 async function deleteAlbum(id) {
     const response = await dbClient.query('DELETE FROM albums WHERE id = $1', [id]);
@@ -92,5 +184,11 @@ module.exports = {
     getAlbum,
     createAlbum,
     deleteAlbum,
+<<<<<<< Updated upstream
     updateAlbum
 };
+=======
+    updateAlbum,
+    getPhotocardsByAlbumId
+};
+>>>>>>> Stashed changes

@@ -136,4 +136,9 @@ module.exports = {
     createVenta,
     deleteVenta,
     updateVenta
+<<<<<<< Updated upstream
 };
+=======
+
+};
+>>>>>>> Stashed changes
