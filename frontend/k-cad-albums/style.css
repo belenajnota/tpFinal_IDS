@@ -1,11 +1,54 @@
+.container-img {
+  display: flex;
+  justify-content: center;
+}
+
+.container-img img {
+  height: 1000px;
+}
+
+.color {
+  background-color: #ffc0cb;
+}
+
+.font {
+  color: #f8f8ff;
+}
+
+.button-change {
+  grid-column: span 2;
+  padding: 12px;
+  background-color: #ffc0cb;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  margin: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button-change:hover,
+a:hover {
+  background-color: #ff99aa;
+}
+
+.container-button {
+  margin-top: 60px;
+  display: flex;
+  justify-content: end;
+}
+
 .container-card {
+  margin-top: 20px;
   background-color: rgb(121, 105, 136);
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
 .card-album {
-  background-color: white;
+  background-color: #fff8e4;
   border-radius: 16px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 220px;
@@ -17,6 +60,7 @@
 .card-album img {
   width: 100px;
   height: 100px;
+  margin: 0 60px 0 40px;
   object-fit: contain;
   border-radius: 8px;
   margin-bottom: 12px;

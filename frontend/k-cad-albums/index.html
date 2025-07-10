@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,10 +11,26 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div
-      id="container-card"
-      class="container is-fluid is-flex-wrap-wrap container-card"
-    ></div>
+    <nav
+      class="navbar is-fixed-top color"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item font" href=""> Inicio </a>
+          <a class="navbar-item font" href=""> Photocards </a>
+          <a class="navbar-item font" href=""> Albums </a>
+          <a class="navbar-item font" href="../k-card-ventas/index.html">
+            Ventas
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container-button">
+      <a href="" class="button button-change">Crear Album</a>
+    </div>
+    <div id="container-card" class="container is-fluid container-card"></div>
     <script src="./code.js"></script>
   </body>
 </html>

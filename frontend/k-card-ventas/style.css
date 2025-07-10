@@ -93,7 +93,8 @@ th:last-child {
   transition: background-color 0.3s;
 }
 
-.button-change:hover {
+.button-change:hover,
+a:hover {
   background-color: #ff99aa;
 }
 
