@@ -1,3 +1,10 @@
+body {
+  background-color: #fedada;
+  position: relative;
+  top: -10px;
+  height: 100vh;
+}
+
 .container-img {
   display: flex;
   justify-content: center;
@@ -33,18 +40,27 @@ a:hover {
   background-color: #ff99aa;
 }
 
+#title-pag {
+  position: relative;
+  top: 5px;
+  font-size: 40px;
+}
+
 .container-button {
   margin-top: 60px;
   display: flex;
-  justify-content: end;
+  width: 80%;
+  margin-right: 10%;
+  margin-left: 10%;
+  justify-content: space-between;
 }
 
 .container-card {
   margin-top: 20px;
-  background-color: rgb(121, 105, 136);
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
+  justify-content: start;
 }
 
 .card-album {
@@ -53,7 +69,6 @@ a:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 220px;
   padding: 20px;
-  margin: auto;
   text-align: center;
 }
 

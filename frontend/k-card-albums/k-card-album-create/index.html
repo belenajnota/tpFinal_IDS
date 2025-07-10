@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Formulario KPopCardz</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <nav
+      class="navbar is-fixed-top color"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item font" href=""> Inicio </a>
+          <a class="navbar-item font" href=""> Photocards </a>
+          <a class="navbar-item font" href=""> Albums </a>
+          <a class="navbar-item font" href="../k-card-ventas/index.html">
+            Ventas
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <h2 class="title-form">Agregar Album</h2>
+      <p class="title-form">La fecha esta en formato (Mes-Dia-Año)</p>
+      <form id="formulario">
+        <div>
+          <label for="nombreAlbum">Nombre del Album</label>
+          <input type="text" id="nombreAlbum" maxlength="30" required />
+        </div>
+        <div>
+          <label for="versionAlbum">Version del Album</label>
+          <input type="text" id="versionAlbum" maxlength="30" required />
+        </div>
+        <div>
+          <label for="Grupo">Grupo</label>
+          <input type="text" id="Grupo" maxlength="20" required />
+        </div>
+        <div>
+          <label for="Imagen">Imagen</label>
+          <input type="text" id="Imagen" />
+        </div>
+        <div>
+          <label for="fechaLanzamiento">Fecha de Lanzamiento</label>
+          <input type="date" id="fechaLanzamiento" />
+        </div>
+
+        <div>
+          <label for="Precio">Precio</label>
+          <input type="text" id="Precio" required />
+        </div>
+
+        <button id="button" type="submit">Guardar Cambios</button>
+      </form>
+    </div>
+    <script src="./code.js"></script>
+  </body>
+</html>

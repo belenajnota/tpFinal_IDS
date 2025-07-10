@@ -29,7 +29,7 @@ async function getAlbums() {
       newButtonVer.innerHTML = "Ver";
       newButtonVer.className = "button";
       newButtonVer.id = "button-card";
-      newButtonVer.href = "" + album.id;
+      newButtonVer.href = "./k-card-album/index.html?id=" + album.id;
       newContainer.appendChild(newButtonVer);
 
       const newButtonBorrar = document.createElement("a");
@@ -68,7 +68,8 @@ async function getAlbums() {
       newButtonModificar.innerHTML = "Modificar";
       newButtonModificar.className = "button";
       newButtonModificar.id = "button-card";
-      newButtonModificar.href = "" + album.id;
+      newButtonModificar.href =
+        "./k-card-album-update/index.html?id=" + album.id;
 
       newContainer.appendChild(newButtonModificar);
 
