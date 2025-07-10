@@ -741,18 +741,18 @@ app.patch("/api/ventas/:id", async (req, res) => {
   }
 
   const camposPermitidos = [
-    nombre_cliente,
-    telefono_cliente,
-    instagram_cliente,
-    precio_venta,
-    medio_de_pago,
-    fecha_venta,
-    lugar_entrega,
-    fecha_entrega,
-    hora_entrega,
-    costo_entrega,
-    id_photocard,
-    id_album,
+    "nombre_cliente",
+    "telefono_cliente",
+    "instagram_cliente",
+    "precio_venta",
+    "medio_de_pago",
+    "fecha_venta",
+    "lugar_entrega",
+    "fecha_entrega",
+    "hora_entrega",
+    "costo_entrega",
+    "id_photocard",
+    "id_album",
   ];
 
   const datos = {};
@@ -780,7 +780,7 @@ app.patch("/api/ventas/:id", async (req, res) => {
 
   if (
     datos.telefono_cliente !== undefined &&
-    telefono_cliente.length > max_caract_valores_ventas.telefono_cliente
+    datos.telefono_cliente.length > max_caract_valores_ventas.telefono_cliente
   ) {
     return res.status(400).json({
       error:
@@ -792,7 +792,7 @@ app.patch("/api/ventas/:id", async (req, res) => {
 
   if (
     datos.instagram_cliente !== undefined &&
-    instagram_cliente.length > max_caract_valores_ventas.instagram_cliente
+    datos.instagram_cliente.length > max_caract_valores_ventas.instagram_cliente
   ) {
     return res.status(400).json({
       error:
@@ -804,7 +804,7 @@ app.patch("/api/ventas/:id", async (req, res) => {
 
   if (
     datos.precio_venta !== undefined &&
-    (!Number.isInteger(precio_venta) || precio_venta < 0)
+    (!Number.isInteger(datos.precio_venta) || datos.precio_venta < 0)
   ) {
     return res
       .status(400)
@@ -813,7 +813,7 @@ app.patch("/api/ventas/:id", async (req, res) => {
 
   if (
     datos.medio_de_pago !== undefined &&
-    medio_de_pago.length > max_caract_valores_ventas.medio_de_pago
+    datos.medio_de_pago.length > max_caract_valores_ventas.medio_de_pago
   ) {
     return res.status(400).json({
       error:
@@ -823,13 +823,13 @@ app.patch("/api/ventas/:id", async (req, res) => {
     });
   }
 
-  if (datos.fecha_venta !== undefined && isNaN(Date.parse(fecha_venta))) {
+  if (datos.fecha_venta !== undefined && isNaN(Date.parse(datos.fecha_venta))) {
     return res.status(400).json({ error: "La fecha de venta no es válida" });
   }
 
   if (
     datos.lugar_entrega !== undefined &&
-    lugar_entrega.length > max_caract_valores_ventas.lugar_entrega
+    datos.lugar_entrega.length > max_caract_valores_ventas.lugar_entrega
   ) {
     return res.status(400).json({
       error:
@@ -839,7 +839,10 @@ app.patch("/api/ventas/:id", async (req, res) => {
     });
   }
 
-  if (datos.fecha_entrega !== undefined && isNaN(Date.parse(fecha_entrega))) {
+  if (
+    datos.fecha_entrega !== undefined &&
+    isNaN(Date.parse(datos.fecha_entrega))
+  ) {
     return res.status(400).json({ error: "La fecha de entrega no es válida" });
   }
 
@@ -855,7 +858,7 @@ app.patch("/api/ventas/:id", async (req, res) => {
 
   if (
     datos.costo_entrega !== undefined &&
-    (!Number.isInteger(costo_entrega) || costo_entrega < 0)
+    (!Number.isInteger(datos.costo_entrega) || datos.costo_entrega < 0)
   ) {
     return res.status(400).json({
       error: "El costo de entrega debe ser un número entero positivo",
@@ -864,7 +867,7 @@ app.patch("/api/ventas/:id", async (req, res) => {
 
   if (
     datos.id_photocard !== undefined &&
-    (!Number.isInteger(id_photocard) || id_photocard <= 0)
+    (!Number.isInteger(datos.id_photocard) || datos.id_photocard <= 0)
   ) {
     return res.status(400).json({
       error: "El id de la photocard debe ser un número entero mayor a 0",
@@ -873,7 +876,7 @@ app.patch("/api/ventas/:id", async (req, res) => {
 
   if (
     datos.id_album !== undefined &&
-    (!Number.isInteger(id_album) || id_album <= 0)
+    (!Number.isInteger(datos.id_album) || datos.id_album <= 0)
   ) {
     return res
       .status(400)
@@ -885,7 +888,7 @@ app.patch("/api/ventas/:id", async (req, res) => {
     if (!venta) {
       return res
         .status(404)
-        .json({ error: "La venta con id ${id} no fue encontrada" });
+        .json({ error: `La venta con id ${id} no fue encontrada` });
     }
     return res.json(venta);
   } catch (e) {

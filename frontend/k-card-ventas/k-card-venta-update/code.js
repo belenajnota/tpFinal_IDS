@@ -184,6 +184,7 @@ async function updateVenta() {
 formulario.addEventListener("submit", (event) => {
   event.preventDefault();
   updateVenta();
+  alert("Se ha modificado la venta correctamente");
   setTimeout(() => {
     window.location.href = "../index.html?nocache=" + new Date().getTime();
   }, 3000);

@@ -171,6 +171,7 @@ formulario.addEventListener("submit", (event) => {
 
   console.log("Hola soy homero chino");
   createVenta();
+  alert("Se ha creado correctamente la venta");
   setTimeout(() => {
     window.location.href = "../index.html?nocache=" + new Date().getTime();
   }, 3000);

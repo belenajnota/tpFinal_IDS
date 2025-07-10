@@ -21,7 +21,11 @@ async function getVenta() {
     //Appendeo la informacion a la tabla
     nombreCliente.innerHTML = venta.nombre_cliente;
     telefonoCliente.innerHTML = venta.telefono_cliente;
-    instagramCliente.innerHTML = "@" + venta.instagram_cliente;
+    if (venta.instagram_cliente == null) {
+      instagramCliente.innerHTML = "";
+    } else {
+      instagramCliente.innerHTML = "@" + venta.instagram_cliente;
+    }
     PrecioVenta.innerHTML = "$" + venta.precio_venta;
     medioDePago.innerHTML = venta.medio_de_pago;
     fechaVenta.innerHTML = venta.fecha_venta.split("T")[0];
@@ -310,6 +314,9 @@ document.addEventListener("DOMContentLoaded", () => {
       closeModal(formDentroModal.closest(".modal"));
 
       alert("Formulario procesado y cambios guardados");
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
     });
   }
 });
