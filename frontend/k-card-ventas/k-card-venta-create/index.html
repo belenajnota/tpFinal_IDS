@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Formulario KPopCardz</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="title-form">Agregar Venta</h2>
+      <p class="title-form">La fecha esta en formato (Mes-Dia-Año)</p>
+      <form id="formulario">
+        <div>
+          <label for="cliente">Nombre del Cliente</label>
+          <input type="text" id="cliente" maxlength="40" required />
+        </div>
+        <div>
+          <label for="telefono">Teléfono</label>
+          <input type="text" id="telefono" maxlength="15" required />
+        </div>
+        <div>
+          <label for="instagram-cliente">Instagram</label>
+          <input type="text" id="instagram-cliente" maxlength="30" />
+        </div>
+
+        <div>
+          <label for="precioVenta">Precio de Venta</label>
+          <input type="text" id="precioVenta" required />
+        </div>
+        <div>
+          <label for="medioDePago">Medio de Pago</label>
+          <div class="select">
+            <select id="medioDePago" class="select-option" required>
+              <option value="">Selecciona un Medio de Pago</option>
+              <option>Mercado Pago</option>
+              <option>Efectivo</option>
+              <option>Transferencia</option>
+              <option>Tarjeta</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="fechaVenta">Fecha de Venta</label>
+          <input type="date" id="fechaVenta" required />
+        </div>
+        <div>
+          <label for="lugarEntrega">Lugar de Entrega</label>
+          <input type="text" id="lugarEntrega" required />
+        </div>
+        <div>
+          <label for="fechaEntrega">Fecha de entrega</label>
+          <input type="date" id="fechaEntrega" required />
+        </div>
+        <div>
+          <label for="horaEntrega">Hora de Entrega</label>
+          <input type="time" id="horaEntrega" step="1" required />
+        </div>
+        <div>
+          <label for="costoEntrega">Costo de Entrega</label>
+          <input type="text" id="costoEntrega" required />
+        </div>
+        <div>
+          <label for="album">Nombre del Album</label>
+          <div class="select">
+            <select id="select-album" class="select-option" required>
+              <option value="">Selecciona un Album</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="idol">Nombre del Idol</label>
+          <div class="select">
+            <select id="select-idol" class="select-option" required>
+              <option value="">Selecciona un Idol</option>
+            </select>
+          </div>
+        </div>
+        <button id="button" type="submit">Guardar Cambios</button>
+      </form>
+    </div>
+    <script src="./code.js"></script>
+  </body>
+</html>

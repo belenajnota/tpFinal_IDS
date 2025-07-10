@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ventas</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <nav
+      class="navbar is-fixed-top color"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item font"> Home </a>
+
+          <a class="navbar-item font"> Documentation </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container-button-venta is-flex is-flex-direction-row-reverse">
+      <a
+        class="button sizing button-change"
+        href="./k-card-venta-create/index.html"
+        >Crear una Venta</a
+      >
+    </div>
+
+    <div class="container">
+      <h2>Registro de Ventas</h2>
+
+      <div class="tabla-container">
+        <table>
+          <thead>
+            <tr>
+              <th class="font">Cliente</th>
+              <th class="font">Teléfono</th>
+              <th class="font">Instagram</th>
+              <th class="font">Precio</th>
+              <th class="font">Medio de Pago</th>
+              <th class="font">Fecha de Venta</th>
+              <th class="font">Lugar de Entrega</th>
+              <th class="font">Fecha Entrega</th>
+              <th class="font">Hora</th>
+              <th class="font">Costo Entrega</th>
+              <th class="font">Ver</th>
+              <th class="font">Borrar</th>
+              <th class="font">Modificar</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-body">
+            <!-- Las filas se agregan aquí -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="./code.js"></script>
+  </body>
+</html>

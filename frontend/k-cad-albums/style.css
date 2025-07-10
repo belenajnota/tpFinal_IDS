@@ -1,0 +1,47 @@
+.container-card {
+  background-color: rgb(121, 105, 136);
+  display: flex;
+  gap: 10px;
+}
+
+.card-album {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 220px;
+  padding: 20px;
+  margin: auto;
+  text-align: center;
+}
+
+.card-album img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.nombre-album {
+  font-weight: bold;
+  font-size: 16px;
+  color: #b4005a;
+  margin-bottom: 16px;
+}
+
+#button-card {
+  background-color: #ffc0cb;
+  border: none;
+  color: white;
+  font-size: 14px;
+  padding: 8px 14px;
+  margin: 6px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+#button-card:hover {
+  background-color: #ff99aa;
+}

@@ -1,0 +1,103 @@
+body {
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  background-color: #fff0f5;
+  padding: 30px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 5em;
+}
+
+h2 {
+  color: #d9488e;
+  text-align: center;
+}
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 14px;
+}
+
+thead {
+  background-color: #ffc0cb;
+  color: white;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #fff8e4;
+}
+
+tbody tr:hover {
+  background-color: #ffe1ea;
+}
+
+th:first-child {
+  border-top-left-radius: 12px;
+}
+
+th:last-child {
+  border-top-right-radius: 12px;
+}
+
+.btn-mini {
+  background-color: #ffc0cb;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.btn-mini:hover {
+  background-color: #ff99aa;
+}
+
+.color {
+  background-color: #ffc0cb;
+}
+
+.font {
+  color: #f8f8ff;
+}
+
+.container-button-venta {
+  margin-top: 50px;
+}
+
+.button-change {
+  grid-column: span 2;
+  padding: 12px;
+  background-color: #ffc0cb;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button-change:hover {
+  background-color: #ff99aa;
+}
+
+.sizing {
+  width: 250px;
+  height: 50px;
+}

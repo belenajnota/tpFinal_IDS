@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transaccion</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item"> Home </a>
+
+          <a class="navbar-item"> Documentation </a>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="container color-bg is-flex is-flex-direction-row is-justify-content-space-around"
+    >
+      <div class="tabla-detalle">
+        <div class="titulo-tabla">DETALLE DE LA VENTA</div>
+        <table>
+          <tr>
+            <td>Nombre del Cliente</td>
+            <td id="nombre-cliente"></td>
+          </tr>
+          <tr>
+            <td>Teléfono</td>
+            <td id="numero-telefono"></td>
+          </tr>
+          <tr>
+            <td>Instagram</td>
+            <td id="instagram"></td>
+          </tr>
+          <tr>
+            <td>Precio de Venta</td>
+            <td id="precio-venta"></td>
+          </tr>
+          <tr>
+            <td>Medio de pago</td>
+            <td id="medio-de-pago"></td>
+          </tr>
+          <tr>
+            <td>Fecha de venta</td>
+            <td id="fecha-venta"></td>
+          </tr>
+          <tr>
+            <td>Lugar de entrega</td>
+            <td id="lugar-entrega"></td>
+          </tr>
+          <tr>
+            <td>Fecha de entrega</td>
+            <td id="fecha-entrega"></td>
+          </tr>
+          <tr>
+            <td>Hora de entrega</td>
+            <td id="hora-entrega"></td>
+          </tr>
+          <tr>
+            <td>Costo de entrega</td>
+            <td id="costo-entrega"></td>
+          </tr>
+        </table>
+      </div>
+      <div class="container-imgs">
+        <div class="album">
+          <a href="" id="button-album"><img src="" alt="" id="album-img" /></a>
+          <h2 id="nombre-album">Nombre del Album:<br /></h2>
+        </div>
+        <div class="photocard">
+          <a href="" id="button-photocard"
+            ><img src="" alt="" id="photocard-img"
+          /></a>
+          <h2 id="nombre-photocard">Nombre del Idol:<br /></h2>
+        </div>
+      </div>
+    </div>
+    <!-- el modal es para modifcar-->
+    <div id="modificar" class="modal">
+      <div class="modal-background"></div>
+
+      <div class="modal-content">
+        <div class="box">
+          <p class="title-form">Modificar Informacion</p>
+          <p class="title-form">
+            Los cambios se realizaran una vez guardados los cambios.
+          </p>
+          <div class="container-form">
+            <form id="formulario">
+              <div>
+                <label for="cliente">Nombre del Cliente</label>
+                <input type="text" id="cliente" maxlength="40" />
+              </div>
+              <div>
+                <label for="telefono">Teléfono</label>
+                <input type="text" id="telefono" maxlength="15" />
+              </div>
+              <div>
+                <label for="instagram-cliente">Instagram</label>
+                <input type="text" id="instagram-cliente" maxlength="30" />
+              </div>
+
+              <div>
+                <label for="precioVenta">Precio de Venta</label>
+                <input type="text" id="precioVenta" />
+              </div>
+              <div>
+                <label for="medioDePago">Medio de Pago</label>
+                <div class="select">
+                  <select id="medioDePago" class="select-option">
+                    <option>Selecciona un Medio de Pago</option>
+                    <option>Mercado Pago</option>
+                    <option>Efectivo</option>
+                    <option>Transferencia</option>
+                    <option>Tarjeta</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label for="fechaVenta">Fecha de Venta</label>
+                <input type="date" id="fechaVenta" />
+              </div>
+              <div>
+                <label for="lugarEntrega">Lugar de Entrega</label>
+                <input type="text" id="lugarEntrega" />
+              </div>
+              <div>
+                <label for="fechaEntrega">Fecha de entrega</label>
+                <input type="date" id="fechaEntrega" />
+              </div>
+              <div>
+                <label for="horaEntrega">Hora de Entrega</label>
+                <input type="time" id="horaEntrega" step="1" />
+              </div>
+              <div>
+                <label for="costoEntrega">Costo de Entrega</label>
+                <input type="text" id="costoEntrega" />
+              </div>
+              <div>
+                <label for="album">Nombre del Album</label>
+                <div class="select">
+                  <select id="select-album" class="select-option">
+                    <option>Selecciona un Album</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label for="idol">Nombre del Idol</label>
+                <div class="select">
+                  <select id="select-idol" class="select-option">
+                    <option>Selecciona un Idol</option>
+                  </select>
+                </div>
+              </div>
+              <button type="submit">Guardar Cambios</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    <div
+      class="containerModals is-flex is-justify-content-space-evenly buttons-container"
+    >
+      <button
+        class="js-modal-trigger is-primary is-medium modificar"
+        data-target="modificar"
+      >
+        Modificar
+      </button>
+      <button id="deleteButton" class="modificar">Eliminar</button>
+    </div>
+
+    <script src="./code.js"></script>
+  </body>
+</html>
