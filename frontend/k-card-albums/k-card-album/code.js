@@ -237,7 +237,7 @@ deleteButton.addEventListener("click", () => {
 //photocards asociadas
 const photocardsBackendUrl = "http://localhost:3000/api/photocards";
 
-async function getAlbums() {
+async function getPhotocards() {
   try {
     const response = await fetch(photocardsBackendUrl);
     const photocards = await response.json();
@@ -268,7 +268,9 @@ async function getAlbums() {
         newButtonVer.innerHTML = "Ver";
         newButtonVer.className = "button";
         newButtonVer.id = "button-card";
-        newButtonVer.href = "" + photocard.id;
+        newButtonVer.href =
+          "../../k-card-photocard/k-card-photocard/index.html?id=" +
+          photocard.id;
         newContainer.appendChild(newButtonVer);
 
         const newButtonBorrar = document.createElement("a");
@@ -308,7 +310,9 @@ async function getAlbums() {
         newButtonModificar.innerHTML = "Modificar";
         newButtonModificar.className = "button";
         newButtonModificar.id = "button-card";
-        newButtonModificar.href = "" + photocard.id;
+        newButtonModificar.href =
+          "../../k-card-photocard/k-card-photocard-update/index.html?id=" +
+          photocard.id;
 
         newContainer.appendChild(newButtonModificar);
 
@@ -321,4 +325,4 @@ async function getAlbums() {
   }
 }
 
-getAlbums();
+getPhotocards();

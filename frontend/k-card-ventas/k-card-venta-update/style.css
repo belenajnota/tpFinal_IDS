@@ -5,13 +5,24 @@ body {
   height: 100vh;
 }
 
+/*nav style*/
+.color {
+  background-color: #ffc0cb !important;
+}
+
+.font {
+  color: #f8f8ff !important;
+}
+a:hover {
+  background-color: #ff99aa !important;
+}
 .container {
   max-width: 800px;
   background-color: white;
   padding: 20px;
   border-radius: 16px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin-top: 30px;
+  top: 100px;
 }
 
 .tabla-detalle {

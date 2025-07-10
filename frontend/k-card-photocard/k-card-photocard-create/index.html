@@ -20,10 +20,10 @@
           <a class="navbar-item font" href="../../k-card-inicio/index.html">
             Inicio
           </a>
-          <a class="navbar-item font" href="../../k-card-photocard/index.html">
-            Photocards
+          <a class="navbar-item font" href="../index.html"> Photocards </a>
+          <a class="navbar-item font" href="../../k-card-albums/index.html">
+            Albums
           </a>
-          <a class="navbar-item font" href="../index.html"> Albums </a>
           <a class="navbar-item font" href="../../k-card-ventas/index.html">
             Ventas
           </a>
@@ -31,33 +31,33 @@
       </div>
     </nav>
     <div class="container">
-      <h2 class="title-form">Modificar Album</h2>
+      <h2 class="title-form">Agregar Photocard</h2>
       <p class="title-form">La fecha esta en formato (Mes-Dia-Año)</p>
       <form id="formulario">
         <div>
-          <label for="nombreAlbum">Nombre del Album</label>
-          <input type="text" id="nombreAlbum" maxlength="30" placeholder="" />
+          <label for="nombrePhotocard">Nombre de la Photocard</label>
+          <input type="text" id="nombrePhotocard" maxlength="30" reuqired />
         </div>
         <div>
-          <label for="versionAlbum">Version del Album</label>
-          <input type="text" id="versionAlbum" maxlength="30" placeholder="" />
-        </div>
-        <div>
-          <label for="Grupo">Grupo</label>
-          <input type="text" id="Grupo" maxlength="20" placeholder="" />
+          <label for="precioCompra">Precio de Compra</label>
+          <input type="text" id="precioCompra" maxlength="30" required />
         </div>
         <div>
           <label for="Imagen">Imagen</label>
-          <input type="text" id="Imagen" />
+          <input type="text" id="Imagen" required />
         </div>
         <div>
-          <label for="fechaLanzamiento">Fecha de Lanzamiento</label>
-          <input type="date" id="fechaLanzamiento" />
+          <label for="fechaCompra">Fecha de Compra</label>
+          <input type="date" id="fechaCompra" required />
         </div>
-
         <div>
-          <label for="Precio">Precio</label>
-          <input type="text" id="Precio" placeholder="" />
+          <label for="Album">Album</label>
+          <div class="select">
+            <select id="Album" class="select-option" required>
+              <option value="">Selecciona un Album</option>
+              <option value="null">Sin Album</option>
+            </select>
+          </div>
         </div>
 
         <button id="button" type="submit">Guardar Cambios</button>

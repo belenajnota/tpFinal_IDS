@@ -1,0 +1,106 @@
+body {
+  background-color: #fedada;
+  position: relative;
+  top: -10px;
+  height: 100vh;
+}
+
+.container-img {
+  display: flex;
+  justify-content: center;
+}
+
+.container-img img {
+  height: 1000px;
+}
+
+.color {
+  background-color: #ffc0cb;
+}
+
+.font {
+  color: #f8f8ff;
+}
+
+.button-change {
+  grid-column: span 2;
+  padding: 12px;
+  background-color: #ffc0cb;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  margin: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button-change:hover,
+a:hover {
+  background-color: #ff99aa;
+}
+
+#title-pag {
+  position: relative;
+  top: 5px;
+  font-size: 40px;
+}
+
+.container-button {
+  margin-top: 60px;
+  display: flex;
+  width: 80%;
+  margin-right: 10%;
+  margin-left: 10%;
+  justify-content: space-between;
+}
+
+.container-card {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: start;
+}
+
+.card-photocard {
+  background-color: #fff8e4;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 220px;
+  padding: 20px;
+  text-align: center;
+}
+
+.card-photocard img {
+  width: 100px;
+  height: 100px;
+  margin: 0 60px 0 40px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.nombre-photocard {
+  font-weight: bold;
+  font-size: 16px;
+  color: #b4005a;
+  margin-bottom: 16px;
+}
+
+#button-card {
+  background-color: #ffc0cb;
+  border: none;
+  color: white;
+  font-size: 14px;
+  padding: 8px 14px;
+  margin: 6px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+#button-card:hover {
+  background-color: #ff99aa;
+}

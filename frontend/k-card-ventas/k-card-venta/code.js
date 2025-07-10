@@ -44,6 +44,9 @@ async function getVenta() {
     }
     //Apendeo el nombre del album
     const nombreAlbumHtml = document.getElementById("nombre-album");
+    const buttonAlbum = document.getElementById("button-album");
+    buttonAlbum.href =
+      "../../k-card-albums/k-card-album/index.html?id=" + album.id;
     const nombreAlbum = album.nombre;
     nombreAlbumHtml.innerHTML = "Nombre del Album:<br />" + nombreAlbum;
 
@@ -61,6 +64,9 @@ async function getVenta() {
     }
     //Apendeo el nombre de la photocard
     const nombrePhotocardHtml = document.getElementById("nombre-photocard");
+    const buttonPhotocard = document.getElementById("button-photocard");
+    buttonPhotocard.href =
+      "../../k-card-photocard/k-card-photocard/index.html?id=" + photocard.id;
     const nombrePhotocard = photocard.nombre;
     nombrePhotocardHtml.innerHTML = "Nombre del Idol:<br />" + nombrePhotocard;
   } catch (e) {

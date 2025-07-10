@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Transaccion</title>
+    <title>Photocard</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
@@ -19,13 +19,11 @@
     >
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item font" href="../../k-card-albums/index.html">
+          <a class="navbar-item font" href="../../k-card-inicio/index.html">
             Inicio
           </a>
-          <a class="navbar-item font" href="../../k-card-photocard/index.html">
-            Photocards
-          </a>
-          <a class="navbar-item font" href="../index.html"> Albums </a>
+          <a class="navbar-item font" href=""> Photocards </a>
+          <a class="navbar-item font" href="../../k-card-albums/"> Albums </a>
           <a class="navbar-item font" href="../../k-card-ventas/index.html">
             Ventas
           </a>
@@ -34,29 +32,25 @@
     </nav>
     <div class="container color-bg">
       <div id="content">
-        <div id="container-img"><img id="imgAlbum" src="" alt="" /></div>
+        <div id="container-img"><img id="imgPhotocard" src="" alt="" /></div>
         <div class="tabla-detalle">
-          <div class="titulo-tabla">DETALLE DEL ALBUM</div>
+          <div class="titulo-tabla">DETALLE DE LA PHOTOCARD</div>
           <table>
             <tr>
-              <td>Nombre del Album</td>
+              <td>Nombre de la Photocard</td>
               <td id="nombre"></td>
             </tr>
             <tr>
-              <td>Version del Album</td>
-              <td id="version-album"></td>
+              <td>Precio de Compra</td>
+              <td id="precio-compra"></td>
             </tr>
             <tr>
-              <td>Grupo</td>
-              <td id="grupo"></td>
+              <td>Fecha de Compra</td>
+              <td id="fecha-compra"></td>
             </tr>
             <tr>
-              <td>Fecha de Lanzamiento</td>
-              <td id="fecha-lanzamiento"></td>
-            </tr>
-            <tr>
-              <td>Precio</td>
-              <td id="precio"></td>
+              <td>Estado</td>
+              <td id="estado"></td>
             </tr>
           </table>
         </div>
@@ -73,29 +67,31 @@
           <div class="container-form">
             <form id="formulario">
               <div>
-                <label for="nombreAlbum">Nombre del Album</label>
-                <input type="text" id="nombreAlbum" maxlength="30" />
+                <label for="nombrePhotocard">Nombre de la Photocard</label>
+                <input type="text" id="nombrePhotocard" maxlength="30" />
               </div>
               <div>
-                <label for="versionAlbum">Version del Album</label>
-                <input type="text" id="versionAlbum" maxlength="30" />
-              </div>
-              <div>
-                <label for="Grupo">Grupo</label>
-                <input type="text" id="Grupo" maxlength="20" />
+                <label for="precioCompra">Precio de Compra</label>
+                <input type="text" id="precioCompra" maxlength="30" />
               </div>
               <div>
                 <label for="Imagen">Imagen</label>
                 <input type="text" id="Imagen" />
               </div>
               <div>
-                <label for="fechaLanzamiento">Fecha de Lanzamiento</label>
-                <input type="date" id="fechaLanzamiento" />
+                <label for="fechaCompra">Fecha de Compra</label>
+                <input type="date" id="fechaCompra" />
               </div>
-
               <div>
-                <label for="Precio">Precio</label>
-                <input type="text" id="Precio" />
+                <label for="Estado">Estado</label>
+                <div class="select">
+                  <select id="Estado" class="select-option">
+                    <option value="">Selecciona un Estado</option>
+                    <option>vendida</option>
+                    <option>disponible</option>
+                    <option>entregada</option>
+                  </select>
+                </div>
               </div>
 
               <button type="submit">Guardar Cambios</button>
@@ -118,10 +114,9 @@
       <button id="deleteButton" class="modificar">Eliminar</button>
     </div>
     <div style="margin-top: 60px">
-      <h2 class="title-photocard">Photocards Asociadas al Album</h2>
+      <h2 class="title-photocard">Albums Asociadas a la Photocard</h2>
       <div id="container-card" class="container is-fluid container-card"></div>
     </div>
-
     <script src="./code.js"></script>
   </body>
 </html>
