@@ -29,7 +29,6 @@ async function getPhotocards() {
             v.id AS venta_id,
             v.nombre_cliente,
             v.telefono_cliente,
-            v.instagram_cliente,
             v.precio_venta,
             v.medio_de_pago,
             v.fecha_venta,
@@ -48,7 +47,6 @@ async function getPhotocards() {
     response.rows.forEach(row => {
         if (!photocards[row.photocard_id]) {
             photocards[row.photocard_id] = {
-                id: row.photocard_id,
                 nombre: row.nombre_photocard,
                 grupo: row.grupo,
                 imagen: row.imagen,
@@ -71,7 +69,6 @@ async function getPhotocards() {
                 id: row.venta_id,
                 nombre_cliente: row.nombre_cliente,
                 telefono_cliente: row.telefono_cliente,
-                instagram_cliente: row.instagram_cliente,
                 precio_venta: row.precio_venta,
                 medio_de_pago: row.medio_de_pago,
                 fecha_venta: row.fecha_venta,
@@ -106,7 +103,6 @@ async function getPhotocard(id) {
             v.id AS venta_id,
             v.nombre_cliente,
             v.telefono_cliente,
-            v.instagram_cliente,
             v.precio_venta,
             v.medio_de_pago,
             v.fecha_venta,
@@ -124,7 +120,6 @@ async function getPhotocard(id) {
     const rows = response.rows;
 
     const photocard = {
-        id: rows[0].photocard_id,
         nombre: rows[0].nombre_photocard,
         grupo: rows[0].grupo,
         imagen: rows[0].imagen,
@@ -148,7 +143,6 @@ async function getPhotocard(id) {
                 id: row.venta_id,
                 nombre_cliente: row.nombre_cliente,
                 telefono_cliente: row.telefono_cliente,
-                instagram_cliente: row.instagram_cliente,
                 precio_venta: row.precio_venta,
                 medio_de_pago: row.medio_de_pago,
                 fecha_venta: row.fecha_venta,
@@ -166,12 +160,10 @@ async function getPhotocard(id) {
 
 
 
-
-//RETURNING * hace que PostgreSQL devuelva la fila recién insertada
-async function createPhotocard(nombre, grupo, imagen, precio_comprada, id_album) {
+async function createPhotocard(nombre, grupo, imagen, precio_comprada, album_id) {
     const response = await dbClient.query(
-        'INSERT INTO photocards(nombre, grupo, imagen, precio_comprada, id_album) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-        [nombre, grupo, imagen, precio_comprada, id_album]);
+        'INSERT INTO photocards(nombre, grupo, imagen, precio_comprada, album_id) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+        [nombre, grupo, imagen, precio_comprada, album_id]);
 
     if (response.rowCount === 0) {
         return undefined;

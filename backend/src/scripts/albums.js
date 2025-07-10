@@ -9,7 +9,6 @@ const dbClient = new Pool({
     database: "k-cards",
 });
 
-const { getPhotocardsByAlbumId } = require('./photocards')
 
 
 async function getAlbums() {
@@ -123,7 +122,6 @@ async function getAlbum(id) {
 }
 
 
-//RETURNING * hace que PostgreSQL devuelva la fila recién insertada
 async function createAlbum(nombre, grupo,version_album,  imagen, pais, empresa) {
     const response = await dbClient.query(
         'INSERT INTO albums (nombre, grupo, version_album, imagen, pais, empresa) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
@@ -184,11 +182,5 @@ module.exports = {
     getAlbum,
     createAlbum,
     deleteAlbum,
-<<<<<<< Updated upstream
     updateAlbum
 };
-=======
-    updateAlbum,
-    getPhotocardsByAlbumId
-};
->>>>>>> Stashed changes
