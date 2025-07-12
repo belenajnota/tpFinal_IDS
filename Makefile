@@ -14,3 +14,7 @@ run-frontend:
 
 run-backend: start-db start-backend 
 
+<<<<<<< HEAD
+=======
+run-backend: start-db start-backend
+>>>>>>> origin/main
