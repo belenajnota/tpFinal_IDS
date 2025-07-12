@@ -81,10 +81,12 @@ async function getPhotocards() {
     });
 
     return photocards;
+
 }
 
 
 async function getPhotocard(id) {
+
     const response = await dbClient.query(`
         SELECT 
             p.id AS photocard_id,
@@ -165,12 +167,14 @@ async function createPhotocard(nombre, grupo, imagen, precio_comprada, album_id)
         'INSERT INTO photocards(nombre, grupo, imagen, precio_comprada, album_id) VALUES ($1, $2, $3, $4, $5) RETURNING *',
         [nombre, grupo, imagen, precio_comprada, album_id]);
 
+
     if (response.rowCount === 0) {
         return undefined;
     }
     return response.rows[0];  
 
 }
+
 
 async function deletePhotocard(id) {
     const response = await dbClient.query('DELETE FROM photocards WHERE id = $1', [id]);

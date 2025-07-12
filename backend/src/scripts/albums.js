@@ -11,6 +11,7 @@ const dbClient = new Pool({
 
 
 
+
 async function getAlbums() {
     const response = await dbClient.query(`
         SELECT 
@@ -89,9 +90,11 @@ async function getAlbum(id) {
         ORDER BY p.id
     `, [id]);
 
+
     if (response.rowCount === 0) {
         return undefined;
     }
+
 
     const rows = response.rows;
 
@@ -127,12 +130,14 @@ async function createAlbum(nombre, grupo,version_album,  imagen, pais, empresa) 
         'INSERT INTO albums (nombre, grupo, version_album, imagen, pais, empresa) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
         [nombre, grupo, version_album, imagen, pais, empresa]);
 
+
     if (response.rowCount === 0) {
         return undefined;
     }
     return response.rows[0];  
 
 }
+
 
 async function deleteAlbum(id) {
     const response = await dbClient.query('DELETE FROM albums WHERE id = $1', [id]);

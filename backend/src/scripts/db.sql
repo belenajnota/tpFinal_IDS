@@ -1,11 +1,13 @@
 CREATE TABLE albums (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(30) NOT NULL,
+
     grupo VARCHAR(30) NOT NULL,
     version_album VARCHAR(30) NOT NULL,
     imagen VARCHAR(200) NOT NULL,
     pais VARCHAR(15) NOT NULL,
     empresa VARCHAR(15) NOT NULL
+
 );
 
 CREATE TABLE photocards (
@@ -14,24 +16,30 @@ CREATE TABLE photocards (
     grupo VARCHAR(30) NOT NULL,
     imagen VARCHAR(200) NOT NULL,
     precio_comprada INT NOT NULL,
+
     album_id INT REFERENCES albums(id) ON DELETE CASCADE,
     disponible BOOLEAN DEFAULT true
 );
+
 
 
 CREATE TABLE ventas (
     id SERIAL PRIMARY KEY,
     nombre_cliente VARCHAR(40) NOT NULL,
     telefono_cliente VARCHAR(15) NOT NULL,
+
     precio_venta INT NOT NULL,
     medio_de_pago VARCHAR(20) NOT NULL,
     fecha_venta DATE NOT NULL,
     lugar_entrega VARCHAR(30) NOT NULL,
     fecha_entrega DATE NOT NULL,
+
     hora_entrega TIME NOT NULL,
+
     costo_entrega INT NOT NULL,
     id_photocard INT REFERENCES photocards(id) ON DELETE SET NULL
 );
+
 
 
 
@@ -84,3 +92,4 @@ INSERT INTO ventas (nombre_cliente, telefono_cliente, precio_venta, medio_de_pag
 ('Bianca Suárez', '1155556677', 2150, 'Efectivo', '2024-07-06', 'Caballito', '2024-07-07', '13:30', 250, 12),
 ('Bruno Molina', '1122334455', 1400, 'Transferencia', '2024-07-02', 'Chacarita', '2024-07-03', '19:00', 350, 9),
 ('Valeria Núñez', '1166677788', 1380, 'MercadoPago', '2024-07-03', 'Villa Urquiza', '2024-07-05', '12:00', 300, 9);
+

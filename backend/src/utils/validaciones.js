@@ -1,9 +1,11 @@
 
 function esPrecioValido(valor) {
+
   if (typeof valor !== 'number') {
     return false;
   }
   return Number.isInteger(valor) &&  valor >= 0;
+
 }
 
 
@@ -26,6 +28,7 @@ function extraerCamposPermitidos(body, camposPermitidos) {
 }
 
 
+
 function esFechaValida(fecha) {
     return /^\d{4}-\d{2}-\d{2}$/.test(fecha) && !isNaN(new Date(fecha).getTime());
 }
@@ -33,9 +36,12 @@ function esFechaValida(fecha) {
 
 
 
+
 module.exports = {
   esPrecioValido,
   validarHora,
+
   extraerCamposPermitidos,
   esFechaValida
+
 };
