@@ -34,7 +34,6 @@ async function getVenta(id) {
 async function createVenta(
     nombre_cliente,
     telefono_cliente,
-    instagram_cliente,
     precio_venta,
     medio_de_pago,
     fecha_venta,
@@ -48,7 +47,7 @@ async function createVenta(
         INSERT INTO ventas (
             nombre_cliente,
             telefono_cliente,
-            instagram_cliente,
+
             precio_venta,
             medio_de_pago,
             fecha_venta,
@@ -58,14 +57,16 @@ async function createVenta(
             costo_entrega,
             id_photocard
         )
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+
         RETURNING *;
     `;
 
     const values = [
         nombre_cliente,
         telefono_cliente,
-        instagram_cliente,
+
         precio_venta,
         medio_de_pago,
         fecha_venta,

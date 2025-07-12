@@ -7,27 +7,18 @@ const PORT = process.env.PORT || 3000;
 
 const { getPhotocards, getPhotocard, createPhotocard, deletePhotocard, updatePhotocard } = require("./scripts/photocards");
 const { getAlbums, getAlbum, createAlbum, deleteAlbum, updateAlbum } = require("./scripts/albums");
-const { getVentas, getVenta, createVenta, deleteVenta, updateVenta} = require("./scripts/ventas");
-const { esPrecioValido, esIDValido, validarHora, extraerCamposPermitidos } = require('./utils/validaciones');
 
-const camposPhotocards = ['nombre', 'imagen', 'precio_comprada', 'fecha_comprada', 'estado', 'id_album'];
-const camposObligatoriosAlbums = ['nombre', 'version_album', 'grupo', 'precio'];
-const camposAlbums = ['nombre', 'version_album', 'grupo', 'imagen', 'fecha_lanzamiento', 'precio'];
-const camposObligatoriosVentas = [
-  'nombre_cliente',
-  'telefono_cliente',
-  'precio_venta',
-  'medio_de_pago',
-  'fecha_venta',
-  'lugar_entrega',
-  'fecha_entrega',
-  'costo_entrega',
-  'id_photocard'
-];
+const { getVentas, getVenta, createVenta, deleteVenta, updateVenta} = require("./scripts/ventas")
+
+const { esPrecioValido, validarHora, extraerCamposPermitidos, esFechaValida } = require('./utils/validaciones');
+
+const camposObligatoriosPhotocards = ['nombre', 'grupo', 'imagen', 'precio_comprada', 'album_id'];
+const camposPhotocards = ['nombre', 'grupo', 'imagen', 'precio_comprada', 'album_id', 'disponible'];
+const camposAlbums = ['nombre', 'grupo', 'version_album', 'imagen', 'pais', 'empresa'];
+
 const camposVentas = [
   'nombre_cliente',
   'telefono_cliente',
-  'instagram_cliente',
   'precio_venta',
   'medio_de_pago',
   'fecha_venta',
@@ -40,30 +31,554 @@ const camposVentas = [
 
 const longitud_valores_photocards = {
         nombre: 40,
-        imagen: 200,
-        estado: 15
+
+        grupo: 30,
+        imagen: 200
 }
 
 const longitud_valores_albums = {
-        nombre: 30, 
+        nombre: 30,
+        grupo: 30,
         version_album: 30,
-        grupo: 20,
-        imagen: 200
+        imagen: 200,
+        pais: 15,
+        empresa: 15
+
 }
 
 const longitud_valores_ventas = {
     nombre_cliente: 40,
     telefono_cliente: 15,
-    instagram_cliente: 30,
+
     medio_de_pago: 20,
     lugar_entrega: 30
 }
 
 
-const estadosValidosPhotocards = ['vendida', 'disponible', 'entregada'];
-
 app.get('/api/health', (req, res) => {
     res.json({status: 'OK'});
+});
+
+app.get('/api/photocards', async (req, res) => {
+
+    try {
+        const photocards = await getPhotocards();
+
+        if (!photocards) {
+            return res.status(404).json({ error: 'Photocards no encontradas' });
+        }
+        return res.json(photocards);
+    } catch (e) {
+        return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+
+})
+
+app.get('/api/photocards/:id', async (req, res) => {
+    
+    const id = parseInt(req.params.id);
+
+    if (isNaN(id)) {
+        return res.status(400).json({ error: 'El ID debe ser un número entero válido' });
+    }
+
+    try {
+        const photocard = await getPhotocard(id);
+
+        if (!photocard) {
+            return res.status(404).json({ error: 'Photocard no encontrada' });
+        }
+        return res.json(photocard);
+    } catch (e) {
+         console.error('Error al obtener photocard:', e);
+        return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+    
+})
+
+
+app.post('/api/photocards', async (req, res) => {
+
+    for (const campo of camposObligatoriosPhotocards) {
+        if (req.body[campo] === null) {
+            return res.status(400).json({ error: `Falta el campo obligatorio: ${campo}` }); 
+        }
+    }
+
+
+    for (const campo of Object.keys(longitud_valores_photocards)) {
+        const valor = req.body[campo];
+
+        if (typeof valor !== 'string') {
+            return res.status(400).json({ error: `${campo} debe ser una cadena de texto` });
+        }
+
+        if (valor.length > longitud_valores_photocards[campo]) {
+            return res.status(400).json({ 
+                error: `${campo} no puede tener más de ${longitud_valores_photocards[campo]} caracteres`
+            });
+        }
+    }
+
+
+    if (!Number.isInteger(req.body.album_id) || req.body.album_id <= 0) {
+        return res.status(400).json({ error: 'El id del album debe ser un número entero positivo mayor a 0' });
+    }
+
+    const {nombre, grupo, imagen, precio_comprada, album_id} = req.body
+
+    try {
+        const photocard = await createPhotocard(
+            nombre, grupo, imagen, precio_comprada, album_id);
+
+        if (!photocard) {
+            return res.status(500).json({ error: 'Error al crear la photocard' });
+        }
+        return res.status(201).json(photocard);
+    } catch(e) {
+        return res.status(500).json({ error: 'Error al crear la photocard'});
+    }
+
+})
+
+
+
+
+app.delete('/api/photocards/:id', async (req, res) => {
+
+    const id = parseInt(req.params.id);
+
+    if (isNaN(id)) {
+        return res.status(400).json({ error: 'El ID debe ser un número entero válido' });
+    }
+
+    try {
+        const photocard = await deletePhotocard(id)
+        if (!photocard) {
+            return res.status(404).json({ error: 'No se encontró la photocard id: ' + id});
+        }
+        return res.json(photocard);
+    } catch (e) {
+        return res.status(500).json({ error: 'Error al eliminar la photocard' });
+    }
+
+})
+
+
+
+app.patch('/api/photocards/:id', async (req, res) => {
+
+    const id = parseInt(req.params.id, 10);
+
+    if (isNaN(id) || id <= 0) {
+        return res.status(400).json({ error: 'El ID debe ser un número entero positivo mayor a 0' });
+    }
+
+    const datos = extraerCamposPermitidos(req.body, camposPhotocards);
+
+    if (Object.keys(datos).length === 0) {
+        return res.status(400).json({ error: 'No se enviaron campos válidos para actualizar' });
+    }
+
+    if (req.body.disponible !== undefined && typeof req.body.disponible !== 'boolean') {
+        return res.status(400).json({ error: 'Disponible tiene que ser un valor booleano'});
+    }
+
+    for (const campo of Object.keys(longitud_valores_photocards)) {
+        const valor = datos[campo];
+
+        if (valor !== undefined) {
+            if (typeof valor !== 'string') {
+                return res.status(400).json({ error: `${campo} debe ser una cadena de texto` });
+            }
+
+            if (valor.length > longitud_valores_photocards[campo]) {
+                return res.status(400).json({ 
+                    error: `${campo} no puede tener más de ${longitud_valores_photocards[campo]} caracteres`
+                });
+            }
+        }
+    }
+
+
+    if (datos.precio_comprada !== undefined && !esPrecioValido(datos.precio_comprada)) {
+        return res.status(400).json({ error: 'El precio debe ser un número entero positivo' });
+    }
+
+    if (datos.album_id !== undefined && (!Number.isInteger(datos.album_id) || datos.album_id <= 0)) {
+        return res.status(400).json({ error: 'El id del álbum debe ser un número entero positivo mayor a 0' });
+    }
+
+    try {
+        const resultado = await updatePhotocard(id, datos);
+        if (!resultado) {
+            return res.status(404).json({ error: `Photocard con id ${id} no encontrada` });
+        }
+        return res.json(resultado);
+    } catch (e) {
+        console.error('Error:', e);
+        return res.status(500).json({ error: 'Error al actualizar la photocard' });
+    }
+});
+
+
+app.get('/api/albums', async (req, res) => {
+
+    try {
+        const albums = await getAlbums();
+
+        if (!albums) {
+            return res.status(404).json({ error: 'Albums no encontrados' });
+        }
+        return res.json(albums);
+    } catch (e) {
+        return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+})
+
+
+
+
+app.get('/api/albums/:id', async (req, res) => {
+    
+    const id = parseInt(req.params.id);
+
+    if (isNaN(id)) {
+        return res.status(400).json({ error: 'El ID debe ser un número entero válido' });
+    }
+
+    try {
+        const album = await getAlbum(id);
+
+        if (!album) {
+            return res.status(404).json({ error: 'Album no encontrado' });
+        }
+        return res.json(album);
+    } catch (e) {
+        return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+    
+})
+
+
+
+
+app.post('/api/albums', async (req, res) => {
+
+    for (const campo of camposAlbums) {
+        if (req.body[campo] === null) {
+            return res.status(400).json({ error: `Falta el campo obligatorio: ${campo}` }); 
+        }
+    }
+
+    for (const campo of Object.keys(longitud_valores_albums)) {
+        const valor = req.body[campo];
+
+        if (typeof valor !== 'string') {
+            return res.status(400).json({ error: `${campo} debe ser una cadena de texto` });
+        }
+
+        if (valor.length > longitud_valores_albums[campo]) {
+            return res.status(400).json({ 
+                error: `${campo} no puede tener más de ${longitud_valores_albums[campo]} caracteres`
+            });
+        }
+    }
+    const { nombre, grupo, version_album, imagen, pais, empresa } = req.body;
+
+    try {
+        const album = await createAlbum(
+            nombre, grupo , version_album , imagen , pais, empresa);
+
+        if (!album) {
+            return res.status(500).json({ error: 'Error al crear el album' });
+        }
+        return res.status(201).json(album);
+    } catch(e) {
+        return res.status(500).json({ error: 'Error al crear el album'});
+    }
+
+})
+
+
+app.delete('/api/albums/:id', async (req, res) => {
+
+    const id = parseInt(req.params.id);
+
+    if (isNaN(id)) {
+        return res.status(400).json({ error: 'El ID debe ser un número entero válido' });
+    }
+    try {
+        const album = await deleteAlbum(id)
+        if (!album) {
+            return res.status(404).json({ error: 'No se encontró el album id: ' + id});
+        }
+        return res.json(album);
+    } catch (e) {
+        return res.status(500).json({ error: 'Error al eliminar el album' });
+    }
+
+})
+
+
+
+app.patch('/api/albums/:id', async (req, res) => {
+    
+    const id = parseInt(req.params.id, 10);
+
+    if (isNaN(id) || id <= 0) {
+        return res.status(400).json({ error: 'El ID debe ser un número entero positivo mayor a 0' });
+    }
+
+    const datos = extraerCamposPermitidos(req.body, camposAlbums);
+
+    if (Object.keys(datos).length === 0) {
+        return res.status(400).json({ error: 'No se enviaron campos válidos para actualizar' });
+    }
+
+
+    for (const campo of Object.keys(longitud_valores_albums)) {
+        const valor = datos[campo];
+
+        if (valor !== undefined) {
+            if (typeof valor !== 'string') {
+                return res.status(400).json({ error: `${campo} debe ser una cadena de texto` });
+            }
+
+            if (valor.length > longitud_valores_albums[campo]) {
+                return res.status(400).json({ 
+                    error: `${campo} no puede tener más de ${longitud_valores_albums[campo]} caracteres`
+                });
+            }
+        }
+    }
+
+
+    try {
+        const album = await updateAlbum(id, datos);
+        if (!album) {
+            return res.status(404).json({ error: `El album con id ${id} no fue encontrado` });
+        }
+        return res.json(album);
+    } catch (e) {
+        console.error('Error:', e);
+        return res.status(500).json({ error: 'Error al actualizar el album' });
+    }
+});
+
+
+app.get('/api/ventas', async (req, res) => {
+
+    try {
+        const ventas = await getVentas();
+
+        if (!ventas) {
+            return res.status(404).json({ error: 'Ventas no encontrados' });
+        }
+        return res.json(ventas);
+    } catch (e) {
+        return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+})
+
+
+app.get('/api/ventas/:id', async (req, res) => {
+    
+    const id = parseInt(req.params.id);
+
+    if (isNaN(id)) {
+        return res.status(400).json({ error: 'El ID debe ser un número entero válido' });
+    }
+
+    try {
+        const venta = await getVenta(id);
+
+        if (!venta) {
+            return res.status(404).json({ error: 'Venta no encontrada' });
+        }
+        return res.json(venta);
+    } catch (e) {
+        return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+    
+})
+
+
+
+
+app.post('/api/ventas', async (req, res) => {
+
+    const {
+        nombre_cliente,
+        telefono_cliente,
+        precio_venta,
+        medio_de_pago,
+        fecha_venta,
+        lugar_entrega,
+        fecha_entrega,
+        hora_entrega,
+        costo_entrega,
+        id_photocard
+    } = req.body;
+
+
+    for (const campo of camposVentas) {
+        if (req.body[campo] === null) {
+            return res.status(400).json({ error: `Falta el campo obligatorio: ${campo}` }); 
+        }
+    }
+
+    for (const campo of Object.keys(longitud_valores_ventas)) {
+        const valor = req.body[campo];
+
+        if (valor === undefined || typeof valor !== 'string') {
+            return res.status(400).json({ error: `${campo} debe ser una cadena de texto` });
+        }
+
+        if (valor.length > longitud_valores_ventas[campo]) {
+            return res.status(400).json({ 
+                error: `${campo} no puede tener más de ${longitud_valores_ventas[campo]} caracteres`
+            });
+        }
+    }
+
+
+
+    if (!esPrecioValido(precio_venta)) {
+        return res.status(400).json({ error: 'El precio debe ser un número entero positivo' });
+    }
+    if (!esFechaValida(fecha_venta)) {
+        return res.status(400).json({ error: 'La fecha de venta no es válida (debe ser YYYY-MM-DD)' });
+    }
+    if (!esFechaValida(fecha_entrega)) {
+        return res.status(400).json({ error: 'La fecha de entrega no es válida (debe ser YYYY-MM-DD)' });
+    }
+
+    if (validarHora(hora_entrega)) {
+        return res.status(400).json({ error: 'La hora de entrega no es válida. Debe tener formato HH:MM o HH:MM:SS' });
+    }
+
+    if (!esPrecioValido(costo_entrega)) {
+        return res.status(400).json({ error: 'El costo de entrega debe ser un número entero positivo' });
+    }
+
+    if (!Number.isInteger(id_photocard) || id_photocard <= 0) {
+        return res.status(400).json({ error: 'El id de la photocard debe ser un número entero mayor a 0' });
+    }
+
+    try {
+        const venta = await createVenta(
+            nombre_cliente,
+            telefono_cliente,
+            precio_venta,
+            medio_de_pago,
+            fecha_venta,
+            lugar_entrega,
+            fecha_entrega,
+            hora_entrega,
+            costo_entrega,
+            id_photocard
+        );
+
+        if (!venta) {
+            return res.status(500).json({ error: 'Error al crear la venta' });
+        }
+
+        return res.status(201).json(venta);
+    } catch (e) {
+        console.error('Error al crear la venta:', e);
+        return res.status(500).json({ error: 'Error del servidor al crear la venta' });
+    }
+});
+
+
+
+app.delete('/api/ventas/:id', async (req, res) => {
+
+    const id = parseInt(req.params.id);
+
+    if (isNaN(id)) {
+        return res.status(400).json({ error: 'El ID debe ser un número entero válido' });
+    }
+    try {
+        const venta = await deleteVenta(id)
+        if (!venta) {
+            return res.status(404).json({ error: 'No se encontró la venta id: ' + id});
+        }
+        return res.json(venta);
+    } catch (e) {
+        return res.status(500).json({ error: 'Error al eliminar la venta' });
+    }
+
+})
+
+
+
+app.patch('/api/ventas/:id', async (req, res) => {
+    const id = parseInt(req.params.id, 10);
+
+    if (isNaN(id) || id <= 0) {
+        return res.status(400).json({ error: 'El ID debe ser un número entero positivo mayor a 0' });
+    }
+    const datos = extraerCamposPermitidos(req.body, camposVentas);
+
+    if (Object.keys(datos).length === 0) {
+        return res.status(400).json({ error: 'No se enviaron campos válidos para actualizar' });
+    }
+
+
+    for (const campo of Object.keys(longitud_valores_ventas)) {
+        const valor = datos[campo];
+
+        if (valor !== undefined) {
+            if (typeof valor !== 'string') {
+                return res.status(400).json({ error: `${campo} debe ser una cadena de texto` });
+            }
+
+            if (valor.length > longitud_valores_ventas[campo]) {
+                return res.status(400).json({ 
+                    error: `${campo} no puede tener más de ${longitud_valores_ventas[campo]} caracteres`
+                });
+            }
+        }
+    }
+
+
+    if (datos.precio_venta !== undefined && !esPrecioValido(datos.precio_venta)) {
+        return res.status(400).json({ error: 'El precio debe ser un número entero positivo' });
+    }
+
+    if (datos.fecha_venta !== undefined && !esFechaValida(datos.fecha_venta)) {
+        return res.status(400).json({ error: 'La fecha de venta no es válida (debe ser YYYY-MM-DD)' });
+    }
+
+    if (datos.fecha_entrega !== undefined &&  !esFechaValida(datos.fecha_entrega)) {
+        return res.status(400).json({ error: 'La fecha de entrega no es válida (debe ser YYYY-MM-DD)' });
+    }
+
+    if (datos.hora_entrega !== undefined && !validarHora(datos.hora_entrega)) {
+        return res.status(400).json({ error: 'La hora de entrega no es válida. Debe tener formato HH:MM o HH:MM:SS' });
+    } 
+
+    if (datos.costo_entrega !== undefined &&  !esPrecioValido(datos.costo_entrega)) {
+        return res.status(400).json({ error: 'El costo de entrega debe ser un número entero positivo' });
+    }
+    
+    if (datos.id_photocard !== undefined && (!Number.isInteger(datos.id_photocard) || datos.id_photocard <= 0)) {
+        return res.status(400).json({ error: 'El id de la photocard debe ser un número entero mayor a 0' });
+    }
+
+
+    try {
+        const venta = await updateVenta(id, datos);
+        if (!venta) {
+            return res.status(404).json({ error: 'La venta con id ${id} no fue encontrada' });
+        }
+        return res.json(venta);
+    } catch (e) {
+        console.error('Error:', e);
+        return res.status(500).json({ error: 'Error al actualizar el album' });
+    }
 });
 
 
