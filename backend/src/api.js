@@ -159,12 +159,10 @@ app.post("/api/photocards", async (req, res) => {
     }
   }
 
-  if (!Number.isInteger(req.body.album_id) || req.body.album_id <= 0) {
-    return res
-      .status(400)
-      .json({
-        error: "El id del album debe ser un número entero positivo mayor a 0",
-      });
+  if (!Number.isInteger(req.body.album.id) || req.body.album.id <= 0) {
+    return res.status(400).json({
+      error: "El id del album debe ser un número entero positivo mayor a 0",
+    });
   }
 
   const { nombre, grupo, imagen, precio_comprada, album_id } = req.body;
@@ -266,11 +264,9 @@ app.patch("/api/photocards/:id", async (req, res) => {
     datos.album_id !== undefined &&
     (!Number.isInteger(datos.album_id) || datos.album_id <= 0)
   ) {
-    return res
-      .status(400)
-      .json({
-        error: "El id del álbum debe ser un número entero positivo mayor a 0",
-      });
+    return res.status(400).json({
+      error: "El id del álbum debe ser un número entero positivo mayor a 0",
+    });
   }
 
   try {
@@ -519,36 +515,28 @@ app.post("/api/ventas", async (req, res) => {
       .json({ error: "La fecha de venta no es válida (debe ser YYYY-MM-DD)" });
   }
   if (!esFechaValida(fecha_entrega)) {
-    return res
-      .status(400)
-      .json({
-        error: "La fecha de entrega no es válida (debe ser YYYY-MM-DD)",
-      });
+    return res.status(400).json({
+      error: "La fecha de entrega no es válida (debe ser YYYY-MM-DD)",
+    });
   }
 
   if (validarHora(hora_entrega)) {
-    return res
-      .status(400)
-      .json({
-        error:
-          "La hora de entrega no es válida. Debe tener formato HH:MM o HH:MM:SS",
-      });
+    return res.status(400).json({
+      error:
+        "La hora de entrega no es válida. Debe tener formato HH:MM o HH:MM:SS",
+    });
   }
 
   if (!esPrecioValido(costo_entrega)) {
-    return res
-      .status(400)
-      .json({
-        error: "El costo de entrega debe ser un número entero positivo",
-      });
+    return res.status(400).json({
+      error: "El costo de entrega debe ser un número entero positivo",
+    });
   }
 
   if (!Number.isInteger(id_photocard) || id_photocard <= 0) {
-    return res
-      .status(400)
-      .json({
-        error: "El id de la photocard debe ser un número entero mayor a 0",
-      });
+    return res.status(400).json({
+      error: "El id de la photocard debe ser un número entero mayor a 0",
+    });
   }
 
   try {
@@ -649,42 +637,34 @@ app.patch("/api/ventas/:id", async (req, res) => {
     datos.fecha_entrega !== undefined &&
     !esFechaValida(datos.fecha_entrega)
   ) {
-    return res
-      .status(400)
-      .json({
-        error: "La fecha de entrega no es válida (debe ser YYYY-MM-DD)",
-      });
+    return res.status(400).json({
+      error: "La fecha de entrega no es válida (debe ser YYYY-MM-DD)",
+    });
   }
 
   if (datos.hora_entrega !== undefined && !validarHora(datos.hora_entrega)) {
-    return res
-      .status(400)
-      .json({
-        error:
-          "La hora de entrega no es válida. Debe tener formato HH:MM o HH:MM:SS",
-      });
+    return res.status(400).json({
+      error:
+        "La hora de entrega no es válida. Debe tener formato HH:MM o HH:MM:SS",
+    });
   }
 
   if (
     datos.costo_entrega !== undefined &&
     !esPrecioValido(datos.costo_entrega)
   ) {
-    return res
-      .status(400)
-      .json({
-        error: "El costo de entrega debe ser un número entero positivo",
-      });
+    return res.status(400).json({
+      error: "El costo de entrega debe ser un número entero positivo",
+    });
   }
 
   if (
     datos.id_photocard !== undefined &&
     (!Number.isInteger(datos.id_photocard) || datos.id_photocard <= 0)
   ) {
-    return res
-      .status(400)
-      .json({
-        error: "El id de la photocard debe ser un número entero mayor a 0",
-      });
+    return res.status(400).json({
+      error: "El id de la photocard debe ser un número entero mayor a 0",
+    });
   }
 
   try {
@@ -756,20 +736,16 @@ app.post("/api/photocards", async (req, res) => {
   }
 
   if (!estadosValidosPhotocards.includes(req.body.estado.toLowerCase())) {
-    return res
-      .status(400)
-      .json({
-        error: 'El estado debe ser "vendida", "disponible" p "entregada',
-      });
+    return res.status(400).json({
+      error: 'El estado debe ser "vendida", "disponible" p "entregada',
+    });
   }
 
   if (!esPrecioValido(req.body.precio_comprada)) {
-    return res
-      .status(400)
-      .json({
-        error:
-          "El precio a la que la photocard fue comprada debe ser un número entero positivo",
-      });
+    return res.status(400).json({
+      error:
+        "El precio a la que la photocard fue comprada debe ser un número entero positivo",
+    });
   }
 
   if (isNaN(Date.parse(req.body.fecha_comprada))) {
@@ -779,11 +755,9 @@ app.post("/api/photocards", async (req, res) => {
   }
 
   if (!Number.isInteger(req.body.id_album) || req.body.id_album <= 0) {
-    return res
-      .status(400)
-      .json({
-        error: "El id del album debe ser un número entero positivo mayor a 0",
-      });
+    return res.status(400).json({
+      error: "El id del album debe ser un número entero positivo mayor a 0",
+    });
   }
 
   const { nombre, imagen, precio_comprada, fecha_comprada, estado, id_album } =
@@ -886,11 +860,9 @@ app.patch("/api/photocards/:id", async (req, res) => {
     datos.id_album !== undefined &&
     (!Number.isInteger(datos.id_album) || datos.id_album <= 0)
   ) {
-    return res
-      .status(400)
-      .json({
-        error: "El id del álbum debe ser un número entero positivo mayor a 0",
-      });
+    return res.status(400).json({
+      error: "El id del álbum debe ser un número entero positivo mayor a 0",
+    });
   }
 
   try {
@@ -1168,28 +1140,22 @@ app.post("/api/ventas", async (req, res) => {
   }
 
   if (hora_entrega != null && validarHora(hora_entrega)) {
-    return res
-      .status(400)
-      .json({
-        error:
-          "La hora de entrega no es válida. Debe tener formato HH:MM o HH:MM:SS",
-      });
+    return res.status(400).json({
+      error:
+        "La hora de entrega no es válida. Debe tener formato HH:MM o HH:MM:SS",
+    });
   }
 
   if (!esPrecioValido(costo_entrega)) {
-    return res
-      .status(400)
-      .json({
-        error: "El costo de entrega debe ser un número entero positivo",
-      });
+    return res.status(400).json({
+      error: "El costo de entrega debe ser un número entero positivo",
+    });
   }
 
   if (!Number.isInteger(id_photocard) || id_photocard <= 0) {
-    return res
-      .status(400)
-      .json({
-        error: "El id de la photocard debe ser un número entero mayor a 0",
-      });
+    return res.status(400).json({
+      error: "El id de la photocard debe ser un número entero mayor a 0",
+    });
   }
 
   const instagram_cliente_final =
@@ -1294,34 +1260,28 @@ app.patch("/api/ventas/:id", async (req, res) => {
   }
 
   if (datos.hora_entrega !== undefined && !validarHora(datos.hora_entrega)) {
-    return res
-      .status(400)
-      .json({
-        error:
-          "La hora de entrega no es válida. Debe tener formato HH:MM o HH:MM:SS",
-      });
+    return res.status(400).json({
+      error:
+        "La hora de entrega no es válida. Debe tener formato HH:MM o HH:MM:SS",
+    });
   }
 
   if (
     datos.costo_entrega !== undefined &&
     !esPrecioValido(datos.costo_entrega)
   ) {
-    return res
-      .status(400)
-      .json({
-        error: "El costo de entrega debe ser un número entero positivo",
-      });
+    return res.status(400).json({
+      error: "El costo de entrega debe ser un número entero positivo",
+    });
   }
 
   if (
     datos.id_photocard !== undefined &&
     (!Number.isInteger(datos.id_photocard) || datos.id_photocard <= 0)
   ) {
-    return res
-      .status(400)
-      .json({
-        error: "El id de la photocard debe ser un número entero mayor a 0",
-      });
+    return res.status(400).json({
+      error: "El id de la photocard debe ser un número entero mayor a 0",
+    });
   }
 
   try {

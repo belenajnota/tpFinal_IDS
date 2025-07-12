@@ -12,9 +12,6 @@ start-backend:
 run-frontend:
 	cd ./frontend && http-server
 
-run-backend: start-db start-backend 
 
-<<<<<<< HEAD
-=======
 run-backend: start-db start-backend
->>>>>>> origin/main
+
