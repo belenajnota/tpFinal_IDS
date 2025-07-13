@@ -2,9 +2,9 @@ const ventasBackendUrl = "http://localhost:3000/api/ventas";
 
 async function getVentas() {
   try {
-    const response = await fetch(ventasBackendUrl);
-    const data = await response.json();
-    data.forEach((venta) => {
+    const responseVentas = await fetch(ventasBackendUrl);
+    const ventas = await responseVentas.json();
+    ventas.forEach((venta) => {
       // se crea la fila para toda la informacion
       const newRow = document.createElement("tr");
       // se crean y se appendean los datos en la fila
@@ -16,10 +16,6 @@ async function getVentas() {
       newTelefono_cliente.innerHTML = venta.telefono_cliente;
       newRow.appendChild(newTelefono_cliente);
 
-      const newInstagram_cliente = document.createElement("td");
-      newInstagram_cliente.innerHTML = venta.instagram_cliente;
-      newRow.appendChild(newInstagram_cliente);
-
       const newPrecio_venta = document.createElement("td");
       newPrecio_venta.innerHTML = venta.precio_venta;
       newRow.appendChild(newPrecio_venta);
@@ -29,9 +25,7 @@ async function getVentas() {
       newRow.appendChild(newMedio_de_pago);
 
       const newFecha_venta = document.createElement("td");
-      // fecha limpia y fecha correcta estan para eliminar el formato T03:00:00.000Z
-      const fechaLimpia = venta.fecha_venta;
-      newFecha_venta.innerHTML = fechaLimpia.split("T")[0];
+      newFecha_venta.innerHTML = venta.fecha_venta.split("T")[0];
       newRow.appendChild(newFecha_venta);
 
       const newLugar_entrega = document.createElement("td");
@@ -39,8 +33,7 @@ async function getVentas() {
       newRow.appendChild(newLugar_entrega);
 
       const newFecha_entrega = document.createElement("td");
-      const fechaCorrecta = venta.fecha_entrega;
-      newFecha_entrega.innerHTML = fechaCorrecta.split("T")[0];
+      newFecha_entrega.innerHTML = venta.fecha_entrega.split("T")[0];
       newRow.appendChild(newFecha_entrega);
 
       const newHora_entrega = document.createElement("td");
@@ -92,16 +85,7 @@ async function getVentas() {
         }
       });
 
-      const newModificar = document.createElement("td");
-      const newButtonModificar = document.createElement("a");
-      newButtonModificar.innerHTML = "Modificar";
-      newButtonModificar.className = "button button-change";
-      newButtonModificar.href =
-        "./k-card-venta-update/index.html?id=" + venta.id;
-      newModificar.appendChild(newButtonModificar);
-      newRow.appendChild(newModificar);
-
-      const trBody = document.getElementById("tabla-body");
+      const trBody = document.getElementById("tbody");
       trBody.appendChild(newRow);
     });
   } catch (e) {
@@ -110,3 +94,105 @@ async function getVentas() {
 }
 
 getVentas();
+
+//codigo para que funcione el boton filtro
+document.addEventListener("DOMContentLoaded", () => {
+  // Obtener el elemento del dropdown
+  const dropdown = document.querySelector(".dropdown");
+  // Obtener el disparador del dropdown (el botón)
+  const dropdownTrigger = dropdown.querySelector(".dropdown-trigger button");
+
+  // Función para alternar la clase 'is-active'
+  function toggleDropdown() {
+    dropdown.classList.toggle("is-active");
+  }
+
+  // Añadir evento de clic al disparador
+  dropdownTrigger.addEventListener("click", toggleDropdown);
+
+  // Cerrar el dropdown si se hace clic fuera de él
+  document.addEventListener("click", (event) => {
+    // Si el clic no fue dentro del dropdown ni en el disparador del dropdown
+    if (!dropdown.contains(event.target) && event.target !== dropdownTrigger) {
+      // Y si el dropdown está activo, entonces desactivarlo
+      if (dropdown.classList.contains("is-active")) {
+        dropdown.classList.remove("is-active");
+      }
+    }
+  });
+});
+
+//codigo para que funcionen los filtros
+
+const selectFilter = document.getElementById("order-by");
+
+selectFilter.addEventListener("change", () => {
+  const tbody = document.querySelector("tbody");
+  const rows = Array.from(tbody.querySelectorAll("tr"));
+
+  if (selectFilter.value == "NameA-Z") {
+    const sortedRows = rows.sort((a, b) => {
+      return a.children[0].textContent.localeCompare(b.children[0].textContent);
+    });
+
+    tbody.innerHTML = "";
+
+    sortedRows.forEach((row) => {
+      tbody.appendChild(row);
+    });
+  } else if (selectFilter.value == "NameZ-A") {
+    const sortedRows = rows.sort((a, b) => {
+      return b.children[0].textContent.localeCompare(a.children[0].textContent);
+    });
+
+    tbody.innerHTML = "";
+
+    sortedRows.forEach((row) => {
+      tbody.appendChild(row);
+    });
+  } else if (selectFilter.value == "priceLowHigh") {
+    const sortedRows = rows.sort((a, b) => {
+      return (
+        Number(a.children[2].textContent) - Number(b.children[2].textContent)
+      );
+    });
+
+    tbody.innerHTML = "";
+
+    sortedRows.forEach((row) => {
+      tbody.appendChild(row);
+    });
+  } else if (selectFilter.value == "priceHighLow") {
+    const sortedRows = rows.sort((a, b) => {
+      return (
+        Number(b.children[2].textContent) - Number(a.children[2].textContent)
+      );
+    });
+
+    tbody.innerHTML = "";
+
+    sortedRows.forEach((row) => {
+      tbody.appendChild(row);
+    });
+  } else if (selectFilter.value == "oldestSale") {
+    const sortedRows = rows.sort((a, b) => {
+      return a.children[4].textContent.localeCompare(b.children[4].textContent);
+    });
+
+    tbody.innerHTML = "";
+
+    sortedRows.forEach((row) => {
+      tbody.appendChild(row);
+    });
+  } else if (selectFilter.value == "newestSale") {
+    const sortedRows = rows.sort((a, b) => {
+      return b.children[4].textContent.localeCompare(a.children[4].textContent);
+    });
+
+    tbody.innerHTML = "";
+
+    sortedRows.forEach((row) => {
+      tbody.appendChild(row);
+    });
+  }
+});

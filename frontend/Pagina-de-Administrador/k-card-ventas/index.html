@@ -31,12 +31,31 @@
         </div>
       </div>
     </nav>
-    <div class="container-button-venta is-flex is-flex-direction-row-reverse">
-      <a
-        class="button sizing button-change"
-        href="./k-card-venta-create/index.html"
-        >Crear una Venta</a
-      >
+    <div class="container-button-venta is-flex">
+      <div class="dropdown is-active custom-dropdown">
+        <div class="dropdown-trigger">
+          <button
+            class="button filter-button"
+            aria-haspopup="true"
+            aria-controls="dropdown-menu"
+          >
+            <span>Filtros</span>
+          </button>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+          <div class="dropdown-content filter-content">
+            <span class="dropdown-title">Ordenar las Ventas por:</span>
+            <select name="order-by" id="order-by" class="custom-select">
+              <option value="NameA-Z">Nombre (A-Z)</option>
+              <option value="NameZ-A">Nombre (Z-A)</option>
+              <option value="priceLowHigh">Precio (menor a mayor)</option>
+              <option value="priceHighLow">Precio (mayor a menor)</option>
+              <option value="newestSale">Fecha de Venta (más reciente)</option>
+              <option value="oldestSale">Fecha de Venta (más antigua)</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="container">
@@ -48,7 +67,6 @@
             <tr>
               <th class="font">Cliente</th>
               <th class="font">Teléfono</th>
-              <th class="font">Instagram</th>
               <th class="font">Precio</th>
               <th class="font">Medio de Pago</th>
               <th class="font">Fecha de Venta</th>
@@ -58,10 +76,9 @@
               <th class="font">Costo Entrega</th>
               <th class="font">Ver</th>
               <th class="font">Borrar</th>
-              <th class="font">Modificar</th>
             </tr>
           </thead>
-          <tbody id="tabla-body">
+          <tbody id="tbody">
             <!-- Las filas se agregan aquí -->
           </tbody>
         </table>
