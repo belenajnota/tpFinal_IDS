@@ -87,6 +87,18 @@ async function getVentas() {
 
       const trBody = document.getElementById("tbody");
       trBody.appendChild(newRow);
+      const rows = Array.from(trBody.querySelectorAll("tr"));
+      const sortedRows = rows.sort((a, b) => {
+        return b.children[4].textContent.localeCompare(
+          a.children[4].textContent
+        );
+      });
+
+      trBody.innerHTML = "";
+
+      sortedRows.forEach((row) => {
+        trBody.appendChild(row);
+      });
     });
   } catch (e) {
     console.log(e);
