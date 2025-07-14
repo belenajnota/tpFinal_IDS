@@ -1,55 +1,10 @@
+html,
 body {
-  background-color: #fedada;
-  height: 100vh;
-}
-
-.tabla-detalle {
-  width: 100%;
-  max-width: 400px;
-  background-color: #ffffff;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-td {
-  padding: 14px 18px;
-  font-size: 15px;
-  vertical-align: top;
-}
-
-tr:nth-child(odd) {
-  background-color: #fff8e4;
-}
-
-tr:nth-child(even) {
-  background-color: #ffe6ee;
-}
-
-td:first-child {
-  font-weight: bold;
-  color: #b4005a;
-  width: 40%;
-}
-
-td:last-child {
-  color: #333;
-}
-
-.titulo-tabla {
-  background-color: #ffc0cb;
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  padding: 12px;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-  font-size: 18px;
+  background-color: #fff0f5;
+  padding: 10px;
+  height: 100%;
+  min-height: 100vh;
+  background-color: #fff8e4; /* tu color pastel */
 }
 
 .color-bg {
@@ -103,6 +58,10 @@ td:last-child {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+.box {
+  background-color: white;
+}
+
 .title-form {
   color: #d9488e;
   text-align: center;
@@ -130,13 +89,27 @@ input {
   background-color: #fff8e4;
 }
 
-.select-option,
-option {
-  border: 1px solid #ffc0cb;
+/*.select-option {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #ffc0cb;
   border-radius: 8px;
   background-color: #fff8e4;
-  overflow: hidden;
-}
+  color: #b4005a;
+  font-size: 14px;
+  font-weight: bold;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23b4005a" height="16" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg"><polygon points="0,0 20,0 10,10"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+
+  white-space: normal;  🔧 permite que se vean varias líneas 
+  text-overflow: ellipsis;  opcional si querés cortar con "..." 
+  overflow: hidden;  evita que el texto desborde 
+}*/
 
 button {
   grid-column: span 2;
@@ -154,7 +127,7 @@ button:hover {
   background-color: #ff99aa;
 }
 
-.modificar {
+.delete {
   width: 600px;
 }
 .buttons-container {
@@ -177,5 +150,120 @@ button:hover {
   color: #f8f8ff;
 }
 a:hover {
+  background-color: #ff99aa;
+}
+
+body {
+  background-color: #fff8e4;
+  font-family: Arial, sans-serif;
+  padding: 30px;
+  margin: 0;
+}
+
+.sale-detail-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  justify-items: center;
+  gap: 5px;
+  padding: 30px;
+  border-radius: 16px;
+  flex-wrap: wrap;
+}
+
+.sale-table {
+  flex: 1;
+  min-width: 300px;
+  margin-bottom: -100px;
+}
+
+.table-title {
+  background-color: #ffc0cb;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 12px;
+  border-radius: 12px 12px 0 0;
+  margin: 0;
+  font-size: 16px;
+}
+
+.detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+}
+
+.detail-table th {
+  text-align: left;
+  background-color: #ffe1ea;
+  color: #b4005a;
+  padding: 10px 12px;
+  width: 40%;
+  font-weight: bold;
+}
+
+.detail-table td {
+  background-color: white;
+  padding: 10px 12px;
+}
+
+.detail-table tr:nth-child(even) td {
+  background-color: #fff1f6;
+}
+
+.photo-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 220px;
+}
+
+.photo-card {
+  background-color: #ffc0cb;
+  border-radius: 16px;
+  padding: 12px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  width: 100%;
+}
+
+.photo-card img,
+.photo-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  background-color: white;
+}
+
+.photo-card p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: white;
+}
+
+.actions {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btn-soft {
+  background-color: #ffc0cb;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 200px;
+}
+
+.btn-soft:hover {
   background-color: #ff99aa;
 }

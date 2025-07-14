@@ -32,68 +32,63 @@
         </div>
       </div>
     </nav>
-    <div
-      class="container color-bg is-flex is-flex-direction-row is-justify-content-space-around"
-    >
-      <div class="tabla-detalle">
-        <div class="titulo-tabla">DETALLE DE LA VENTA</div>
-        <table>
-          <tr>
-            <td>Nombre del Cliente</td>
-            <td id="nombre-cliente"></td>
-          </tr>
-          <tr>
-            <td>Teléfono</td>
-            <td id="numero-telefono"></td>
-          </tr>
-          <tr>
-            <td>Instagram</td>
-            <td id="instagram"></td>
-          </tr>
-          <tr>
-            <td>Precio de Venta</td>
-            <td id="precio-venta"></td>
-          </tr>
-          <tr>
-            <td>Medio de pago</td>
-            <td id="medio-de-pago"></td>
-          </tr>
-          <tr>
-            <td>Fecha de venta</td>
-            <td id="fecha-venta"></td>
-          </tr>
-          <tr>
-            <td>Lugar de entrega</td>
-            <td id="lugar-entrega"></td>
-          </tr>
-          <tr>
-            <td>Fecha de entrega</td>
-            <td id="fecha-entrega"></td>
-          </tr>
-          <tr>
-            <td>Hora de entrega</td>
-            <td id="hora-entrega"></td>
-          </tr>
-          <tr>
-            <td>Costo de entrega</td>
-            <td id="costo-entrega"></td>
-          </tr>
-        </table>
-      </div>
-      <div class="container-imgs">
-        <div class="album">
-          <a href="" id="button-album"><img src="" alt="" id="album-img" /></a>
-          <h2 id="nombre-album">Nombre del Album:<br /></h2>
+      <div class="sale-detail-container is">
+        <div class="sale-table">
+          <h2 class="table-title">DETALLE DE LA VENTA</h2>
+          <table class="detail-table">
+            <tbody>
+              <tr>
+                <th>Nombre del Cliente</th>
+                <td id="clientName"></td>
+              </tr>
+              <tr>
+                <th>Teléfono</th>
+                <td id="clientPhone"></td>
+              </tr>
+              <tr>
+                <th>Precio de Venta</th>
+                <td id="salePrice"></td>
+              </tr>
+              <tr>
+                <th>Medio de pago</th>
+                <td id="buyMethod"></td>
+              </tr>
+              <tr>
+                <th>Fecha de venta</th>
+                <td id="saleDate"></td>
+              </tr>
+              <tr>
+                <th>Lugar de entrega</th>
+                <td id="deliveryLocation"></td>
+              </tr>
+              <tr>
+                <th>Fecha de entrega</th>
+                <td id="deliveryDate"></td>
+              </tr>
+              <tr>
+                <th>Hora de entrega</th>
+                <td id="deliveryHour"></td>
+              </tr>
+              <tr>
+                <th>Costo de entrega</th>
+                <td id="shippingCost"></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="photocard">
-          <a href="" id="button-photocard"
-            ><img src="" alt="" id="photocard-img"
-          /></a>
-          <h2 id="nombre-photocard">Nombre del Idol:<br /></h2>
-        </div>
+
+
+      <div class="actions">
+        <!--<button
+          class="js-modal-trigger bttn-soft modificar"
+          data-target="modificar"
+        >
+          Modificar
+        </button> -->
+        <button id="deleteButton" class="btn-soft ">Eliminar</button>
       </div>
-    </div>
-    <!-- el modal es para modifcar-->
+
+    <!-- el modal es para modifcar
     <div id="modificar" class="modal">
       <div class="modal-background"></div>
 
@@ -124,15 +119,14 @@
               </div>
               <div>
                 <label for="medioDePago">Medio de Pago</label>
-                <div class="select">
-                  <select id="medioDePago" class="select-option">
-                    <option>Selecciona un Medio de Pago</option>
-                    <option>Mercado Pago</option>
-                    <option>Efectivo</option>
-                    <option>Transferencia</option>
-                    <option>Tarjeta</option>
-                  </select>
-                </div>
+
+                <select id="medioDePago" class="select-option">
+                  <option>Selecciona un Medio de Pago</option>
+                  <option>Mercado Pago</option>
+                  <option>Efectivo</option>
+                  <option>Transferencia</option>
+                  <option>Tarjeta</option>
+                </select>
               </div>
               <div>
                 <label for="fechaVenta">Fecha de Venta</label>
@@ -156,19 +150,17 @@
               </div>
               <div>
                 <label for="album">Nombre del Album</label>
-                <div class="select">
-                  <select id="select-album" class="select-option">
-                    <option>Selecciona un Album</option>
-                  </select>
-                </div>
+
+                <select id="select-album" class="select-option">
+                  <option>Selecciona un Album</option>
+                </select>
               </div>
               <div>
                 <label for="idol">Nombre del Idol</label>
-                <div class="select">
-                  <select id="select-idol" class="select-option">
-                    <option>Selecciona un Idol</option>
-                  </select>
-                </div>
+
+                <select id="select-idol" class="select-option">
+                  <option>Selecciona un Idol</option>
+                </select>
               </div>
               <button type="submit">Guardar Cambios</button>
             </form>
@@ -177,19 +169,11 @@
       </div>
 
       <button class="modal-close is-large" aria-label="close"></button>
+    </div>-->
+    <div class="products-container">
+      <h2>Productos Comprados</h2>
+      
     </div>
-    <div
-      class="containerModals is-flex is-justify-content-space-evenly buttons-container"
-    >
-      <button
-        class="js-modal-trigger is-primary is-medium modificar"
-        data-target="modificar"
-      >
-        Modificar
-      </button>
-      <button id="deleteButton" class="modificar">Eliminar</button>
-    </div>
-
     <script src="./code.js"></script>
   </body>
 </html>

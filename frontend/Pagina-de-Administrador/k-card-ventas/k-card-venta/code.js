@@ -8,31 +8,26 @@ async function getVenta() {
     const responseVenta = await fetch(ventaBackendUrl);
     const venta = await responseVenta.json();
     //Llamo a todas la filas de la columna
-    const nombreCliente = document.getElementById("nombre-cliente");
-    const telefonoCliente = document.getElementById("numero-telefono");
-    const instagramCliente = document.getElementById("instagram");
-    const PrecioVenta = document.getElementById("precio-venta");
-    const medioDePago = document.getElementById("medio-de-pago");
-    const fechaVenta = document.getElementById("fecha-venta");
-    const lugarEntrega = document.getElementById("lugar-entrega");
-    const fechaEntrega = document.getElementById("fecha-entrega");
-    const horaEntrega = document.getElementById("hora-entrega");
-    const costoEntrega = document.getElementById("costo-entrega");
+    const clientName = document.getElementById("clientName");
+    const clientPhone = document.getElementById("clientPhone");
+    const salePrice = document.getElementById("salePrice");
+    const buyMethod = document.getElementById("buyMethod");
+    const saleDate = document.getElementById("saleDate");
+    const deliveryLocation = document.getElementById("deliveryLocation");
+    const deliveryDate = document.getElementById("deliveryDate");
+    const deliveryHour = document.getElementById("deliveryHour");
+    const shippingCost = document.getElementById("shippingCost");
+
     //Appendeo la informacion a la tabla
-    nombreCliente.innerHTML = venta.nombre_cliente;
-    telefonoCliente.innerHTML = venta.telefono_cliente;
-    if (venta.instagram_cliente == null) {
-      instagramCliente.innerHTML = "";
-    } else {
-      instagramCliente.innerHTML = "@" + venta.instagram_cliente;
-    }
-    PrecioVenta.innerHTML = "$" + venta.precio_venta;
-    medioDePago.innerHTML = venta.medio_de_pago;
-    fechaVenta.innerHTML = venta.fecha_venta.split("T")[0];
-    lugarEntrega.innerHTML = venta.lugar_entrega;
-    fechaEntrega.innerHTML = venta.fecha_venta.split("T")[0];
-    horaEntrega.innerHTML = venta.hora_entrega + "hs";
-    costoEntrega.innerHTML = "$" + venta.costo_entrega;
+    clientName.innerHTML = venta.nombre_cliente;
+    clientPhone.innerHTML = venta.telefono_cliente;
+    salePrice.innerHTML = "$" + venta.precio_venta;
+    buyMethod.innerHTML = venta.medio_de_pago;
+    saleDate.innerHTML = venta.fecha_venta.split("T")[0];
+    deliveryLocation.innerHTML = venta.lugar_entrega;
+    deliveryDate.innerHTML = venta.fecha_venta.split("T")[0];
+    deliveryHour.innerHTML = venta.hora_entrega + "hs";
+    shippingCost.innerHTML = "$" + venta.costo_entrega;
 
     //fetch para la informacion del album
     const albumBackendUrl =
@@ -80,13 +75,7 @@ async function getVenta() {
 
 getVenta();
 
-/*async function deleteVenta() {
-  try {
-    const responseDelete = await fetch(ventaBackendUrl)
-
-  }
-}*/
-
+/*
 // codigo para opcion modificar
 async function completeSelects() {
   // esto es para los select que estan dentro del modal modificacion
@@ -319,7 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 3000);
     });
   }
-});
+});*/
 
 const deleteButton = document.getElementById("deleteButton");
 
