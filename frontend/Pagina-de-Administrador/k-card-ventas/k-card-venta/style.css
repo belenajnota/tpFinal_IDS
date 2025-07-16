@@ -7,48 +7,8 @@ body {
   background-color: #fff8e4; /* tu color pastel */
 }
 
-.color-bg {
-  background-color: #2c3e50;
-  padding: 20px 0 20px;
-  position: relative;
-  top: 100px;
-  border-radius: 16px;
-}
-
-.container-imgs {
-  height: 579px;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  padding: 25px;
-  justify-content: space-around;
-}
-
-.photocard,
-.album {
-  background-color: #ffc0cb;
-  height: 250px;
-  width: 250px;
-  border-radius: 16px;
-}
-
-#album-img,
-#photocard-img {
-  height: 175px;
-  width: 175px;
-  object-fit: contain;
-  margin-left: 37px;
-  margin-top: 20px;
-  border-radius: 8px;
-}
-
-#nombre-album,
-#nombre-photocard {
-  text-align: center;
-  color: #f8f8ff;
-}
-
-/* estilo del forms*/
+/*
+ estilo del forms
 .container-form {
   max-width: 800px;
   margin: auto;
@@ -88,7 +48,7 @@ input {
   border-radius: 8px;
   background-color: #fff8e4;
 }
-
+*/
 /*.select-option {
   appearance: none;
   -webkit-appearance: none;
@@ -135,8 +95,7 @@ button:hover {
   top: 120px;
 }
 
-#button-photocard:hover,
-#button-album:hover {
+#button-photocard:hover {
   text-decoration: none;
   background-color: inherit !important;
 }
@@ -213,40 +172,6 @@ body {
   background-color: #fff1f6;
 }
 
-.photo-section {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-  flex: 0 0 220px;
-}
-
-.photo-card {
-  background-color: #ffc0cb;
-  border-radius: 16px;
-  padding: 12px;
-  text-align: center;
-  color: white;
-  font-weight: bold;
-  width: 100%;
-}
-
-.photo-card img,
-.photo-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 12px;
-  background-color: white;
-}
-
-.photo-card p {
-  margin-top: 10px;
-  font-size: 14px;
-  color: white;
-}
-
 .actions {
   margin-top: 5px;
   display: flex;
@@ -255,7 +180,7 @@ body {
 
 .btn-soft {
   background-color: #ffc0cb;
-  color: white;
+  color: #b4005a;
   padding: 12px 24px;
   border: none;
   border-radius: 12px;
@@ -266,4 +191,69 @@ body {
 
 .btn-soft:hover {
   background-color: #ff99aa;
+}
+/*contenedor de los productos*/
+.products-title {
+  background-color: transparent;
+  color: #d9488e; /* rosa fuerte para títulos */
+  font-size: 20px;
+  font-weight: bold;
+  padding: 8px 0;
+  margin-bottom: 16px;
+  font-family: Arial, sans-serif;
+}
+
+.container-card {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: start;
+}
+
+.card-photocard {
+  background-color: #ffc0cb;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  color: #ffc0cb;
+  font-family: Arial, sans-serif;
+  width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.card-photocard:hover {
+  transform: scale(1.02);
+}
+
+.card-img {
+  width: 100%;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.card-text {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.4;
+  color: white;
+  margin-bottom: 14px;
+}
+
+.card-button {
+  background-color: #ffe1ea;
+  border: none;
+  color: #b4005a;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s;
+}
+
+.card-button:hover {
+  background-color: #ffb6c1;
 }

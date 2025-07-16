@@ -7,6 +7,7 @@ async function getVenta() {
   try {
     const responseVenta = await fetch(ventaBackendUrl);
     const venta = await responseVenta.json();
+    console.log(venta);
     //Llamo a todas la filas de la columna
     const clientName = document.getElementById("clientName");
     const clientPhone = document.getElementById("clientPhone");
@@ -29,45 +30,43 @@ async function getVenta() {
     deliveryHour.innerHTML = venta.hora_entrega + "hs";
     shippingCost.innerHTML = "$" + venta.costo_entrega;
 
-    //fetch para la informacion del album
-    const albumBackendUrl =
-      "http://localhost:3000/api/albums/" + venta.id_album;
-    const responseAlbum = await fetch(albumBackendUrl);
-    const album = await responseAlbum.json();
-    const imgAlbum = album.imagen;
-    const imgAlbumHtml = document.getElementById("album-img");
-    if (imgAlbum == null) {
-      imgAlbumHtml.src = "../../imagenes/no-img.jpeg";
-    } else {
-      imgAlbumHtml.src = imgAlbum;
-    }
-    //Apendeo el nombre del album
-    const nombreAlbumHtml = document.getElementById("nombre-album");
-    const buttonAlbum = document.getElementById("button-album");
-    buttonAlbum.href =
-      "../../k-card-albums/k-card-album/index.html?id=" + album.id;
-    const nombreAlbum = album.nombre;
-    nombreAlbumHtml.innerHTML = "Nombre del Album:<br />" + nombreAlbum;
-
     //fetch para la informacion de la photocard
     const photocardBackendUrl =
       "http://localhost:3000/api/photocards/" + venta.id_photocard;
     const responsePhotocard = await fetch(photocardBackendUrl);
     const photocard = await responsePhotocard.json();
-    const imgPhotocard = photocard.imagen;
-    const imgPhotocardHtml = document.getElementById("photocard-img");
-    if (imgPhotocard == null) {
-      imgPhotocardHtml.src = "../../imagenes/no-img.jpeg";
-    } else {
-      imgPhotocardHtml.src = imgPhotocard;
-    }
-    //Apendeo el nombre de la photocard
-    const nombrePhotocardHtml = document.getElementById("nombre-photocard");
-    const buttonPhotocard = document.getElementById("button-photocard");
-    buttonPhotocard.href =
-      "../../k-card-photocard/k-card-photocard/index.html?id=" + photocard.id;
-    const nombrePhotocard = photocard.nombre;
-    nombrePhotocardHtml.innerHTML = "Nombre del Idol:<br />" + nombrePhotocard;
+    console.log(photocard);
+    const card = document.createElement("div");
+    card.className = "card-photocard ";
+
+    const imgPhotocard = document.createElement("img");
+    imgPhotocard.className = "card-img";
+    imgPhotocard.src = photocard.imagen;
+    card.appendChild(imgPhotocard);
+
+    const namePhotocard = document.createElement("p");
+    namePhotocard.className = "card-text";
+    namePhotocard.innerHTML = photocard.nombre;
+    card.appendChild(namePhotocard);
+
+    const grupoPhotocard = document.createElement("p");
+    grupoPhotocard.className = "card-text";
+    grupoPhotocard.innerHTML = photocard.grupo;
+    card.appendChild(grupoPhotocard);
+
+    const albumPhotocard = document.createElement("p");
+    albumPhotocard.className = "card-text";
+    albumPhotocard.innerHTML = photocard.album.nombre;
+    card.appendChild(albumPhotocard);
+
+    const newButtonVer = document.createElement("a");
+    newButtonVer.className = "card-button";
+    newButtonVer.innerHTML = "Ver";
+    newButtonVer.href = "";
+    card.appendChild(newButtonVer);
+
+    const containerCard = document.getElementById("container-card");
+    containerCard.appendChild(card);
   } catch (e) {
     console.log(e);
   }

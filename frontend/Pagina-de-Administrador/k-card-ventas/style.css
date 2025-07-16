@@ -80,7 +80,7 @@ th:last-child {
 }
 
 .font {
-  color: #f8f8ff;
+  color: #b4005a;
 }
 
 .container-button-venta {
@@ -91,7 +91,7 @@ th:last-child {
   grid-column: span 2;
   padding: 12px;
   background-color: #ffc0cb;
-  color: white;
+  color: #b4005a;
   border: none;
   border-radius: 12px;
   font-size: 16px;
@@ -113,7 +113,7 @@ a:hover {
 /* Botón de filtro */
 .filter-button {
   background-color: #ffc0cb;
-  color: white;
+  color: #b4005a;
   border: none;
   border-radius: 12px;
   padding: 10px 18px;
