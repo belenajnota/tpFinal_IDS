@@ -7,7 +7,6 @@ async function getVenta() {
   try {
     const responseVenta = await fetch(ventaBackendUrl);
     const venta = await responseVenta.json();
-    console.log(venta);
     //Llamo a todas la filas de la columna
     const clientName = document.getElementById("clientName");
     const clientPhone = document.getElementById("clientPhone");
@@ -35,14 +34,20 @@ async function getVenta() {
       "http://localhost:3000/api/photocards/" + venta.id_photocard;
     const responsePhotocard = await fetch(photocardBackendUrl);
     const photocard = await responsePhotocard.json();
-    console.log(photocard);
     const card = document.createElement("div");
     card.className = "card-photocard ";
 
-    const imgPhotocard = document.createElement("img");
-    imgPhotocard.className = "card-img";
-    imgPhotocard.src = photocard.imagen;
-    card.appendChild(imgPhotocard);
+    if (photocard.imagen == null) {
+      const imgPhotocard = document.createElement("img");
+      imgPhotocard.className = "card-img";
+      imgPhotocard.src = "../imagenes/no-img.jpeg";
+      card.appendChild(imgPhotocard);
+    } else {
+      const imgPhotocard = document.createElement("img");
+      imgPhotocard.className = "card-img";
+      imgPhotocard.src = photocard.imagen;
+      card.appendChild(imgPhotocard);
+    }
 
     const namePhotocard = document.createElement("p");
     namePhotocard.className = "card-text";
