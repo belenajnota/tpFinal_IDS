@@ -40,6 +40,7 @@ async function getAlbums() {
   response.rows.forEach((row) => {
     if (!albums[row.album_id]) {
       albums[row.album_id] = {
+        id: row.album_id,
         nombre: row.album_nombre,
         grupo: row.album_grupo,
         version_album: row.version_album,
