@@ -37,7 +37,7 @@ async function getVentas() {
       newRow.appendChild(newFecha_entrega);
 
       const newHora_entrega = document.createElement("td");
-      newHora_entrega.innerHTML = venta.hora_entrega;
+      newHora_entrega.innerHTML = venta.hora_entrega + "hs";
       newRow.appendChild(newHora_entrega);
 
       const newCosto_entrega = document.createElement("td");
