@@ -192,40 +192,51 @@ selectOrderBy.addEventListener("change", () => {
 
 const selectGroupFilter = document.getElementById("filter-by-group");
 const selectVersionFilter = document.getElementById("filter-by-version");
-let acc = 0;
+//Los acumuladores son para que el filtro pueda funcionar indefinidamente
+let accFilter = 0;
+const containerCard = document.querySelector(".container-card");
+selectGroupFilter.addEventListener("change", async () => {
+  if (accFilter > 0) {
+    containerCard.innerHTML = "";
+    await getAlbums();
+    accFilter += 1;
+  }
 
-selectGroupFilter.addEventListener("change", () => {
-  const containerCard = document.querySelector(".container-card");
   const cards = Array.from(containerCard.querySelectorAll("div"));
 
-  if (acc == 1) {
-    window.location.reload();
-  } else {
-    containerCard.innerHTML = "";
-    acc += 1;
-  }
+  containerCard.innerHTML = "";
+  accFilter += 1;
+
+  selectVersionFilter.value = "";
 
   cards.forEach((card) => {
     const group = card.querySelector(".card-group").textContent;
     if (group == selectGroupFilter.value) {
       containerCard.appendChild(card);
+    } else if (selectGroupFilter.value == "") {
+      containerCard.appendChild(card);
     }
   });
 });
-selectVersionFilter.addEventListener("change", () => {
-  const containerCard = document.querySelector(".container-card");
+selectVersionFilter.addEventListener("change", async () => {
+  if (accFilter > 0) {
+    containerCard.innerHTML = "";
+    await getAlbums();
+    accFilter += 1;
+  }
+
   const cards = Array.from(containerCard.querySelectorAll("div"));
 
-  if (acc == 1) {
-    window.location.reload();
-  } else {
-    containerCard.innerHTML = "";
-    acc += 1;
-  }
+  containerCard.innerHTML = "";
+  accFilter += 1;
+
+  selectGroupFilter.value = "";
 
   cards.forEach((card) => {
     const version = card.querySelector(".card-version").textContent;
     if (version == selectVersionFilter.value) {
+      containerCard.appendChild(card);
+    } else if (selectVersionFilter.value == "") {
       containerCard.appendChild(card);
     }
   });
