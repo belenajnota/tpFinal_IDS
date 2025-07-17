@@ -7,7 +7,6 @@ const nameAlbum = document.getElementById("nameAlbum");
 const versionAlbum = document.getElementById("versionAlbum");
 const group = document.getElementById("group");
 const image = document.getElementById("image");
-const country = document.getElementById("country");
 const company = document.getElementById("company");
 
 nameAlbum.addEventListener("input", () => {
@@ -25,28 +24,55 @@ versionAlbum.addEventListener("input", () => {
   preview.innerHTML = versionAlbum.value || "Version del Álbum";
 });
 
-const getInfo = () => {
+function getInfo() {
+  const regex = new RegExp("\\.\\.\\/\\.\\.\\/imagenes\\/");
+
   const requestJson = {};
-};
+  if (nameAlbum.value !== 0) {
+    requestJson.nombre = nameAlbum.value;
+  }
+  if (versionAlbum.value !== 0) {
+    requestJson.version_album = versionAlbum.value;
+  }
+  if (group.value !== 0) {
+    requestJson.grupo = group.value;
+  }
+  if (regex.test(image.value)) {
+    requestJson.imagen = image.value;
+  } else {
+    requestJson.imagen = "../../imagenes/Untitled.jpeg";
+  }
+  if (company.value !== 0) {
+    requestJson.empresa = company.value;
+  }
+  requestJson.pais = "Corea";
+
+  return requestJson;
+}
 
 async function createAlbum() {
-  const requestJson = console.log(requestJson);
-  const postBackendUrl = "http://localhost:3000/api/albums";
-  await fetch(postBackendUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(requestJson),
-  });
+  try {
+    const requestJson = getInfo();
+    console.log(requestJson);
+    const postBackendUrl = "http://localhost:3000/api/albums";
+    await fetch(postBackendUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestJson),
+    });
 
-  alert("se creo un album");
+    alert("se creo un album");
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   createAlbum();
-  setTimeout(() => {
+  /*setTimeout(() => {
     window.location.href = "../index.html?nocache=" + new Date().getTime();
-  }, 3000);
+  }, 3000);*/
 });
