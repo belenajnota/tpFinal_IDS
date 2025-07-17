@@ -30,38 +30,48 @@
         </div>
       </div>
     </nav>
-    <div class="container">
-      <h2 class="title-form">Agregar Album</h2>
-      <p class="title-form">La fecha esta en formato (Mes-Dia-Año)</p>
+    <div class="container is-flex">
       <form id="formulario">
+        <h2 class="title-form">Agregar Álbum</h2>
         <div>
-          <label for="nombreAlbum">Nombre del Album</label>
-          <input type="text" id="nombreAlbum" maxlength="30" required />
+          <label for="nameAlbum">Nombre del Álbum</label>
+          <input type="text" id="nameAlbum" maxlength="30" required />
         </div>
         <div>
-          <label for="versionAlbum">Version del Album</label>
+          <label for="group">Grupo</label>
+          <input type="text" id="group" maxlength="20" required />
+        </div>
+        <div>
+          <label for="versionAlbum">Version del Álbum</label>
           <input type="text" id="versionAlbum" maxlength="30" required />
         </div>
         <div>
-          <label for="Grupo">Grupo</label>
-          <input type="text" id="Grupo" maxlength="20" required />
+          <label for="image">Imagen</label>
+          <input type="text" id="image" />
         </div>
         <div>
-          <label for="Imagen">Imagen</label>
-          <input type="text" id="Imagen" />
-        </div>
-        <div>
-          <label for="fechaLanzamiento">Fecha de Lanzamiento</label>
-          <input type="date" id="fechaLanzamiento" />
+          <label for="country">País</label>
+          <input type="text" id="country" required />
         </div>
 
         <div>
-          <label for="Precio">Precio</label>
-          <input type="text" id="Precio" required />
+          <label for="company">Empresa</label>
+          <input type="text" id="company" required />
         </div>
 
         <button id="button" type="submit">Guardar Cambios</button>
       </form>
+      <div
+        id="container-card"
+        class="card-album is-flex is-flex-direction-column"
+      >
+        <img src="../../../imagenes/no-img.jpeg" alt="" class="card-img" />
+        <p id="cardName" class="card-text card-name">Nombre del Álbum</p>
+        <p id="cardGroup" class="card-text card-group">Grupo</p>
+        <p id="cardVersion" class="card-text card-version">Version del Álbum</p>
+        <button class="card-button">Ver</button>
+        <button class="card-button">Añadir al Carrito</button>
+      </div>
     </div>
     <script src="./code.js"></script>
   </body>
