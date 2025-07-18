@@ -1,6 +1,3 @@
-const urlParams = new URLSearchParams(window.location.search);
-const id = urlParams.get("id");
-
 const form = document.getElementById("formulario");
 
 const nameAlbum = document.getElementById("nameAlbum");
@@ -24,25 +21,50 @@ versionAlbum.addEventListener("input", () => {
   preview.innerHTML = versionAlbum.value || "Version del Álbum";
 });
 
-function getInfo() {
-  const regex = new RegExp("\\.\\.\\/\\.\\.\\/imagenes\\/");
+image.addEventListener("input", () => {
+  const preview = document.getElementById("cardImage");
+  preview.src =
+    "/images/albums/" + image.value || "/images/resources/no-img.jpeg";
+});
 
+function isValidInput(input) {
+  // No permite repeticiones como "aaa"
+  const regexVariety = /^(?!.*(.)\1+).+$/;
+  // Solo letras, espacios, guiones, tildes, etc.
+  const regexLetters = /^[A-Za-zÁÉÍÓÚáéíóúÑñüÜ' -]+$/;
+
+  return regexVariety.test(input) && regexLetters.test(input);
+}
+
+function verifyImage(path) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = path;
+  });
+}
+
+async function getInfo() {
   const requestJson = {};
-  if (nameAlbum.value !== 0) {
+  const imagePath = "/images/albums/" + image.value;
+
+  if (nameAlbum.value !== 0 && isValidInput(nameAlbum.value)) {
     requestJson.nombre = nameAlbum.value;
   }
-  if (versionAlbum.value !== 0) {
+  if (versionAlbum.value !== 0 && isValidInput(versionAlbum.value)) {
     requestJson.version_album = versionAlbum.value;
   }
-  if (group.value !== 0) {
+  if (group.value !== 0 && isValidInput(group.value)) {
     requestJson.grupo = group.value;
   }
-  if (regex.test(image.value)) {
-    requestJson.imagen = image.value;
+  if (await verifyImage(imagePath)) {
+    requestJson.imagen = imagePath;
   } else {
-    requestJson.imagen = "../../imagenes/Untitled.jpeg";
+    alert("El nombre del archivo esta mal escrito");
   }
-  if (company.value !== 0) {
+
+  if (company.value !== 0 && isValidInput(company.value)) {
     requestJson.empresa = company.value;
   }
   requestJson.pais = "Corea";
@@ -52,18 +74,21 @@ function getInfo() {
 
 async function createAlbum() {
   try {
-    const requestJson = getInfo();
-    console.log(requestJson);
-    const postBackendUrl = "http://localhost:3000/api/albums";
-    await fetch(postBackendUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestJson),
-    });
-
-    alert("se creo un album");
+    const requestJson = await getInfo();
+    console.log(Object.keys(requestJson));
+    if (Object.keys(requestJson).length == 6) {
+      const postBackendUrl = "http://localhost:3000/api/albums";
+      await fetch(postBackendUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestJson),
+      });
+      alert("se creo un album");
+    } else {
+      alert("Complete correctamente los campos");
+    }
   } catch (e) {
     console.log(e);
   }
