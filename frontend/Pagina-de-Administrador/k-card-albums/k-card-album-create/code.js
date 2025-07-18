@@ -60,6 +60,8 @@ async function getInfo() {
   }
   if (await verifyImage(imagePath)) {
     requestJson.imagen = imagePath;
+  } else if (image.value == "sin-imagen") {
+    requestJson.imagen = "/images/resources/no-img.jpeg";
   } else {
     alert("El nombre del archivo esta mal escrito");
   }
@@ -86,6 +88,9 @@ async function createAlbum() {
         body: JSON.stringify(requestJson),
       });
       alert("se creo un album");
+      setTimeout(() => {
+        window.location.href = "../index.html?nocache=" + new Date().getTime();
+      }, 3000);
     } else {
       alert("Complete correctamente los campos");
     }
@@ -97,7 +102,4 @@ async function createAlbum() {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   createAlbum();
-  /*setTimeout(() => {
-    window.location.href = "../index.html?nocache=" + new Date().getTime();
-  }, 3000);*/
 });
