@@ -1,8 +1,10 @@
+html,
 body {
-  font-family: Arial, sans-serif;
   background-color: #fff0f5;
-  padding: 30px;
-  height: 100vh;
+  padding: 10px;
+  height: 100%;
+  min-height: 100vh;
+  background-color: #fff8e4; /* tu color pastel */
 }
 
 .container {
@@ -10,10 +12,9 @@ body {
   background-color: white;
   padding: 20px;
   border-radius: 16px;
-
+  justify-content: space-around;
   position: relative;
   top: 120px;
-
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin-top: 30px;
 }
@@ -21,7 +22,7 @@ body {
 /* estilo del forms*/
 .container-form {
   max-width: 800px;
-  margin: auto;
+
   background-color: white;
   padding: 20px;
   border-radius: 16px;
@@ -30,12 +31,12 @@ body {
 
 .title-form {
   color: #d9488e;
-  text-align: center;
 }
 
 form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
   gap: 16px;
   margin-bottom: 30px;
 }
@@ -48,7 +49,7 @@ label {
 }
 
 input {
-  width: 100%;
+  width: 500px;
   padding: 10px;
   border: 1px solid #ffc0cb;
   border-radius: 8px;
@@ -56,11 +57,11 @@ input {
 }
 
 #button {
-  grid-column: span 2;
   padding: 12px;
   background-color: #ffc0cb;
   color: white;
   border: none;
+  width: 500px;
   border-radius: 12px;
   font-size: 16px;
   cursor: pointer;
@@ -80,4 +81,62 @@ input {
 }
 a:hover {
   background-color: #ff99aa !important;
+}
+/* estilo de la card*/
+.container-button {
+  margin-top: 60px;
+  display: flex;
+  width: 80%;
+  margin-right: 10%;
+  margin-left: 10%;
+  justify-content: space-between;
+}
+
+.card-album {
+  background-color: #ffc0cb;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  color: #ffc0cb;
+  font-family: Arial, sans-serif;
+  width: 300px;
+  max-height: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.card-album:hover {
+  transform: scale(1.02);
+}
+
+.card-img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: fill;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.card-text {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.4;
+  color: white;
+  margin-bottom: 14px;
+}
+
+.card-button {
+  background-color: #ffe1ea;
+  border: none;
+  color: #b4005a;
+  padding: 8px 16px;
+  border-radius: 10px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s;
+}
+
+.card-button:hover {
+  background-color: #ffb6c1;
 }
