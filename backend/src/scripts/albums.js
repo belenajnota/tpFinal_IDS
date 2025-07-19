@@ -72,6 +72,7 @@ async function getAlbum(id) {
         SELECT 
             a.id AS album_id,
             a.nombre AS album_nombre,
+            a.grupo AS album_grupo,
             a.version_album,
             a.imagen AS album_imagen,
             a.pais,
@@ -100,6 +101,7 @@ async function getAlbum(id) {
   const album = {
     id: rows[0].album_id,
     nombre: rows[0].album_nombre,
+    grupo: rows[0].album_grupo,
     version_album: rows[0].version_album,
     imagen: rows[0].album_imagen,
     pais: rows[0].pais,
