@@ -109,7 +109,7 @@ async function getInfo() {
   } else if (image.value == "sin-imagen") {
     requestJson.imagen = "/images/resources/no-img.jpeg";
   } else if (image.value.trim() !== "") {
-    alert("El nombre del archivo esta mal escrito");
+    requestJson.imagen = "RME"; //Ruta Mal Escrita
   }
 
   if (company.value !== 0 && isValidInput(company.value)) {
@@ -122,19 +122,22 @@ async function getInfo() {
 async function updateAlbum() {
   try {
     const requestJson = await getInfo();
-    console.log(requestJson);
-    const postBackendUrl = "http://localhost:3000/api/albums/" + id;
-    await fetch(postBackendUrl, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestJson),
-    });
-    alert("Se modifico el album");
-    setTimeout(() => {
-      window.location.href = "../index.html?nocache=" + new Date().getTime();
-    }, 3000);
+    if (requestJson.imagen !== "RME") {
+      const postBackendUrl = "http://localhost:3000/api/albums/" + id;
+      await fetch(postBackendUrl, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestJson),
+      });
+      alert("Se modifico el album");
+      setTimeout(() => {
+        window.location.href = "../index.html?nocache=" + new Date().getTime();
+      }, 3000);
+    } else {
+      alert("El nombre del archivo esta mal escrito");
+    }
   } catch (e) {
     console.log(e);
   }

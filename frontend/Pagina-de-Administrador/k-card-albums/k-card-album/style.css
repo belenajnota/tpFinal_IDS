@@ -1,15 +1,18 @@
+html,
 body {
-  background-color: #fedada;
+  background-color: #fff0f5;
+  padding: 10px;
+  padding-top: 60px;
   height: 100%;
-  margin: 0;
-  padding: 80px;
+  min-height: 100vh;
+  background-color: #fff8e4; /* tu color pastel */
 }
 
-.tabla-detalle {
+.detail-table {
   width: 100%;
   max-width: 400px;
   background-color: #ffffff;
-  height: 370px;
+  height: 345px;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -44,7 +47,7 @@ td:last-child {
   color: #333;
 }
 
-.titulo-tabla {
+.title-table {
   background-color: #ffc0cb;
   color: white;
   font-weight: bold;
@@ -56,7 +59,7 @@ td:last-child {
 }
 
 .color-bg {
-  background-color: #2c3e50;
+  background-color: #f8d5dd;
   padding: 20px 0 20px;
 
   border-radius: 16px;
@@ -107,24 +110,29 @@ option {
   overflow: hidden;
 }
 
-button {
+.modal-button {
   grid-column: span 2;
-  padding: 12px;
-  background-color: #ffc0cb;
-  color: white;
+}
+
+.button-change {
+  background-color: #ffe1ea;
   border: none;
-  border-radius: 12px;
-  font-size: 16px;
+  color: #b4005a;
+  padding: 8px 16px;
+  border-radius: 10px;
+  margin: 5px;
   cursor: pointer;
+  font-size: 13px;
   transition: background-color 0.3s;
 }
 
-button:hover {
-  background-color: #ff99aa;
+.button-change:hover {
+  background-color: #ffb6c1;
 }
 
 .modificar {
   width: 600px;
+  height: 50px;
 }
 .buttons-container {
   margin-top: 30px;
@@ -142,12 +150,7 @@ button:hover {
   justify-content: space-around;
 }
 
-.container-button {
-  margin-top: 60px;
-  display: flex;
-  justify-content: end;
-}
-
+/*cards style*/
 .container-card {
   margin-top: 20px;
   display: flex;
@@ -157,55 +160,55 @@ button:hover {
 }
 
 .card-photocard {
-  background-color: #fff8e4;
+  background-color: #ffc0cb;
+  display: flex;
+  flex-direction: column;
   border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 220px;
-  padding: 20px;
+  padding: 16px;
   text-align: center;
+  color: #ffc0cb;
+  font-family: Arial, sans-serif;
+  width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
 }
 
-.card-photocard img {
-  width: 100px;
-  height: 100px;
-  margin: 0 60px 0 40px;
-  object-fit: contain;
-  border-radius: 8px;
+.card-photocard:hover {
+  transform: scale(1.02);
+}
+
+.card-img {
+  width: 100%;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
   margin-bottom: 12px;
 }
 
-.nombre-photocard {
-  font-weight: bold;
-  font-size: 16px;
-  color: #b4005a;
-  margin-bottom: 16px;
-}
-
-#button-card {
-  background-color: #ffc0cb;
-  border: none;
-  color: white;
+.card-text {
   font-size: 14px;
-  padding: 8px 14px;
-  margin: 6px 0;
-  border-radius: 8px;
+  font-weight: bold;
+  line-height: 1.4;
+  color: white;
+  margin-bottom: 14px;
+}
+
+.card-button {
+  background-color: #ffe1ea;
+  border: none;
+  color: #b4005a;
+  padding: 8px 16px;
+  border-radius: 10px;
+  margin: 5px;
   cursor: pointer;
-  width: 100%;
-  transition: background-color 0.2s;
+  font-size: 13px;
+  transition: background-color 0.3s;
 }
 
-#button-card:hover {
-  background-color: #ff99aa;
+.card-button:hover {
+  background-color: #ffb6c1;
 }
 
-#container-card {
-  margin-top: 10px;
-}
-
-.title-photocard {
-  color: #d9488e;
-  font-size: 20px;
-}
 /*nav style*/
 .color {
   background-color: #ffc0cb;
