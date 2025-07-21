@@ -30,38 +30,54 @@
         </div>
       </div>
     </nav>
-    <div class="container">
-      <h2 class="title-form">Agregar Photocard</h2>
-      <p class="title-form">La fecha esta en formato (Mes-Dia-Año)</p>
+    <div class="container is-flex">
       <form id="formulario">
+        <h2 class="title-form">Agregar Photocard</h2>
         <div>
-          <label for="nombrePhotocard">Nombre de la Photocard</label>
-          <input type="text" id="nombrePhotocard" maxlength="30" reuqired />
+          <label for="namePhotocard">Nombre del Photocard</label>
+          <input type="text" id="namePhotocard" maxlength="30" required />
         </div>
         <div>
-          <label for="precioCompra">Precio de Compra</label>
-          <input type="text" id="precioCompra" maxlength="30" required />
+          <label for="group">Grupo</label>
+          <input type="text" id="group" maxlength="20" required />
         </div>
         <div>
-          <label for="Imagen">Imagen</label>
-          <input type="text" id="Imagen" required />
+          <label for="price">Precio</label>
+          <input type="text" id="price" maxlength="30" required />
         </div>
         <div>
-          <label for="fechaCompra">Fecha de Compra</label>
-          <input type="date" id="fechaCompra" required />
+          <label for="image"
+            >Imagen <br />
+            Sino quiere poner una imagen escriba "sin-imagen"</label
+          >
+          <input type="text" id="image" />
         </div>
         <div>
-          <label for="Album">Album</label>
-          <div class="select">
-            <select id="Album" class="select-option" required>
-              <option value="">Selecciona un Album</option>
-              <option value="null">Sin Album</option>
-            </select>
-          </div>
+          <label for="albumPhotocard">Album de la Photocard</label>
+          <select name="albumPhotocard" id="albumPhotocard">
+            <option selected value="">Sin Album</option>
+          </select>
         </div>
 
         <button id="button" type="submit">Guardar Cambios</button>
       </form>
+      <div
+        id="container-card"
+        class="card-photocard is-flex is-flex-direction-column"
+      >
+        <img
+          id="cardImage"
+          src="/images/resources/no-img.jpeg"
+          alt=""
+          class="card-img"
+        />
+        <p id="cardName" class="card-text card-name">Nombre del Álbum</p>
+        <p id="cardGroup" class="card-text card-group">Grupo</p>
+        <p id="cardAlbum" class="card-text card-album">Album de la Photocard</p>
+        <p id="cardPrice" class="card-text card-price">Precio</p>
+        <button class="card-button">Ver</button>
+        <button class="card-button">Añadir al Carrito</button>
+      </div>
     </div>
     <script src="./code.js"></script>
   </body>

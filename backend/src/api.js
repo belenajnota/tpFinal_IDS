@@ -162,7 +162,7 @@ app.post("/api/photocards", async (req, res) => {
     }
   }
 
-  if (!Number.isInteger(req.body.album.id) || req.body.album.id <= 0) {
+  if (!Number.isInteger(req.body.album_id) || req.body.album_id <= 0) {
     return res.status(400).json({
       error: "El id del album debe ser un número entero positivo mayor a 0",
     });
