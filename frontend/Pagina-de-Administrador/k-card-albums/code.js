@@ -14,7 +14,7 @@ async function getAlbums() {
       const imgAlbum = document.createElement("img");
       imgAlbum.className = "card-img";
       if (album.imagen == null) {
-        imgAlbum.src = "../imagenes/no-img.jpeg";
+        imgAlbum.src = "/images/resources/no-img.jpeg";
         newContainer.appendChild(imgAlbum);
       } else {
         imgAlbum.src = album.imagen;

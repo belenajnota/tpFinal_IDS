@@ -150,6 +150,11 @@ option {
   justify-content: space-around;
 }
 
+.title-photocard {
+  color: #b4005a;
+  font-size: 30px;
+}
+
 /*cards style*/
 .container-card {
   margin-top: 20px;
