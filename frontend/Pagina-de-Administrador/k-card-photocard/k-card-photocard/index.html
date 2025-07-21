@@ -19,11 +19,13 @@
     >
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item font" href="../../k-card-inicio/index.html">
+          <a class="navbar-item font" href="../../k-card-albums/index.html">
             Inicio
           </a>
-          <a class="navbar-item font" href=""> Photocards </a>
-          <a class="navbar-item font" href="../../k-card-albums/"> Albums </a>
+          <a class="navbar-item font" href="../../k-card-photocard/index.html">
+            Photocards
+          </a>
+          <a class="navbar-item font" href="../index.html"> Albums </a>
           <a class="navbar-item font" href="../../k-card-ventas/index.html">
             Ventas
           </a>
@@ -32,25 +34,25 @@
     </nav>
     <div class="container color-bg">
       <div id="content">
-        <div id="container-img"><img id="imgPhotocard" src="" alt="" /></div>
-        <div class="tabla-detalle">
-          <div class="titulo-tabla">DETALLE DE LA PHOTOCARD</div>
+        <div id="container-img"><img id="imgAlbum" src="" alt="" /></div>
+        <div class="detail-table">
+          <div class="title-table">DETALLE DEL ALBUM</div>
           <table>
             <tr>
               <td>Nombre de la Photocard</td>
-              <td id="nombre"></td>
+              <td id="name-photocard"></td>
             </tr>
             <tr>
-              <td>Precio de Compra</td>
-              <td id="precio-compra"></td>
+              <td>Grupo</td>
+              <td id="group"></td>
             </tr>
             <tr>
-              <td>Fecha de Compra</td>
-              <td id="fecha-compra"></td>
+              <td>Precio</td>
+              <td id="price"></td>
             </tr>
             <tr>
-              <td>Estado</td>
-              <td id="estado"></td>
+              <td>disponibilidad</td>
+              <td id="availability"></td>
             </tr>
           </table>
         </div>
@@ -61,40 +63,41 @@
       <div class="modal-background"></div>
 
       <div class="modal-content">
-        <div class="box">
+        <div class="box color-bg">
           <p class="title-form">Modificar Informacion</p>
           <p class="title-form">Los cambios se realizaran una vez guardados.</p>
           <div class="container-form">
             <form id="formulario">
               <div>
-                <label for="nombrePhotocard">Nombre de la Photocard</label>
-                <input type="text" id="nombrePhotocard" maxlength="30" />
+                <label for="namePhotocard">Nombre de la Photocard</label>
+                <input type="text" id="namePhotocard" maxlength="30" />
               </div>
               <div>
-                <label for="precioCompra">Precio de Compra</label>
-                <input type="text" id="precioCompra" maxlength="30" />
+                <label for="Group">Grupo</label>
+                <input type="text" id="Group" maxlength="30" />
               </div>
               <div>
-                <label for="Imagen">Imagen</label>
-                <input type="text" id="Imagen" />
+                <label for="Price">Precio</label>
+                <input type="text" id="Price" maxlength="15" />
               </div>
               <div>
-                <label for="fechaCompra">Fecha de Compra</label>
-                <input type="date" id="fechaCompra" />
+                <label for="Image"
+                  >Imagen<br />
+                  Sino quiere poner una imagen escriba "sin-imagen"</label
+                >
+                <input type="text" id="Image" />
               </div>
               <div>
-                <label for="Estado">Estado</label>
-                <div class="select">
-                  <select id="Estado" class="select-option">
-                    <option value="">Selecciona un Estado</option>
-                    <option>vendida</option>
-                    <option>disponible</option>
-                    <option>entregada</option>
-                  </select>
-                </div>
+                <label for="albumPhotocard">Album de la Photocard</label>
+                <select name="albumPhotocard" id="albumPhotocard">
+                  <option selected value="no album">Sin Album</option>
+                  <option value="">Hola</option>
+                </select>
               </div>
 
-              <button type="submit">Guardar Cambios</button>
+              <button class="button-change modal-button" type="submit">
+                Guardar Cambios
+              </button>
             </form>
           </div>
         </div>
@@ -106,17 +109,28 @@
       class="containerModals is-flex is-justify-content-space-evenly buttons-container"
     >
       <button
-        class="js-modal-trigger is-primary is-medium modificar"
+        class="js-modal-trigger button-change modificar"
         data-target="modificar"
       >
         Modificar
       </button>
-      <button id="deleteButton" class="modificar">Eliminar</button>
+      <button id="deleteButton" class="button-change modificar">
+        Eliminar
+      </button>
     </div>
     <div style="margin-top: 60px">
-      <h2 class="title-photocard">Albums Asociadas a la Photocard</h2>
-      <div id="container-card" class="container is-fluid container-card"></div>
+      <h2 class="title-Album">Album Asociado</h2>
+      <div id="containerCard" class="container is-fluid container-card">
+        <div id="cardAlbum" class="card-album">
+          <img id="cardImage" class="card-img" src="" alt="" />
+          <p id="cardName" class="card-text"></p>
+          <p id="cardGroup" class="card-text"></p>
+          <p id="cardVersion" class="card-text"></p>
+          <a id="cardButton" class="card-button" href="">Ver</a>
+        </div>
+      </div>
     </div>
+
     <script src="./code.js"></script>
   </body>
 </html>
