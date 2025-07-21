@@ -2,119 +2,207 @@ const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 
 const photocardBackendUrl = "http://localhost:3000/api/photocards/" + id;
-const formulario = document.getElementById("formulario");
 
-async function getPhotocard() {
+const form = document.getElementById("formulario");
+
+const namePhotocard = document.getElementById("namePhotocard");
+const price = document.getElementById("price");
+const group = document.getElementById("group");
+const image = document.getElementById("image");
+const albumPhotocard = document.getElementById("albumPhotocard");
+
+async function getImagePhotocard() {
   try {
     const response = await fetch(photocardBackendUrl);
     const photocard = await response.json();
-    document.getElementById("nombrePhotocard").placeholder = photocard.nombre;
-    document.getElementById("precioCompra").placeholder =
-      photocard.precio_comprada;
-    const selectAlbum = document.getElementById("Album");
-
-    const albumBackendUrl =
-      "http://localhost:3000/api/albums/" + photocard.id_album;
-    const responseAlbum = await fetch(albumBackendUrl);
-    const album = await responseAlbum.json();
-    selectAlbum.value = album.nombre;
-  } catch (e) {}
+    const cardImage = document.getElementById("cardImage");
+    cardImage.src = photocard.imagen;
+  } catch (e) {
+    console.log(e);
+  }
 }
-getPhotocard();
 
-// codigo para opcion modificar
+async function getAlbumPhotocard() {
+  try {
+    const response = await fetch(photocardBackendUrl);
+    const photocard = await response.json();
+    const cardAlbum = document.getElementById("cardAlbum");
+    cardAlbum.innerHTML = photocard.album.nombre;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+async function getNamePhotocard() {
+  try {
+    const response = await fetch(photocardBackendUrl);
+    const photocard = await response.json();
+    const cardName = document.getElementById("cardName");
+    cardName.innerHTML = photocard.nombre;
+  } catch (e) {
+    console.log(e);
+  }
+}
+async function getGroupPhotocard() {
+  try {
+    const response = await fetch(photocardBackendUrl);
+    const photocard = await response.json();
+    const cardGroup = document.getElementById("cardGroup");
+    cardGroup.innerHTML = photocard.grupo;
+  } catch (e) {
+    console.log(e);
+  }
+}
+async function getPricePhotocard() {
+  try {
+    const response = await fetch(photocardBackendUrl);
+    const photocard = await response.json();
+    const cardPrice = document.getElementById("cardPrice");
+    cardPrice.innerHTML = photocard.precio_comprada;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+getImagePhotocard();
+getNamePhotocard();
+getGroupPhotocard();
+getAlbumPhotocard();
+getPricePhotocard();
+
+namePhotocard.addEventListener("input", () => {
+  const preview = document.getElementById("cardName");
+  preview.innerHTML = namePhotocard.value || getNamePhotocard();
+});
+
+group.addEventListener("input", () => {
+  const preview = document.getElementById("cardGroup");
+  preview.innerHTML = group.value || getGroupPhotocard();
+});
+
+let accChangeAlbum = 0;
+
+albumPhotocard.addEventListener("change", () => {
+  accChangeAlbum += 1;
+  const preview = document.getElementById("cardAlbum");
+  const selectedText = albumPhotocard.selectedOptions[0].text;
+  preview.innerHTML = selectedText;
+});
+
+image.addEventListener("input", () => {
+  const preview = document.getElementById("cardImage");
+  if (image.value.trim() == "") {
+    getImagePhotocard();
+  } else if (image.value == "sin-imagen") {
+    preview.src = "/images/resources/no-img.jpeg";
+  } else {
+    preview.src = "/images/photocards/" + image.value;
+  }
+});
+
+price.addEventListener("input", () => {
+  const preview = document.getElementById("cardPrice");
+  preview.innerHTML = price.value || "Precio";
+});
+
 async function completeSelects() {
-  // esto es para los select que estan dentro del modal modificacion
+  // esto es para los select que filtran
   try {
     const albumBackendUrl = "http://localhost:3000/api/albums";
     const responseAlbum = await fetch(albumBackendUrl);
-    const albums = await responseAlbum.json();
-    const selectAlbum = document.getElementById("Album");
+    const data = await responseAlbum.json();
+    const albums = Object.values(data);
+    const responsePhotocard = await fetch(photocardBackendUrl);
+    const photocard = await responsePhotocard.json();
+
     albums.forEach((album) => {
       const newOptionAlbum = document.createElement("option");
       newOptionAlbum.innerHTML = album.nombre;
-      selectAlbum.appendChild(newOptionAlbum);
+      newOptionAlbum.value = album.id;
+      albumPhotocard.appendChild(newOptionAlbum);
+    });
+
+    const optionAlbum = Array.from(albumPhotocard.querySelectorAll("option"));
+    optionAlbum.forEach((option) => {
+      if (option.value == photocard.album.id) {
+        option.selected = true;
+      }
     });
   } catch (e) {}
 }
 
 completeSelects();
 
-formulario.addEventListener("submit", (event) => {
-  event.preventDefault(); // Esto detiene el envío del formulario y la recarga de la página.
-  async function getInfoForm() {
-    const requestJson = {};
-    const regexNumber = /^[0-9]+$/;
-    const inputNombrePhotocard = document.getElementById("nombrePhotocard");
-    const valueNombrePhotocard = inputNombrePhotocard.value;
-    if (valueNombrePhotocard.length !== 0) {
-      requestJson.nombre = valueNombrePhotocard;
-    }
+function isValidInput(input) {
+  // No permite repeticiones como "aaa"
+  const regexVariety = /^(?!.*(.)\1+).+$/;
+  // Solo letras, espacios, guiones, tildes, etc.
+  const regexLetters = /^[A-Za-zÁÉÍÓÚáéíóúÑñüÜ' -]+$/;
 
-    const inputPrecioPhotocard = document.getElementById("precioCompra");
-    const valuePrecioPhotocard = inputPrecioPhotocard.value;
-    if (
-      valuePrecioPhotocard.length !== 0 &&
-      regexNumber.test(valuePrecioPhotocard)
-    ) {
-      const precioPhotocardEntero = parseInt(valuePrecioPhotocard);
-      requestJson.precio_comprada = precioPhotocardEntero;
-    }
+  return regexVariety.test(input) && regexLetters.test(input);
+}
 
-    const regexHttp = /^https?:\/\//;
-    const inputImagen = document.getElementById("Imagen");
-    const valueImagen = inputImagen.value;
-    if (valueImagen.length !== 0 && regexHttp.test(valueImagen)) {
-      requestJson.imagen = valueImagen;
-    } else {
-      requestJson.imagen = "../../imagenes/no-img.jpeg";
-    }
-    const inputFechaCompra = document.getElementById("fechaCompra");
-    const valueFechaCompra = inputFechaCompra.value;
-    if (valueFechaCompra.length !== 0) {
-      requestJson.fecha_comprada = valueFechaCompra;
-    }
-    requestJson.estado = "disponible";
+function verifyImage(path) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = path;
+  });
+}
 
-    const albumBackendUrl = "http://localhost:3000/api/albums";
-    const responseAlbum = await fetch(albumBackendUrl);
-    const albums = await responseAlbum.json();
+async function getInfo() {
+  const requestJson = {};
+  const imagePath = "/images/photocards/" + image.value;
+  const regexNumber = /^[0-9]+$/;
 
-    const selectAlbum = document.getElementById("Album");
-    const valueSelectAlbum = selectAlbum.value;
-    const albumEncontrado = albums.find(
-      (album) => album.nombre === valueSelectAlbum
-    );
-
-    if (valueSelectAlbum.length !== 0 && valueSelectAlbum !== "null") {
-      requestJson.id_album = albumEncontrado.id;
-    } else if (valueSelectAlbum.length !== 0 && valueSelectAlbum == "null") {
-      requestJson.id_album = null;
-    }
-
-    console.log("funcion ejecutada");
-    return requestJson;
+  if (namePhotocard.value !== 0 && isValidInput(namePhotocard.value)) {
+    requestJson.nombre = namePhotocard.value;
   }
 
-  async function updatePhotocard() {
-    const requestJson = await getInfoForm();
+  if (group.value !== 0 && isValidInput(group.value)) {
+    requestJson.grupo = group.value;
+  }
+  if (regexNumber.test(price.value)) {
+    requestJson.precio_comprada = parseInt(price.value);
+  }
+  if (await verifyImage(imagePath)) {
+    requestJson.imagen = imagePath;
+  } else if (image.value == "sin-imagen") {
+    requestJson.imagen = "/images/resources/no-img.jpeg";
+  }
+
+  if (albumPhotocard.value !== "" && accChangeAlbum > 0) {
+    requestJson.album_id = parseInt(albumPhotocard.value);
+  }
+
+  return requestJson;
+}
+
+async function updatePhotocard() {
+  try {
+    const requestJson = await getInfo();
     console.log(requestJson);
-    const patchBackendUrl = "http://localhost:3000/api/photocards/" + id;
-    await fetch(patchBackendUrl, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestJson),
-    });
-
-    console.log("Hubo cambios en el robos");
+    if (Object.keys(requestJson).length > 0) {
+      const patchBackendUrl = photocardBackendUrl;
+      await fetch(patchBackendUrl, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestJson),
+      });
+      alert("se modifico una photocard");
+      setTimeout(() => {
+        window.location.href = "../index.html?nocache=" + new Date().getTime();
+      }, 3000);
+    }
+  } catch (e) {
+    console.log(e);
   }
+}
 
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
   updatePhotocard();
-  //aca hacer el patch
-  setTimeout(() => {
-    window.location.href = "../index.html?nocache=" + new Date().getTime();
-  }, 3000);
-  alert("Formulario procesado y cambios guardados");
 });
