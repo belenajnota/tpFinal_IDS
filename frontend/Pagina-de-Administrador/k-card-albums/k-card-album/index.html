@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Album</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <nav
+      class="navbar is-fixed-top color"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a
+            class="navbar-item font"
+            href="/frontend/Pagina-de-Administrador/k-card-inicio/index.html"
+          >
+            Inicio
+          </a>
+          <a
+            class="navbar-item font"
+            href="/frontend/Pagina-de-Administrador/k-card-photocard/index.html"
+          >
+            Photocards
+          </a>
+          <a
+            class="navbar-item font"
+            href="/frontend/Pagina-de-Administrador/k-card-albums/index.html"
+          >
+            Albums
+          </a>
+          <a
+            class="navbar-item font"
+            href="/frontend/Pagina-de-Administrador/k-card-ventas/index.html"
+          >
+            Ventas
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container color-bg">
+      <div id="content">
+        <div id="container-img"><img id="imgAlbum" src="" alt="" /></div>
+        <div class="detail-table">
+          <div class="title-table">DETALLE DEL ALBUM</div>
+          <table>
+            <tr>
+              <td>Nombre del Album</td>
+              <td id="name-album"></td>
+            </tr>
+            <tr>
+              <td>Version del Album</td>
+              <td id="version-album"></td>
+            </tr>
+            <tr>
+              <td>Grupo</td>
+              <td id="group"></td>
+            </tr>
+            <tr>
+              <td>Empresa</td>
+              <td id="company"></td>
+            </tr>
+            <tr>
+              <td>País</td>
+              <td id="country"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- el modal es para modifcar-->
+    <div id="modificar" class="modal">
+      <div class="modal-background"></div>
+
+      <div class="modal-content">
+        <div class="box color-bg">
+          <p class="title-form">Modificar Informacion</p>
+          <p class="title-form">Los cambios se realizaran una vez guardados.</p>
+          <div class="container-form">
+            <form id="formulario">
+              <div>
+                <label for="nameAlbum">Nombre del Album</label>
+                <input type="text" id="nameAlbum" maxlength="30" />
+              </div>
+              <div>
+                <label for="versionAlbum">Version del Album</label>
+                <input type="text" id="versionAlbum" maxlength="30" />
+              </div>
+              <div>
+                <label for="Group">Grupo</label>
+                <input type="text" id="Group" maxlength="30" />
+              </div>
+              <div>
+                <label for="Image"
+                  >Imagen<br />
+                  Sino quiere poner una imagen escriba "sin-imagen"</label
+                >
+                <input type="text" id="Image" />
+              </div>
+              <div>
+                <label for="Company">Empresa</label>
+                <input type="text" id="Company" maxlength="15" />
+              </div>
+
+              <button class="button-change modal-button" type="submit">
+                Guardar Cambios
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    <div
+      class="containerModals is-flex is-justify-content-space-evenly buttons-container"
+    >
+      <button
+        class="js-modal-trigger button-change modificar"
+        data-target="modificar"
+      >
+        Modificar
+      </button>
+      <button id="deleteButton" class="button-change modificar">
+        Eliminar
+      </button>
+    </div>
+    <div style="margin-top: 60px">
+      <h2 class="title-photocard">Photocards Asociadas al Album</h2>
+      <div id="containerCard" class="container is-fluid container-card"></div>
+    </div>
+
+    <script src="./code.js"></script>
+  </body>
+</html>

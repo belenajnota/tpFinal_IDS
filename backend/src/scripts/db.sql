@@ -1,7 +1,6 @@
 CREATE TABLE albums (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(30) NOT NULL,
-
     grupo VARCHAR(30) NOT NULL,
     version_album VARCHAR(30) NOT NULL,
     imagen VARCHAR(200) NOT NULL,
@@ -16,7 +15,6 @@ CREATE TABLE photocards (
     grupo VARCHAR(30) NOT NULL,
     imagen VARCHAR(200) NOT NULL,
     precio_comprada INT NOT NULL,
-
     album_id INT REFERENCES albums(id) ON DELETE CASCADE,
     disponible BOOLEAN DEFAULT true
 );
@@ -27,15 +25,12 @@ CREATE TABLE ventas (
     id SERIAL PRIMARY KEY,
     nombre_cliente VARCHAR(40) NOT NULL,
     telefono_cliente VARCHAR(15) NOT NULL,
-
     precio_venta INT NOT NULL,
     medio_de_pago VARCHAR(20) NOT NULL,
     fecha_venta DATE NOT NULL,
     lugar_entrega VARCHAR(30) NOT NULL,
     fecha_entrega DATE NOT NULL,
-
     hora_entrega TIME NOT NULL,
-
     costo_entrega INT NOT NULL,
     id_photocard INT REFERENCES photocards(id) ON DELETE SET NULL
 );

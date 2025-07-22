@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Albums</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <nav
+      class="navbar is-fixed-top color"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a
+            class="navbar-item font"
+            href="/frontend/Pagina-de-Administrador/k-card-inicio/index.html"
+          >
+            Inicio
+          </a>
+          <a
+            class="navbar-item font"
+            href="/frontend/Pagina-de-Administrador/k-card-photocard/index.html"
+          >
+            Photocards
+          </a>
+          <a class="navbar-item font" href=""> Albums </a>
+          <a
+            class="navbar-item font"
+            href="/frontend/Pagina-de-Administrador/k-card-ventas/index.html"
+          >
+            Ventas
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container-button">
+      <h2 id="title-pag">Albums</h2>
+      <div class="is-flex">
+        <div class="dropdown custom-dropdown">
+          <div
+            class="dropdown-trigger is-flex is-flex-direction-column is-justify-content-end"
+          >
+            <button
+              class="button filter-button"
+              aria-haspopup="true"
+              aria-controls="dropdown-menu"
+            >
+              <span>Filtros</span>
+            </button>
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu" role="menu">
+            <div class="dropdown-content filter-content">
+              <span class="dropdown-title">Ordenar los Albums por:</span>
+              <select name="order-by" id="order-by" class="custom-select">
+                <option selected value="NameA-Z">Nombre (A-Z)</option>
+                <option value="NameZ-A">Nombre (Z-A)</option>
+              </select>
+              <span class="dropdown-title">Filtrar los Albums por</span>
+              <select
+                name="filter-by"
+                id="filter-by-group"
+                class="custom-select"
+              >
+                <option selected value="">Grupo</option>
+              </select>
+              <select
+                name="filter-by"
+                id="filter-by-version"
+                class="custom-select"
+              >
+                <option selected value="">Version</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a
+        href="/frontend/Pagina-de-Administrador/k-card-albums/k-card-album-create/index.html"
+        class="button button-change"
+        >Crear Album</a
+      >
+    </div>
+    <div id="container-card" class="container is-fluid container-card"></div>
+    <script src="./code.js"></script>
+  </body>
+</html>

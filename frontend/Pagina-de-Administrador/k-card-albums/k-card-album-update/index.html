@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Formulario Album</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <nav
+      class="navbar is-fixed-top color"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a
+            class="navbar-item font"
+            href="/frontend/Pagina-de-Administrador/k-card-inicio/index.html"
+          >
+            Inicio
+          </a>
+          <a
+            class="navbar-item font"
+            href="/frontend/Pagina-de-Administrador/k-card-photocard/index.html"
+          >
+            Photocards
+          </a>
+          <a
+            class="navbar-item font"
+            href="/frontend/Pagina-de-Administrador/k-card-albums/index.html"
+          >
+            Albums
+          </a>
+          <a
+            class="navbar-item font"
+            href="/frontend/Pagina-de-Administrador/k-card-ventas/index.html"
+          >
+            Ventas
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container is-flex">
+      <form id="formulario">
+        <h2 class="title-form">Agregar Álbum</h2>
+        <div>
+          <label for="nameAlbum">Nombre del Álbum</label>
+          <input type="text" id="nameAlbum" maxlength="30" />
+        </div>
+        <div>
+          <label for="group">Grupo</label>
+          <input type="text" id="group" maxlength="20" />
+        </div>
+        <div>
+          <label for="versionAlbum">Version del Álbum</label>
+          <input type="text" id="versionAlbum" maxlength="30" />
+        </div>
+        <div>
+          <label for="image"
+            >Imagen <br />
+            Sino quiere poner una imagen escriba "sin-imagen"</label
+          >
+          <input type="text" id="image" />
+        </div>
+
+        <div>
+          <label for="company">Empresa</label>
+          <input type="text" id="company" />
+        </div>
+
+        <button id="button" type="submit">Guardar Cambios</button>
+      </form>
+      <div
+        id="container-card"
+        class="card-album is-flex is-flex-direction-column"
+      >
+        <img
+          id="cardImage"
+          src="/images/resources/no-img.jpeg"
+          alt=""
+          class="card-img"
+        />
+        <p id="cardName" class="card-text card-name">Nombre del Álbum</p>
+        <p id="cardGroup" class="card-text card-group">Grupo</p>
+        <p id="cardVersion" class="card-text card-version">Version del Álbum</p>
+        <button class="card-button">Ver</button>
+        <button class="card-button">Añadir al Carrito</button>
+      </div>
+    </div>
+    <script src="./code.js"></script>
+  </body>
+</html>
