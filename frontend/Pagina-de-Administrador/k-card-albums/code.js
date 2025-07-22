@@ -134,7 +134,6 @@ async function completeSelects() {
     const uniqueGroups = [...new Set(groupAlbum)];
     const versionAlbum = albums.map((album) => album.version_album);
     const uniqueVersions = [...new Set(versionAlbum)];
-    console.log(uniqueVersions);
 
     for (let version of uniqueVersions) {
       const newOptionVersionAlbum = document.createElement("option");

@@ -182,7 +182,7 @@ async function getInfo() {
 async function updatePhotocard() {
   try {
     const requestJson = await getInfo();
-    console.log(requestJson);
+
     if (Object.keys(requestJson).length > 0) {
       const patchBackendUrl = photocardBackendUrl;
       await fetch(patchBackendUrl, {
@@ -192,9 +192,11 @@ async function updatePhotocard() {
         },
         body: JSON.stringify(requestJson),
       });
-      alert("se modifico una photocard");
+      alert("se modifico la photocard");
       setTimeout(() => {
-        window.location.href = "../index.html?nocache=" + new Date().getTime();
+        window.location.href =
+          "/frontend/Pagina-de-Administrador/k-card-photocard/index.html?nocache=" +
+          new Date().getTime();
       }, 3000);
     }
   } catch (e) {

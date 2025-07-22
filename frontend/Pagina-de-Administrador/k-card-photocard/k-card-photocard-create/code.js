@@ -100,8 +100,6 @@ async function getInfo() {
 
   if (albumPhotocard.value !== "") {
     requestJson.album_id = parseInt(albumPhotocard.value);
-  } else {
-    requestJson.album_id = "";
   }
 
   return requestJson;
@@ -110,7 +108,6 @@ async function getInfo() {
 async function createPhotocard() {
   try {
     const requestJson = await getInfo();
-    console.log(requestJson);
     if (Object.keys(requestJson).length == 5) {
       const postBackendUrl = "http://localhost:3000/api/photocards";
       await fetch(postBackendUrl, {

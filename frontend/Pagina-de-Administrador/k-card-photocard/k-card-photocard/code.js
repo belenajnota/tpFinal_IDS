@@ -4,39 +4,41 @@ const id = urlParams.get("id");
 const photocardBackendUrl = "http://localhost:3000/api/photocards/" + id;
 
 async function getPhotocard() {
-  const response = await fetch(photocardBackendUrl);
-  const photocard = await response.json();
+  try {
+    const response = await fetch(photocardBackendUrl);
+    const photocard = await response.json();
 
-  const image = document.getElementById("imgAlbum");
-  const namePhotocard = document.getElementById("name-photocard");
-  const group = document.getElementById("group");
-  const price = document.getElementById("price");
-  const availability = document.getElementById("availability");
+    const image = document.getElementById("imgPhotocard");
+    const namePhotocard = document.getElementById("name-photocard");
+    const group = document.getElementById("group");
+    const price = document.getElementById("price");
+    const availability = document.getElementById("availability");
 
-  image.src = photocard.imagen;
-  namePhotocard.innerHTML = photocard.nombre;
-  group.innerHTML = photocard.grupo;
-  price.innerHTML = photocard.precio_comprada;
-  if (photocard.disponible) {
-    availability.innerHTML = "Disponible";
-  } else {
-    availability.innerHTML = "Vendida";
-  }
+    image.src = photocard.imagen;
+    namePhotocard.innerHTML = photocard.nombre;
+    group.innerHTML = photocard.grupo;
+    price.innerHTML = photocard.precio_comprada;
+    if (photocard.disponible) {
+      availability.innerHTML = "Disponible";
+    } else {
+      availability.innerHTML = "Vendida";
+    }
 
-  const associatedAlbum = photocard.album;
-  const cardImage = document.getElementById("cardImage");
-  const cardName = document.getElementById("cardName");
-  const cardGroup = document.getElementById("cardGroup");
-  const cardVersion = document.getElementById("cardVersion");
-  const cardButton = document.getElementById("cardButton");
+    const associatedAlbum = photocard.album;
+    const cardImage = document.getElementById("cardImage");
+    const cardName = document.getElementById("cardName");
+    const cardGroup = document.getElementById("cardGroup");
+    const cardVersion = document.getElementById("cardVersion");
+    const cardButton = document.getElementById("cardButton");
 
-  cardImage.src = associatedAlbum.imagen;
-  cardName.innerHTML = associatedAlbum.nombre;
-  cardGroup.innerHTML = associatedAlbum.grupo;
-  cardVersion.innerHTML = associatedAlbum.version;
-  cardButton.href =
-    "/frontend/Pagina-de-Administrador/k-card-albums/k-card-album/index.html?id=" +
-    associatedAlbum.id;
+    cardImage.src = associatedAlbum.imagen;
+    cardName.innerHTML = associatedAlbum.nombre;
+    cardGroup.innerHTML = associatedAlbum.grupo;
+    cardVersion.innerHTML = associatedAlbum.version;
+    cardButton.href =
+      "/frontend/Pagina-de-Administrador/k-card-albums/k-card-album/index.html?id=" +
+      associatedAlbum.id;
+  } catch (e) {}
 }
 
 getPhotocard();
@@ -143,7 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault(); // Esto detiene el envío del formulario y la recarga de la página.
       async function getInfoForm() {
         const requestJson = {};
-
         const regexNumber = /^[0-9]+$/;
 
         const inputNamePhotocard = document.getElementById("namePhotocard");
@@ -212,13 +213,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-const deleteButtonAlbum = document.getElementById("deleteButton");
+const deleteButtonPhotocard = document.getElementById("deleteButton");
 
-deleteButtonAlbum.addEventListener("click", () => {
+deleteButtonPhotocard.addEventListener("click", () => {
   const deleteMessage = prompt(
     "¿Estas seguro de borrar esta photocard? Si desea eliminar escriba 'Eliminar-photocard'"
   );
-  async function deleteAlbum() {
+  async function deletePhotocard() {
     try {
       await fetch(photocardBackendUrl, {
         method: "DELETE",
@@ -232,9 +233,11 @@ deleteButtonAlbum.addEventListener("click", () => {
     }
   }
   if (deleteMessage == "Eliminar-photocard") {
-    deleteAlbum();
+    deletePhotocard();
     setTimeout(() => {
-      window.location.href = "../index.html?nocache=" + new Date().getTime();
+      window.location.href =
+        "/frontend/Pagina-de-Administrador/k-card-photocard/index.html?nocache=" +
+        new Date().getTime();
     }, 3000);
   }
 });
