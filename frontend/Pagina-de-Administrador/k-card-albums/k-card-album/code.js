@@ -9,11 +9,7 @@ async function getalbum() {
     const album = await responseAlbum.json();
     //Llamo a todas la filas de la columna
     const imgAlbum = document.getElementById("imgAlbum");
-    if (album.imagen == null) {
-      imgAlbum.src = "/images/resources/no-img.jpeg";
-    } else {
-      imgAlbum.src = album.imagen;
-    }
+    imgAlbum.src = album.imagen;
 
     const nameAlbum = document.getElementById("name-album");
     const versionAlbum = document.getElementById("version-album");
@@ -59,40 +55,6 @@ async function getalbum() {
         "/frontend/Pagina-de-Administrador/k-card-photocard/k-card-photocard/index.html?id=" +
         photocard.id;
       card.appendChild(buttonVer);
-
-      const buttonBorrar = document.createElement("button");
-      buttonBorrar.className = "button card-button";
-      buttonBorrar.id = "deletePhotocard";
-      buttonBorrar.innerHTML = "Borrar";
-      card.appendChild(buttonBorrar);
-
-      buttonBorrar.addEventListener("click", () => {
-        const deleteMessage = prompt(
-          "¿Estas seguro de borrar este photocard? Si desea eliminar escriba 'Eliminar-photocard'"
-        );
-        async function deletePhotocard() {
-          try {
-            await fetch(
-              "http://localhost:3000/api/photocards/" + photocard.id,
-              {
-                method: "DELETE",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              }
-            );
-            alert("Se elimino correctamente");
-          } catch (e) {
-            alert("Ocurrio un error al intentar eliminar la photocard");
-          }
-        }
-        if (deleteMessage == "Eliminar-photocard") {
-          deletePhotocard();
-          setTimeout(() => {
-            window.location.reload();
-          }, 3000);
-        }
-      });
 
       containerCard.appendChild(card);
     });
@@ -209,24 +171,21 @@ document.addEventListener("DOMContentLoaded", () => {
           requestJson.empresa = valueCompany;
         }
 
-        const inputCountry = document.getElementById("Country");
-        const valueCountry = inputCountry.value;
-        if (valueCountry.length !== 0 && isValidInput(valueCountry)) {
-          requestJson.pais = valueCountry;
-        }
         inputNameAlbum.value = "";
         inputVersionAlbum.value = "";
         inputGroup.value = "";
         inputImage.value = "";
         inputCompany.value = "";
-        inputCountry.value = "";
         return requestJson;
       }
 
       async function updateAlbum() {
         try {
           const requestJson = await getInfoForm();
-          if (requestJson.imagen !== "RME") {
+          if (
+            requestJson.imagen !== "RME" &&
+            Object.keys(requestJson).length > 0
+          ) {
             const patchBackendUrl = "http://localhost:3000/api/albums/" + id;
             await fetch(patchBackendUrl, {
               method: "PATCH",
@@ -242,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
               window.location.reload();
             }, 3000);
           } else {
-            alert("El nombre del archivo esta mal escrito");
+            alert("No se Modifico el album");
           }
         } catch (e) {
           console.log(e);
@@ -276,7 +235,9 @@ deleteButtonAlbum.addEventListener("click", () => {
   if (deleteMessage == "Eliminar-album") {
     deleteAlbum();
     setTimeout(() => {
-      window.location.href = "../index.html?nocache=" + new Date().getTime();
+      window.location.href =
+        "/frontend/Pagina-de-Administrador/k-card-albums/index.html?nocache=" +
+        new Date().getTime();
     }, 3000);
   }
 });

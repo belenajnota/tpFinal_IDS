@@ -13,13 +13,8 @@ async function getAlbums() {
       // se crean y se appendean los datos en la fila
       const imgAlbum = document.createElement("img");
       imgAlbum.className = "card-img";
-      if (album.imagen == null) {
-        imgAlbum.src = "/images/resources/no-img.jpeg";
-        newContainer.appendChild(imgAlbum);
-      } else {
-        imgAlbum.src = album.imagen;
-        newContainer.appendChild(imgAlbum);
-      }
+      imgAlbum.src = album.imagen;
+      newContainer.appendChild(imgAlbum);
 
       const nameAlbum = document.createElement("p");
       nameAlbum.className = "card-text card-name";
@@ -41,7 +36,9 @@ async function getAlbums() {
       newButtonVer.innerHTML = "Ver";
       newButtonVer.className = "card-button";
       newButtonVer.id = "button-card";
-      newButtonVer.href = "./k-card-album/index.html?id=" + album.id;
+      newButtonVer.href =
+        "/frontend/Pagina-de-Administrador/k-card-albums/k-card-album/index.html?id=" +
+        album.id;
       newContainer.appendChild(newButtonVer);
 
       const newButtonBorrar = document.createElement("a");
@@ -52,10 +49,10 @@ async function getAlbums() {
 
       newButtonBorrar.addEventListener("click", () => {
         const mensajeBorrar = prompt(
-          "¿Estas seguro de borrar esta album? Si desea eliminar escriba 'Eliminar-album'"
+          "¿Estas seguro de borrar este album? Si desea eliminar escriba 'Eliminar-album'"
         );
         const albumBackendUrl = "http://localhost:3000/api/albums/" + album.id;
-        async function deletealbum() {
+        async function deleteAlbum() {
           try {
             await fetch(albumBackendUrl, {
               method: "DELETE",
@@ -69,7 +66,7 @@ async function getAlbums() {
           }
         }
         if (mensajeBorrar == "Eliminar-album") {
-          deletealbum();
+          deleteAlbum();
           setTimeout(() => {
             window.location.reload();
           }, 3000);
@@ -81,7 +78,8 @@ async function getAlbums() {
       newButtonModificar.className = "card-button";
       newButtonModificar.id = "button-card";
       newButtonModificar.href =
-        "./k-card-album-update/index.html?id=" + album.id;
+        "/frontend/Pagina-de-Administrador/k-card-albums/k-card-album-update/index.html?id=" +
+        album.id;
 
       newContainer.appendChild(newButtonModificar);
 

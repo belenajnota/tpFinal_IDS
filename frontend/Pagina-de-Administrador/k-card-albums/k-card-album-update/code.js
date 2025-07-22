@@ -66,8 +66,10 @@ versionAlbum.addEventListener("input", () => {
 
 image.addEventListener("input", () => {
   const preview = document.getElementById("cardImage");
-  if (image.value.trim() === "") {
+  if (image.value.trim() == "") {
     getImageAlbum();
+  } else if (image.value == "sin-imagen") {
+    preview.src = "/images/resources/no-img.jpeg";
   } else {
     preview.src = "/images/albums/" + image.value;
   }
@@ -110,6 +112,7 @@ async function getInfo() {
     requestJson.imagen = "/images/resources/no-img.jpeg";
   } else if (image.value.trim() !== "") {
     requestJson.imagen = "RME"; //Ruta Mal Escrita
+    alert("El nombre del archivo esta mal escrito");
   }
 
   if (company.value !== 0 && isValidInput(company.value)) {
@@ -122,7 +125,7 @@ async function getInfo() {
 async function updateAlbum() {
   try {
     const requestJson = await getInfo();
-    if (requestJson.imagen !== "RME") {
+    if (requestJson.imagen !== "RME" && Object.keys(requestJson).length > 0) {
       const postBackendUrl = "http://localhost:3000/api/albums/" + id;
       await fetch(postBackendUrl, {
         method: "PATCH",
@@ -133,10 +136,12 @@ async function updateAlbum() {
       });
       alert("Se modifico el album");
       setTimeout(() => {
-        window.location.href = "../index.html?nocache=" + new Date().getTime();
+        window.location.href =
+          "/frontend/Pagina-de-Administrador/k-card-albums/index.html?nocache=" +
+          new Date().getTime();
       }, 3000);
     } else {
-      alert("El nombre del archivo esta mal escrito");
+      alert("El album no fue modificado");
     }
   } catch (e) {
     console.log(e);

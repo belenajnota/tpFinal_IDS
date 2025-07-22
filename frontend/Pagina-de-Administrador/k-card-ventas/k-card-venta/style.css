@@ -121,6 +121,25 @@ a:hover {
 .btn-soft:hover {
   background-color: #ff99aa;
 }
+
+.btn-soft {
+  background-color: #ffe1ea;
+  border: none;
+  color: #b4005a;
+  padding: 8px 16px;
+  border-radius: 10px;
+  width: 600px;
+  height: 50px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s;
+}
+
+.btn-soft:hover {
+  background-color: #ffb6c1;
+}
+
 /*contenedor de los productos*/
 .products-title {
   background-color: transparent;

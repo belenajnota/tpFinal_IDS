@@ -23,8 +23,13 @@ versionAlbum.addEventListener("input", () => {
 
 image.addEventListener("input", () => {
   const preview = document.getElementById("cardImage");
-  preview.src =
-    "/images/albums/" + image.value || "/images/resources/no-img.jpeg";
+  if (image.value.trim() == "") {
+    preview.src = "/images/resources/no-img.jpeg";
+  } else if (image.value == "sin-imagen") {
+    preview.src = "/images/resources/no-img.jpeg";
+  } else {
+    preview.src = "/images/albums/" + image.value;
+  }
 });
 
 function isValidInput(input) {
@@ -77,7 +82,6 @@ async function getInfo() {
 async function createAlbum() {
   try {
     const requestJson = await getInfo();
-    console.log(Object.keys(requestJson));
     if (Object.keys(requestJson).length == 6) {
       const postBackendUrl = "http://localhost:3000/api/albums";
       await fetch(postBackendUrl, {
@@ -87,9 +91,11 @@ async function createAlbum() {
         },
         body: JSON.stringify(requestJson),
       });
-      alert("se creo un album");
+      alert("se creo el album");
       setTimeout(() => {
-        window.location.href = "../index.html?nocache=" + new Date().getTime();
+        window.location.href =
+          "/frontend/Pagina-de-Administrador/k-card-albums/index.html?nocache=" +
+          new Date().getTime();
       }, 3000);
     } else {
       alert("Complete correctamente los campos");
