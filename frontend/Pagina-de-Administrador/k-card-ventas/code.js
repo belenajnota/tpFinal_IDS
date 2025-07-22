@@ -48,7 +48,9 @@ async function getVentas() {
       const newButtonVer = document.createElement("a");
       newButtonVer.innerHTML = "Ver";
       newButtonVer.className = "button button-change";
-      newButtonVer.href = "./k-card-venta/index.html?id=" + venta.id;
+      newButtonVer.href =
+        "/frontend/Pagina-de-Administrador/k-card-ventas/k-card-venta/index.html?id=" +
+        venta.id;
       newVer.appendChild(newButtonVer);
       newRow.appendChild(newVer);
 
@@ -61,7 +63,7 @@ async function getVentas() {
 
       newButtonBorrar.addEventListener("click", () => {
         const mensajeBorrar = prompt(
-          "¿Estas seguro de borrar esta venta? Si desea eliminar escriba 'Eliminar-Venta'"
+          "¿Estas seguro de borrar esta venta? Si desea eliminar escriba 'Eliminar-venta'"
         );
         const ventaBackendUrl = "http://localhost:3000/api/ventas/" + venta.id;
         async function deleteVenta() {
@@ -77,7 +79,7 @@ async function getVentas() {
             alert("Ocurrio un error al intentar eliminar la venta");
           }
         }
-        if (mensajeBorrar == "Eliminar-Venta") {
+        if (mensajeBorrar == "Eliminar-venta") {
           deleteVenta();
           setTimeout(() => {
             window.location.reload();

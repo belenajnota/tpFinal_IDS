@@ -1,75 +1,11 @@
 html,
 body {
   background-color: #fff0f5;
-  padding: 10px;
+  padding: 30px;
   height: 100%;
   min-height: 100vh;
   background-color: #fff8e4; /* tu color pastel */
 }
-
-/*
- estilo del forms
-.container-form {
-  max-width: 800px;
-  margin: auto;
-  background-color: white;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.box {
-  background-color: white;
-}
-
-.title-form {
-  color: #d9488e;
-  text-align: center;
-}
-
-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 30px;
-}
-
-label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: bold;
-  color: #555;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ffc0cb;
-  border-radius: 8px;
-  background-color: #fff8e4;
-}
-*/
-/*.select-option {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 100%;
-  padding: 10px 14px;
-  border: 2px solid #ffc0cb;
-  border-radius: 8px;
-  background-color: #fff8e4;
-  color: #b4005a;
-  font-size: 14px;
-  font-weight: bold;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%23b4005a" height="16" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg"><polygon points="0,0 20,0 10,10"/></svg>');
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 12px;
-
-  white-space: normal;  🔧 permite que se vean varias líneas 
-  text-overflow: ellipsis;  opcional si querés cortar con "..." 
-  overflow: hidden;  evita que el texto desborde 
-}*/
 
 button {
   grid-column: span 2;
@@ -110,13 +46,6 @@ button:hover {
 }
 a:hover {
   background-color: #ff99aa;
-}
-
-body {
-  background-color: #fff8e4;
-  font-family: Arial, sans-serif;
-  padding: 30px;
-  margin: 0;
 }
 
 .sale-detail-container {

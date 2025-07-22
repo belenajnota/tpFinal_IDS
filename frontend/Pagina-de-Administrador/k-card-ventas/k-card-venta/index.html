@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Transaccion</title>
+    <title>Venta</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
@@ -19,16 +19,16 @@
     >
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item font" href="../../k-card-inicio/index.html">
+          <a class="navbar-item font" href="/frontend/Pagina-de-Administrador/k-card-inicio/index.html">
             Inicio
           </a>
-          <a class="navbar-item font" href="../../k-card-photocard/index.html">
+          <a class="navbar-item font" href="/frontend/Pagina-de-Administrador/k-card-photocard/index.html">
             Photocards
           </a>
-          <a class="navbar-item font" href="../../k-card-albums/index.html">
+          <a class="navbar-item font" href="/frontend/Pagina-de-Administrador/k-card-albums/index.html">
             Albums
           </a>
-          <a class="navbar-item font" href="../index.html"> Ventas </a>
+          <a class="navbar-item font" href="/frontend/Pagina-de-Administrador/k-card-ventas/index.html"> Ventas </a>
         </div>
       </div>
     </nav>
@@ -79,97 +79,10 @@
 
 
       <div class="actions">
-        <!--<button
-          class="js-modal-trigger bttn-soft modificar"
-          data-target="modificar"
-        >
-          Modificar
-        </button> -->
+       
         <button id="deleteButton" class="btn-soft ">Eliminar</button>
       </div>
 
-    <!-- el modal es para modifcar
-    <div id="modificar" class="modal">
-      <div class="modal-background"></div>
-
-      <div class="modal-content">
-        <div class="box">
-          <p class="title-form">Modificar Informacion</p>
-          <p class="title-form">
-            Los cambios se realizaran una vez guardados los cambios.
-          </p>
-          <div class="container-form">
-            <form id="formulario">
-              <div>
-                <label for="cliente">Nombre del Cliente</label>
-                <input type="text" id="cliente" maxlength="40" />
-              </div>
-              <div>
-                <label for="telefono">Teléfono</label>
-                <input type="text" id="telefono" maxlength="15" />
-              </div>
-              <div>
-                <label for="instagram-cliente">Instagram</label>
-                <input type="text" id="instagram-cliente" maxlength="30" />
-              </div>
-
-              <div>
-                <label for="precioVenta">Precio de Venta</label>
-                <input type="text" id="precioVenta" />
-              </div>
-              <div>
-                <label for="medioDePago">Medio de Pago</label>
-
-                <select id="medioDePago" class="select-option">
-                  <option>Selecciona un Medio de Pago</option>
-                  <option>Mercado Pago</option>
-                  <option>Efectivo</option>
-                  <option>Transferencia</option>
-                  <option>Tarjeta</option>
-                </select>
-              </div>
-              <div>
-                <label for="fechaVenta">Fecha de Venta</label>
-                <input type="date" id="fechaVenta" />
-              </div>
-              <div>
-                <label for="lugarEntrega">Lugar de Entrega</label>
-                <input type="text" id="lugarEntrega" />
-              </div>
-              <div>
-                <label for="fechaEntrega">Fecha de entrega</label>
-                <input type="date" id="fechaEntrega" />
-              </div>
-              <div>
-                <label for="horaEntrega">Hora de Entrega</label>
-                <input type="time" id="horaEntrega" step="1" />
-              </div>
-              <div>
-                <label for="costoEntrega">Costo de Entrega</label>
-                <input type="text" id="costoEntrega" />
-              </div>
-              <div>
-                <label for="album">Nombre del Album</label>
-
-                <select id="select-album" class="select-option">
-                  <option>Selecciona un Album</option>
-                </select>
-              </div>
-              <div>
-                <label for="idol">Nombre del Idol</label>
-
-                <select id="select-idol" class="select-option">
-                  <option>Selecciona un Idol</option>
-                </select>
-              </div>
-              <button type="submit">Guardar Cambios</button>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <button class="modal-close is-large" aria-label="close"></button>
-    </div>-->
     <div class="products-container">
       <h2 class="products-title">Productos Comprados</h2>
       <div id="container-card" class="container is-fluid container-card">
