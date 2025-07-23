@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Registro</title>
+  </head>
+  <body>
+    <nav
+      class="navbar is-fixed-top color"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item font"> Inicio </a>
+          <a
+            id="buttonNavPhotocards"
+            class="navbar-item font"
+            href="/frontend/Pagina-de-usuario/k-card-photocards/index.html"
+          >
+            Photocards
+          </a>
+          <a
+            id="buttonNavAlbums"
+            class="navbar-item font"
+            href="/frontend/Pagina-de-usuario/k-card-albums/index.html"
+          >
+            Albums
+          </a>
+          <a
+            id="buttonNavColeccion"
+            class="navbar-item font"
+            href="/frontend/Pagina-de-usuario/k-card-coleccion/index.html"
+            >Coleccion</a
+          >
+        </div>
+      </div>
+    </nav>
+    <div class="container is-flex">
+      <form id="formulario">
+        <h2 class="title-form">Registrese</h2>
+        <div>
+          <label for="user">Usuario</label>
+          <input type="text" id="user" maxlength="30" required />
+        </div>
+        <div>
+          <label for="password">Contraseña</label>
+          <input
+            type="text"
+            id="password"
+            minlength="6"
+            maxlength="20"
+            required
+          />
+        </div>
+        <div>
+          <label for="phoneNumber"
+            >Numero de Telefono <br />Formato (11 o 15 XXXX-XXXX)</label
+          >
+          <input type="text" id="phoneNumber" maxlength="30" required />
+        </div>
+
+        <button id="button" type="submit">Guardar Cambios</button>
+        <h2 class="title-form">
+          Si ya tiene una cuenta
+          <a
+            href="/frontend/Pagina-de-usuario/k-card-inicio/login-page/index.html"
+            >Inicie Sesion</a
+          >
+        </h2>
+      </form>
+    </div>
+    <script src="./code.js"></script>
+  </body>
+</html>

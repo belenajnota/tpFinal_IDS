@@ -35,6 +35,13 @@ CREATE TABLE ventas (
     id_photocard INT REFERENCES photocards(id) ON DELETE SET NULL
 );
 
+CREATE TABLE usuarios(
+    id SERIAL PRIMARY KEY,
+    usuario VARCHAR(40) NOT NULL,
+    contrasena VARCHAR(40) NOT NULL,
+    telefono VARCHAR(15) NOT NULL,
+    id_ventas INTEGER[] 
+)
 
 
 

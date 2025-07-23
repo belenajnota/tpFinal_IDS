@@ -1,0 +1,39 @@
+body,
+.bg-color {
+  background-color: #fedada;
+}
+
+.container-img {
+  display: flex;
+  justify-content: center;
+}
+
+.container-img img {
+  height: 1000px;
+}
+
+.color {
+  background-color: #ffc0cb;
+}
+
+.font {
+  color: #f8f8ff;
+}
+
+.button-change {
+  grid-column: span 2;
+  padding: 12px;
+  background-color: #ffc0cb;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  margin: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button-change:hover,
+a:hover {
+  background-color: #ff99aa;
+}
