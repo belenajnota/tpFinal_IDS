@@ -38,6 +38,8 @@ async function getInfo() {
 
   if (Object.keys(Session).length == 3) {
     localStorage.setItem("session", JSON.stringify(Session));
+    const cart = {};
+    localStorage.setItem("cart", cart);
     setTimeout(() => {
       window.location.href =
         "/frontend/Pagina-de-usuario/k-card-inicio/index.html?nocache=" +

@@ -19,28 +19,11 @@
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
           <a class="navbar-item font"> Inicio </a>
-          <a
-            id="buttonNavPhotocards"
-            class="navbar-item font"
-            href="/frontend/Pagina-de-usuario/k-card-photocards/index.html"
-          >
-            Photocards
-          </a>
-          <a
-            id="buttonNavAlbums"
-            class="navbar-item font"
-            href="/frontend/Pagina-de-usuario/k-card-albums/index.html"
-          >
-            Albums
-          </a>
-          <a
-            id="buttonNavColeccion"
-            class="navbar-item font"
-            href="/frontend/Pagina-de-usuario/k-card-coleccion/index.html"
-            >Coleccion</a
-          >
+          <a id="buttonNavPhotocards" class="navbar-item font"> Photocards </a>
+          <a id="buttonNavAlbums" class="navbar-item font"> Albums </a>
+          <a id="buttonNavColeccion" class="navbar-item font">Coleccion</a>
         </div>
-        <div class="navbar-end">
+        <div id="containerActions" class="navbar-end">
           <a
             id="buttonNavLogIn"
             class="navbar-item font"
@@ -55,6 +38,10 @@
           >
             Registrarse
           </a>
+          <a
+            id="cartLink"
+            href="/frontend/Pagina-de-usuario/k-card-carrito/index.html"
+          ></a>
         </div>
       </div>
     </nav>
@@ -65,16 +52,19 @@
     <div class="container">
       <div class="notification bg-color mt-2">
         <a
+          id="buttonBodyPhotocards"
           class="button is-medium is-fullwidth button-change"
           href="/frontend/Pagina-de-usuario/k-card-photocards/index.html"
           >Photocards</a
         >
         <a
+          id="buttonBodyAlbums"
           class="button is-medium is-fullwidth button-change"
           href="/frontend/Pagina-de-usuario/k-card-albums/index.html"
           >Albums</a
         >
         <a
+          id="buttonBodyColeccion"
           class="button is-medium is-fullwidth button-change"
           href="/frontend/Pagina-de-usuario/k-card-coleccion/index.html"
           >Coleccion</a
