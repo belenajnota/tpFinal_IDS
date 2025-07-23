@@ -21,7 +21,7 @@ async function getUsuarios() {
       usuarios[row.id] = {
         id: row.id,
         usuario: row.usuario,
-        constrasena: row.contrasena,
+        contrasena: row.contrasena,
         telefono: row.telefono,
         id_ventas: row.id_ventas,
       };
