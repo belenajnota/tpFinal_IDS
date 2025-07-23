@@ -45,7 +45,7 @@ async function getPhotocards() {
       newButtonVer.className = "button card-button";
       newButtonVer.id = "button-card";
       newButtonVer.href =
-        "/frontend/Pagina-de-Administrador/k-card-photocard/k-card-photocard/index.html?id=" +
+        "/frontend/Pagina-de-usuario/k-card-photocards/k-card-photocard/index.html?id=" +
         photocard.id;
       newContainer.appendChild(newButtonVer);
 

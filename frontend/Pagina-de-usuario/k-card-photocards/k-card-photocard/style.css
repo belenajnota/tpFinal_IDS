@@ -261,3 +261,15 @@ select:focus {
 a:hover {
   background-color: #ff99aa;
 }
+
+.navbar-end {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 10px;
+}
+
+.user-icon {
+  height: 30px;
+  width: 30px;
+}

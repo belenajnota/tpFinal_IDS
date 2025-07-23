@@ -21,28 +21,38 @@
         <div class="navbar-start">
           <a
             class="navbar-item font"
-            href="/frontend/Pagina-de-Administrador/k-card-inicio/index.html"
+            href="/frontend/Pagina-de-usuario/k-card-inicio/index.html"
           >
             Inicio
           </a>
           <a
             class="navbar-item font"
-            href="/frontend/Pagina-de-Administrador/k-card-photocard/index.html"
+            href="/frontend/Pagina-de-usuario/k-card-photocards/index.html"
           >
             Photocards
           </a>
           <a
             class="navbar-item font"
-            href="/frontend/Pagina-de-Administrador/k-card-albums/index.html"
+            href="/frontend/Pagina-de-usuario/k-card-albums/index.html"
           >
             Albums
           </a>
           <a
             class="navbar-item font"
-            href="/frontend/Pagina-de-Administrador/k-card-ventas/index.html"
+            href="/frontend/Pagina-de-usuario/k-card-coleccion/index.html"
+            >Coleccion</a
           >
-            Ventas
-          </a>
+        </div>
+        <div id="containerActions" class="navbar-end">
+          <a
+            id="cartLink"
+            href="/frontend/Pagina-de-usuario/k-card-carrito/index.html"
+            ><img class="user-icon" src="/images/resources/carrito.png" alt=""
+          /></a>
+          <img class="user-icon" src="/images/resources/user.png" alt="" />
+          <p id="nameUser" class="font"></p>
+
+          <button id="buttonLogOut" class="font">Cerrar Sesion</button>
         </div>
       </div>
     </nav>
@@ -72,64 +82,10 @@
         </div>
       </div>
     </div>
-    <!-- el modal es para modifcar-->
-    <div id="modificar" class="modal">
-      <div class="modal-background"></div>
 
-      <div class="modal-content">
-        <div class="box color-bg">
-          <p class="title-form">Modificar Informacion</p>
-          <p class="title-form">Los cambios se realizaran una vez guardados.</p>
-          <div class="container-form">
-            <form id="formulario">
-              <div>
-                <label for="namePhotocard">Nombre de la Photocard</label>
-                <input type="text" id="namePhotocard" maxlength="30" />
-              </div>
-              <div>
-                <label for="Group">Grupo</label>
-                <input type="text" id="Group" maxlength="30" />
-              </div>
-              <div>
-                <label for="Price">Precio</label>
-                <input type="text" id="Price" maxlength="15" />
-              </div>
-              <div>
-                <label for="Image"
-                  >Imagen<br />
-                  Sino quiere poner una imagen escriba "sin-imagen"</label
-                >
-                <input type="text" id="Image" />
-              </div>
-              <div>
-                <label for="albumPhotocard">Album de la Photocard</label>
-                <select name="albumPhotocard" id="albumPhotocard">
-                  <option selected value="no album">Sin Album</option>
-                  <option value="">Hola</option>
-                </select>
-              </div>
-
-              <button class="button-change modal-button" type="submit">
-                Guardar Cambios
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <button class="modal-close is-large" aria-label="close"></button>
-    </div>
-    <div
-      class="containerModals is-flex is-justify-content-space-evenly buttons-container"
-    >
-      <button
-        class="js-modal-trigger button-change modificar"
-        data-target="modificar"
-      >
-        Modificar
-      </button>
-      <button id="deleteButton" class="button-change modificar">
-        Eliminar
+    <div class="is-flex is-justify-content-space-evenly buttons-container">
+      <button id="buttonAddToCart" class="button-change modificar">
+        Añadir Al Carrito
       </button>
     </div>
     <div style="margin-top: 60px">

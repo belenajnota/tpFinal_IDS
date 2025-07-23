@@ -36,8 +36,26 @@ async function getPhotocard() {
     cardGroup.innerHTML = associatedAlbum.grupo;
     cardVersion.innerHTML = associatedAlbum.version;
     cardButton.href =
-      "/frontend/Pagina-de-Administrador/k-card-albums/k-card-album/index.html?id=" +
+      "/frontend/Pagina-de-usuario/k-card-albums/k-card-album/index.html?id=" +
       associatedAlbum.id;
+
+    const buttonAddToCart = document.getElementById("buttonAddToCart");
+
+    buttonAddToCart.addEventListener("click", () => {
+      const product = {
+        id: photocard.id,
+        name: photocard.nombre,
+        group: photocard.grupo,
+        image: photocard.imagen,
+        price: photocard.precio_comprada,
+        album_id: photocard.album_id,
+      };
+
+      const cart = JSON.parse(localStorage.getItem("cart"));
+      cart.push(product);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      console.log(localStorage.getItem("cart"));
+    });
   } catch (e) {}
 }
 
@@ -237,6 +255,28 @@ deleteButtonPhotocard.addEventListener("click", () => {
     setTimeout(() => {
       window.location.href =
         "/frontend/Pagina-de-Administrador/k-card-photocard/index.html?nocache=" +
+        new Date().getTime();
+    }, 3000);
+  }
+});
+
+const nameUser = document.getElementById("nameUser");
+const session = JSON.parse(localStorage.getItem("session"));
+
+nameUser.innerHTML = session.usuario;
+
+const buttonLogOut = document.getElementById("buttonLogOut");
+
+buttonLogOut.addEventListener("click", () => {
+  const message = prompt(
+    "Desea cerrar la sesion? si es afirmativo escriba si, caso contrario escriba no"
+  );
+  if (message.toLowerCase() == "si") {
+    localStorage.removeItem("session");
+    localStorage.removeItem("cart");
+    setTimeout(() => {
+      window.location.href =
+        "/frontend/Pagina-de-usuario/k-card-inicio/index.html?nocache=" +
         new Date().getTime();
     }, 3000);
   }
