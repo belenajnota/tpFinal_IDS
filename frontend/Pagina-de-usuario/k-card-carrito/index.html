@@ -56,45 +56,14 @@
       </div>
     </nav>
     <div class="container-button">
-      <h2 id="title-pag">Carrito de Compras</h2>
+      <h2 class="title-pag">Carrito de Compras</h2>
       <div class="is-flex">
-        <div class="dropdown custom-dropdown">
-          <div
-            class="dropdown-trigger is-flex is-flex-direction-column is-justify-content-end"
-          >
-            <button
-              class="button filter-button"
-              aria-haspopup="true"
-              aria-controls="dropdown-menu"
-            >
-              <span>Filtros</span>
-            </button>
-          </div>
-          <div class="dropdown-menu" id="dropdown-menu" role="menu">
-            <div class="dropdown-content filter-content">
-              <span class="dropdown-title">Ordenar los Albums por:</span>
-              <select name="order-by" id="order-by" class="custom-select">
-                <option selected value="NameA-Z">Nombre (A-Z)</option>
-                <option value="NameZ-A">Nombre (Z-A)</option>
-              </select>
-              <span class="dropdown-title">Filtrar los Albums por</span>
-              <select
-                name="filter-by"
-                id="filter-by-group"
-                class="custom-select"
-              >
-                <option selected value="">Grupo</option>
-              </select>
-              <select
-                name="filter-by"
-                id="filter-by-version"
-                class="custom-select"
-              >
-                <option selected value="">Version</option>
-              </select>
-            </div>
-          </div>
-        </div>
+        <p id="finalPrice" class="title-pag">Precio Final: $</p>
+        <a
+          class="button-change"
+          href="/frontend/Pagina-de-usuario/k-card-carrito/k-card-compra/index.html"
+          >Comprar</a
+        >
       </div>
     </div>
     <div id="containerCard" class="container is-fluid container-card"></div>

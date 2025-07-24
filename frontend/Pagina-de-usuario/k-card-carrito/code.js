@@ -3,6 +3,13 @@ const cart = JSON.parse(localStorage.getItem("cart"));
 const uniqueCart = cart.filter(
   (item, index, self) => index === self.findIndex((t) => t.id === item.id)
 );
+let totalPrice = 0;
+cart.forEach((photocard) => {
+  totalPrice += photocard.price;
+});
+
+const finalPrice = document.getElementById("finalPrice");
+finalPrice.innerHTML += totalPrice;
 
 uniqueCart.forEach((photocard) => {
   // se crea la fila para toda la informacion
@@ -11,17 +18,17 @@ uniqueCart.forEach((photocard) => {
   // se crean y se appendean los datos en la fila
   const imgPhotocard = document.createElement("img");
   imgPhotocard.className = "card-img";
-  imgPhotocard.src = photocard.imagen;
+  imgPhotocard.src = photocard.image;
   newContainer.appendChild(imgPhotocard);
 
   const namePhotocard = document.createElement("p");
   namePhotocard.className = "card-text card-name";
-  namePhotocard.innerHTML = photocard.nombre;
+  namePhotocard.innerHTML = photocard.name;
   newContainer.appendChild(namePhotocard);
 
   const group = document.createElement("p");
   group.className = "card-text card-group";
-  group.innerHTML = photocard.grupo;
+  group.innerHTML = photocard.group;
   newContainer.appendChild(group);
 
   const numberOfPhotocards = document.createElement("p");
@@ -32,7 +39,7 @@ uniqueCart.forEach((photocard) => {
 
   const price = document.createElement("p");
   price.className = "card-text card-price";
-  price.innerHTML = photocard.precio_comprada;
+  price.innerHTML = photocard.price;
   newContainer.appendChild(price);
 
   const newButtonVer = document.createElement("a");
