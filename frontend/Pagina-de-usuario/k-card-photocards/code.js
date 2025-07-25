@@ -62,7 +62,6 @@ async function getPhotocards() {
           group: photocard.grupo,
           image: photocard.imagen,
           price: photocard.precio_comprada,
-          album_id: photocard.album_id,
         };
 
         const cart = JSON.parse(localStorage.getItem("cart"));

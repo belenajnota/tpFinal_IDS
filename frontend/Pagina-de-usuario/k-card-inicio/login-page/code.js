@@ -14,7 +14,7 @@ const password = document.getElementById("password");
 
 async function getInfo() {
   const Session = {};
-  const regexPhoneNumber = /^(11|15)[0-9]{8}$/;
+
   const signInBackendUrl = "http://localhost:3000/api/usuarios";
   try {
     const response = await fetch(signInBackendUrl);
@@ -29,6 +29,12 @@ async function getInfo() {
     if (userExists.contrasena == password.value) {
       Session.contrasena = password.value;
       Session.id = userExists.id;
+      Session.telefono = parseInt(userExists.telefono);
+      if (userExists.id_photocards == null) {
+        Session.id_photocards = "";
+      } else {
+        Session.id_photocards = userExists.id_photocards;
+      }
     } else {
       alert("La contraseña es incorrecta");
     }
@@ -36,10 +42,11 @@ async function getInfo() {
     alert("El usuario no existe");
   }
 
-  if (Object.keys(Session).length == 3) {
+  if (Object.keys(Session).length == 5) {
     localStorage.setItem("session", JSON.stringify(Session));
     const cart = [];
     localStorage.setItem("cart", JSON.stringify(cart));
+
     setTimeout(() => {
       window.location.href =
         "/frontend/Pagina-de-usuario/k-card-inicio/index.html?nocache=" +

@@ -53,5 +53,3 @@ if (user !== null) {
     }
   });
 }
-
-console.log(localStorage.getItem("cart"));

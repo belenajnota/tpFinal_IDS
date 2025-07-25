@@ -40,6 +40,7 @@ const {
 
 const {
   getUsuarios,
+  getUsuario,
   createUsuario,
   updateUsuario,
 } = require("./scripts/usuarios");
@@ -82,7 +83,7 @@ const camposVentas = [
 ];
 
 const camposObligatoriosUsuarios = ["usuario", "contrasena", "telefono"];
-const camposUsuarios = ["usuario", "contrasena", "telefono", "id_ventas"];
+const camposUsuarios = ["usuario", "contrasena", "telefono", "id_photocards"];
 
 const longitud_valores_photocards = {
   nombre: 40,
@@ -1317,6 +1318,12 @@ app.patch("/api/ventas/:id", async (req, res) => {
   }
 });
 
+/*
+
+////////////////CRUD USUARIOS///////////////////////////////////////////////////////////////////////////////////////////////////
+
+*/
+
 app.get("/api/usuarios", async (req, res) => {
   try {
     const usuarios = await getUsuarios();
@@ -1325,6 +1332,27 @@ app.get("/api/usuarios", async (req, res) => {
       return res.status(404).json({ error: "Usuarios no encontrados" });
     }
     return res.json(usuarios);
+  } catch (e) {
+    return res.status(500).json({ error: "Error interno del servidor" });
+  }
+});
+
+app.get("/api/usuarios/:id", async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+
+  if (isNaN(id) || id <= 0) {
+    return res
+      .status(400)
+      .json({ error: "El ID debe ser un número entero positivo mayor a 0" });
+  }
+
+  try {
+    const usuario = await getUsuario(id);
+
+    if (!usuario) {
+      return res.status(404).json({ error: "Usuario no encontrada" });
+    }
+    return res.json(usuario);
   } catch (e) {
     return res.status(500).json({ error: "Error interno del servidor" });
   }
@@ -1407,14 +1435,14 @@ app.patch("/api/usuarios/:id", async (req, res) => {
     });
   }
 
-  for (id_venta of datos.id_ventas) {
+  for (let id_photocard of datos.id_photocards) {
     try {
-      const venta = await getVenta(id_venta);
+      const photocard = await getPhotocard(id_photocard);
 
-      if (Number.isInteger(id_venta) && venta == undefined) {
+      if (Number.isInteger(id_photocard) && photocard == undefined) {
         return res
           .status(404)
-          .json({ error: `Venta con id ${id_venta} no encontrada ` });
+          .json({ error: `Venta con id ${id_photocard} no encontrada ` });
       }
     } catch (e) {
       return res.status(500).json({ error: "Error interno del servidor" });

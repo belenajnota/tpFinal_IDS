@@ -1,8 +1,10 @@
 const containerCard = document.getElementById("containerCard");
 const cart = JSON.parse(localStorage.getItem("cart"));
+
 const uniqueCart = cart.filter(
   (item, index, self) => index === self.findIndex((t) => t.id === item.id)
 );
+
 let totalPrice = 0;
 cart.forEach((photocard) => {
   totalPrice += photocard.price;

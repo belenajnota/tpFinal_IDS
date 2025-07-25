@@ -50,7 +50,14 @@ async function getAlbums() {
       newButtonAddToCart.addEventListener("click", () => {
         for (photocard of album.photocards) {
           const cart = JSON.parse(localStorage.getItem("cart"));
-          cart.push(photocard);
+          const product = {
+            id: photocard.id,
+            name: photocard.nombre,
+            group: photocard.grupo,
+            image: photocard.imagen,
+            price: photocard.precio_comprada,
+          };
+          cart.push(product);
           localStorage.setItem("cart", JSON.stringify(cart));
         }
       });

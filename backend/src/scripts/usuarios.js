@@ -11,7 +11,7 @@ const dbClient = new Pool({
 
 async function getUsuarios() {
   const response = await dbClient.query(
-    `SELECT u.id, u.usuario, u.contrasena, u.telefono, u.id_ventas FROM usuarios u`
+    `SELECT u.id, u.usuario, u.contrasena, u.telefono, u.id_photocards FROM usuarios u`
   );
 
   const usuarios = {};
@@ -23,12 +23,30 @@ async function getUsuarios() {
         usuario: row.usuario,
         contrasena: row.contrasena,
         telefono: row.telefono,
-        id_ventas: row.id_ventas,
+        id_photocards: row.id_photocards,
       };
     }
   });
 
   return usuarios;
+}
+async function getUsuario(id) {
+  const response = await dbClient.query(
+    `SELECT u.id, u.usuario, u.contrasena, u.telefono, u.id_photocards FROM usuarios u WHERE u.id = $1`,
+    [id]
+  );
+
+  const rows = response.rows;
+
+  const usuario = {
+    id: rows[0].id,
+    usuario: rows[0].usuario,
+    contrasena: rows[0].contrasena,
+    telefono: rows[0].telefono,
+    id_photocards: rows[0].id_photocards,
+  };
+
+  return usuario;
 }
 
 async function createUsuario(usuario, contrasena, telefono) {
@@ -88,6 +106,7 @@ async function updateUsuario(id, datos) {
 
 module.exports = {
   getUsuarios,
+  getUsuario,
   createUsuario,
   updateUsuario,
 };

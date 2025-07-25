@@ -43,12 +43,11 @@ async function getPhotocard() {
 
     buttonAddToCart.addEventListener("click", () => {
       const product = {
-        id: id,
+        id: parseInt(id),
         name: photocard.nombre,
         group: photocard.grupo,
         image: photocard.imagen,
         price: photocard.precio_comprada,
-        album_id: photocard.album_id,
       };
 
       const cart = JSON.parse(localStorage.getItem("cart"));
