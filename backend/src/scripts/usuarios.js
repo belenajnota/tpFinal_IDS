@@ -37,6 +37,9 @@ async function getUsuario(id) {
   );
 
   const rows = response.rows;
+  if (rows.length === 0) {
+    return null;
+  }
 
   const usuario = {
     id: rows[0].id,
@@ -61,7 +64,7 @@ async function createUsuario(usuario, contrasena, telefono) {
   return response.rows[0];
 }
 
-async function deleteAlbum(id) {
+async function deleteUsuario(id) {
   const response = await dbClient.query("DELETE FROM usuarios WHERE id = $1", [
     id,
   ]);
@@ -108,5 +111,6 @@ module.exports = {
   getUsuarios,
   getUsuario,
   createUsuario,
+  deleteUsuario,
   updateUsuario,
 };

@@ -42,6 +42,7 @@ const {
   getUsuarios,
   getUsuario,
   createUsuario,
+  deleteUsuario,
   updateUsuario,
 } = require("./scripts/usuarios");
 
@@ -1397,6 +1398,27 @@ app.post("/api/usuarios", async (req, res) => {
     return res
       .status(500)
       .json({ error: "Error del servidor al crear el usuario" });
+  }
+});
+
+app.delete("/api/usuarios/:id", async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+
+  if (isNaN(id) || id <= 0) {
+    return res
+      .status(400)
+      .json({ error: "El ID debe ser un número entero positivo mayor a 0" });
+  }
+  try {
+    const usuario = await deleteUsuario(id);
+    if (!usuario) {
+      return res
+        .status(404)
+        .json({ error: "No se encontró el usuario id: " + id });
+    }
+    return res.json(usuario);
+  } catch (e) {
+    return res.status(500).json({ error: "Error al eliminar el usuario" });
   }
 });
 

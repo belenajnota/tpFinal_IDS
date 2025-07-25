@@ -1,11 +1,12 @@
-const photocardsBackendUrl = "http://localhost:3000/api/photocards";
+const photocardsBackendUrl = "http://localhost:3000/api/photocards/";
 
 async function getPhotocards() {
   try {
-    const response = await fetch(photocardsBackendUrl);
-    const data = await response.json();
-    const photocards = Object.values(data);
-    photocards.forEach((photocard) => {
+    const session = JSON.parse(localStorage.getItem("session"));
+    const idPhotocards = session.id_photocards;
+    for (const idPhotocard of idPhotocards) {
+      const response = await fetch(photocardsBackendUrl + idPhotocard);
+      const photocard = await response.json();
       // se crea la fila para toda la informacion
       const newContainer = document.createElement("div");
       newContainer.className =
@@ -24,6 +25,7 @@ async function getPhotocards() {
       const group = document.createElement("p");
       group.className = "card-text card-group";
       group.innerHTML = photocard.grupo;
+
       newContainer.appendChild(group);
 
       const price = document.createElement("p");
@@ -37,32 +39,12 @@ async function getPhotocards() {
       newButtonVer.id = "button-card";
       newButtonVer.href =
         "/frontend/Pagina-de-usuario/k-card-photocards/k-card-photocard/index.html?id=" +
-        photocard.id;
+        idPhotocard;
       newContainer.appendChild(newButtonVer);
-
-      const newButtonAddToCart = document.createElement("a");
-      newButtonAddToCart.innerHTML = "Añadir al Carrito";
-      newButtonAddToCart.className = "button card-button";
-      newButtonAddToCart.id = "button-card";
-
-      newContainer.appendChild(newButtonAddToCart);
-      newButtonAddToCart.addEventListener("click", () => {
-        const product = {
-          id: photocard.id,
-          name: photocard.nombre,
-          group: photocard.grupo,
-          image: photocard.imagen,
-          price: photocard.precio_comprada,
-        };
-
-        const cart = JSON.parse(localStorage.getItem("cart"));
-        cart.push(product);
-        localStorage.setItem("cart", JSON.stringify(cart));
-      });
 
       const containerCard = document.getElementById("containerCard");
       containerCard.appendChild(newContainer);
-    });
+    }
   } catch (e) {
     console.log(e);
   }
@@ -107,6 +89,7 @@ async function completeSelects() {
     const selectGroupPhotocard = document.getElementById("filter-by-group");
     //hago verificadores para hacer el select de los filtros
     const groupPhotocard = photocards.map((photocard) => photocard.grupo);
+    console.log(groupPhotocard);
     const uniqueGroups = [...new Set(groupPhotocard)];
 
     for (let group of uniqueGroups) {
