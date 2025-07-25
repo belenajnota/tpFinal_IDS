@@ -16,12 +16,20 @@ async function getalbum() {
     const group = document.getElementById("group");
     const company = document.getElementById("company");
     const country = document.getElementById("country");
+    const price = document.getElementById("price");
     //Appendeo la informacion a la tabla
     nameAlbum.innerHTML = album.nombre;
     versionAlbum.innerHTML = album.version_album;
     group.innerHTML = album.grupo;
     company.innerHTML = album.empresa;
     country.innerHTML = album.pais;
+    if (album.photocards.length > 0) {
+      let totalPrice = 0;
+      for (const photocard of album.photocards) {
+        totalPrice += photocard.precio_comprada;
+      }
+      price.innerHTML = totalPrice;
+    }
     const associatedPhotocards = album.photocards;
     associatedPhotocards.forEach((photocard) => {
       const containerCard = document.getElementById("containerCard");

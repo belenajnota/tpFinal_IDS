@@ -31,6 +31,17 @@ async function getAlbums() {
       versionAlbum.innerHTML = album.version_album;
       newContainer.appendChild(versionAlbum);
 
+      if (album.photocards.length > 0) {
+        const price = document.createElement("p");
+        let totalPrice = 0;
+        for (const photocard of album.photocards) {
+          totalPrice += photocard.precio_comprada;
+        }
+        price.innerHTML = totalPrice;
+        price.className = "card-text card-price";
+        newContainer.appendChild(price);
+      }
+
       // se crean los botones para las acciones ver, borrar y modificar
       const newButtonVer = document.createElement("a");
       newButtonVer.innerHTML = "Ver";
@@ -177,6 +188,32 @@ selectOrderBy.addEventListener("change", () => {
       return b
         .querySelector(".card-name")
         .textContent.localeCompare(a.querySelector(".card-name").textContent);
+    });
+
+    containerCard.innerHTML = "";
+
+    sortedCards.forEach((card) => {
+      containerCard.appendChild(card);
+    });
+  } else if (selectOrderBy.value == "priceHighLow") {
+    const sortedCards = cards.sort((a, b) => {
+      return (
+        Number(b.querySelector(".card-price").textContent) -
+        Number(a.querySelector(".card-price").textContent)
+      );
+    });
+
+    containerCard.innerHTML = "";
+
+    sortedCards.forEach((card) => {
+      containerCard.appendChild(card);
+    });
+  } else if (selectOrderBy.value == "priceLowHigh") {
+    const sortedCards = cards.sort((a, b) => {
+      return (
+        Number(a.querySelector(".card-price").textContent) -
+        Number(b.querySelector(".card-price").textContent)
+      );
     });
 
     containerCard.innerHTML = "";

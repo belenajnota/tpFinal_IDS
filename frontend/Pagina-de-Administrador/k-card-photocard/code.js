@@ -26,15 +26,6 @@ async function getPhotocards() {
       group.innerHTML = photocard.grupo;
       newContainer.appendChild(group);
 
-      const availability = document.createElement("p");
-      availability.className = "card-text card-availability";
-      if (photocard.disponible) {
-        availability.innerHTML = "Disponible";
-      } else {
-        availability.innerHTML = "Vendida";
-      }
-      newContainer.appendChild(availability);
-
       const price = document.createElement("p");
       price.className = "card-text card-price";
       price.innerHTML = photocard.precio_comprada;
@@ -215,9 +206,7 @@ selectOrderBy.addEventListener("change", () => {
 });
 
 const selectGroupFilter = document.getElementById("filter-by-group");
-const selectAvailabilityFilter = document.getElementById(
-  "filter-by-availability"
-);
+
 //Los acumuladores son para que el filtro pueda funcionar indefinidamente
 let accFilter = 0;
 const containerCard = document.querySelector(".container-card");
@@ -233,36 +222,11 @@ selectGroupFilter.addEventListener("change", async () => {
   containerCard.innerHTML = "";
   accFilter += 1;
 
-  selectAvailabilityFilter.value = "";
-
   cards.forEach((card) => {
     const group = card.querySelector(".card-group").textContent;
     if (group == selectGroupFilter.value) {
       containerCard.appendChild(card);
     } else if (selectGroupFilter.value == "") {
-      containerCard.appendChild(card);
-    }
-  });
-});
-selectAvailabilityFilter.addEventListener("change", async () => {
-  if (accFilter > 0) {
-    containerCard.innerHTML = "";
-    await getPhotocards();
-    accFilter += 1;
-  }
-
-  const cards = Array.from(containerCard.querySelectorAll("div"));
-
-  containerCard.innerHTML = "";
-  accFilter += 1;
-
-  selectGroupFilter.value = "";
-
-  cards.forEach((card) => {
-    const version = card.querySelector(".card-availability").textContent;
-    if (version == selectAvailabilityFilter.value) {
-      containerCard.appendChild(card);
-    } else if (selectAvailabilityFilter.value == "") {
       containerCard.appendChild(card);
     }
   });
