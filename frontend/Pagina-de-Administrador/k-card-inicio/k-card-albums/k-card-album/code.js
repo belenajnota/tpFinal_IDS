@@ -60,8 +60,7 @@ async function getalbum() {
       buttonVer.className = "button card-button";
       buttonVer.innerHTML = "Ver";
       buttonVer.href =
-        "/frontend/Pagina-de-Administrador/k-card-photocard/k-card-photocard/index.html?id=" +
-        photocard.id;
+        "../../k-card-photocard/k-card-photocard/index.html?id=" + photocard.id;
       card.appendChild(buttonVer);
 
       containerCard.appendChild(card);
@@ -164,11 +163,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const inputImage = document.getElementById("Image");
-        const imagePath = "/images/albums/" + inputImage.value;
+        const imagePath = "../../images/albums/" + inputImage.value;
         if (await verifyImage(imagePath)) {
           requestJson.imagen = imagePath;
         } else if (inputImage.value == "sin-imagen") {
-          requestJson.imagen = "/images/resources/no-img.jpeg";
+          requestJson.imagen = "../../images/resources/no-img.jpeg";
         } else if (inputImage.value.trim() !== "") {
           requestJson.imagen = "RME"; //Ruta Mal Escrita
         }
@@ -243,9 +242,7 @@ deleteButtonAlbum.addEventListener("click", () => {
   if (deleteMessage == "Eliminar-album") {
     deleteAlbum();
     setTimeout(() => {
-      window.location.href =
-        "/frontend/Pagina-de-Administrador/k-card-albums/index.html?nocache=" +
-        new Date().getTime();
+      window.location.href = "../index.html?nocache=" + new Date().getTime();
     }, 3000);
   }
 });

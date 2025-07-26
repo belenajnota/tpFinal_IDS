@@ -66,7 +66,7 @@ async function getVenta() {
     newButtonVer.className = "card-button";
     newButtonVer.innerHTML = "Ver";
     newButtonVer.href =
-      "/frontend/Pagina-de-Administrador/k-card-photocard/k-card-photocard/index.html?id=" +
+      "../../k-card-photocard/k-card-photocard/index.html?id=" +
       venta.id_photocard;
     card.appendChild(newButtonVer);
 
@@ -101,9 +101,7 @@ deleteButton.addEventListener("click", () => {
   if (mensajeBorrar == "Eliminar-venta") {
     deleteVenta();
     setTimeout(() => {
-      window.location.href =
-        "/frontend/Pagina-de-Administrador/k-card-ventas/index.html?nocache=" +
-        new Date().getTime();
+      window.location.href = "../index.html?nocache=" + new Date().getTime();
     }, 3000);
   }
 });

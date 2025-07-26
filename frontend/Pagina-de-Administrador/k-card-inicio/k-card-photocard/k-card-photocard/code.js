@@ -36,8 +36,7 @@ async function getPhotocard() {
     cardGroup.innerHTML = associatedAlbum.grupo;
     cardVersion.innerHTML = associatedAlbum.version;
     cardButton.href =
-      "/frontend/Pagina-de-Administrador/k-card-albums/k-card-album/index.html?id=" +
-      associatedAlbum.id;
+      "../../k-card-albums/k-card-album/index.html?id=" + associatedAlbum.id;
   } catch (e) {}
 }
 
@@ -169,11 +168,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const inputImage = document.getElementById("Image");
-        const imagePath = "/images/photocards/" + inputImage.value;
+        const imagePath = "../../images/photocards/" + inputImage.value;
         if (await verifyImage(imagePath)) {
           requestJson.imagen = imagePath;
         } else if (inputImage.value == "sin-imagen") {
-          requestJson.imagen = "/images/resources/no-img.jpeg";
+          requestJson.imagen = "../../images/resources/no-img.jpeg";
         }
         if (albumPhotocard.value !== "") {
           requestJson.album_id = parseInt(albumPhotocard.value);
@@ -235,9 +234,7 @@ deleteButtonPhotocard.addEventListener("click", () => {
   if (deleteMessage == "Eliminar-photocard") {
     deletePhotocard();
     setTimeout(() => {
-      window.location.href =
-        "/frontend/Pagina-de-Administrador/k-card-photocard/index.html?nocache=" +
-        new Date().getTime();
+      window.location.href = "../index.html?nocache=" + new Date().getTime();
     }, 3000);
   }
 });

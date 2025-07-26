@@ -48,9 +48,7 @@ async function getVentas() {
       const newButtonVer = document.createElement("a");
       newButtonVer.innerHTML = "Ver";
       newButtonVer.className = "button button-change";
-      newButtonVer.href =
-        "/frontend/Pagina-de-Administrador/k-card-ventas/k-card-venta/index.html?id=" +
-        venta.id;
+      newButtonVer.href = "./k-card-venta/index.html?id=" + venta.id;
       newVer.appendChild(newButtonVer);
       newRow.appendChild(newVer);
 

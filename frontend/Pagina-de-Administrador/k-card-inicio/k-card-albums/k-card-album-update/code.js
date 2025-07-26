@@ -69,9 +69,9 @@ image.addEventListener("input", () => {
   if (image.value.trim() == "") {
     getImageAlbum();
   } else if (image.value == "sin-imagen") {
-    preview.src = "/images/resources/no-img.jpeg";
+    preview.src = "../../images/resources/no-img.jpeg";
   } else {
-    preview.src = "/images/albums/" + image.value;
+    preview.src = "../../images/albums/" + image.value;
   }
 });
 
@@ -95,7 +95,7 @@ function verifyImage(path) {
 
 async function getInfo() {
   const requestJson = {};
-  const imagePath = "/images/albums/" + image.value;
+  const imagePath = "../../images/albums/" + image.value;
 
   if (nameAlbum.value !== 0 && isValidInput(nameAlbum.value)) {
     requestJson.nombre = nameAlbum.value;
@@ -109,7 +109,7 @@ async function getInfo() {
   if (await verifyImage(imagePath)) {
     requestJson.imagen = imagePath;
   } else if (image.value == "sin-imagen") {
-    requestJson.imagen = "/images/resources/no-img.jpeg";
+    requestJson.imagen = "../../images/resources/no-img.jpeg";
   } else if (image.value.trim() !== "") {
     requestJson.imagen = "RME"; //Ruta Mal Escrita
     alert("El nombre del archivo esta mal escrito");
@@ -136,9 +136,7 @@ async function updateAlbum() {
       });
       alert("Se modifico el album");
       setTimeout(() => {
-        window.location.href =
-          "/frontend/Pagina-de-Administrador/k-card-albums/index.html?nocache=" +
-          new Date().getTime();
+        window.location.href = "../index.html?nocache=" + new Date().getTime();
       }, 3000);
     } else {
       alert("El album no fue modificado");

@@ -17,28 +17,12 @@
     >
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a
-            class="navbar-item font"
-            href="/frontend/Pagina-de-Administrador/k-card-inicio/index.html"
-          >
-            Inicio
-          </a>
-          <a
-            class="navbar-item font"
-            href="/frontend/Pagina-de-Administrador/k-card-photocard/index.html"
-          >
-            Photocards
-          </a>
-          <a
-            class="navbar-item font"
-            href="/frontend/Pagina-de-Administrador/k-card-albums/index.html"
-          >
+          <a class="navbar-item font" href="../../index.html"> Inicio </a>
+          <a class="navbar-item font" href="../index.html"> Photocards </a>
+          <a class="navbar-item font" href="../../k-card-albums/index.html">
             Albums
           </a>
-          <a
-            class="navbar-item font"
-            href="/frontend/Pagina-de-Administrador/k-card-ventas/index.html"
-          >
+          <a class="navbar-item font" href="../../k-card-ventas/index.html">
             Ventas
           </a>
         </div>
@@ -49,31 +33,31 @@
         <h2 class="title-form">Agregar Photocard</h2>
         <div>
           <label for="namePhotocard">Nombre del Photocard</label>
-          <input type="text" id="namePhotocard" maxlength="30" />
+          <input type="text" id="namePhotocard" maxlength="30" required />
         </div>
         <div>
           <label for="group">Grupo</label>
-          <input type="text" id="group" maxlength="20" />
+          <input type="text" id="group" maxlength="20" required />
         </div>
         <div>
           <label for="price">Precio</label>
-          <input type="text" id="price" maxlength="30" />
+          <input type="text" id="price" maxlength="30" required />
         </div>
         <div>
           <label for="image"
             >Imagen <br />
             Sino quiere poner una imagen escriba "sin-imagen"</label
           >
-          <input type="text" id="image" />
+          <input type="text" id="image" required />
         </div>
         <div>
           <label for="albumPhotocard">Album de la Photocard</label>
-          <select name="albumPhotocard" id="albumPhotocard">
-            <option selected value="no album">Sin Album</option>
+          <select name="albumPhotocard" id="albumPhotocard" required>
+            <option selected value="">Sin Album</option>
           </select>
         </div>
 
-        <button id="button" type="submit">Guardar Cambios</button>
+        <button id="button" type="submit">Crear Photocard</button>
       </form>
       <div
         id="container-card"
@@ -81,11 +65,11 @@
       >
         <img
           id="cardImage"
-          src="/images/resources/no-img.jpeg"
+          src="../../images/resources/no-img.jpeg"
           alt=""
           class="card-img"
         />
-        <p id="cardName" class="card-text card-name">Nombre del Álbum</p>
+        <p id="cardName" class="card-text card-name">Nombre de la Photocard</p>
         <p id="cardGroup" class="card-text card-group">Grupo</p>
         <p id="cardAlbum" class="card-text card-album">Album de la Photocard</p>
         <p id="cardPrice" class="card-text card-price">Precio</p>

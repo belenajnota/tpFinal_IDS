@@ -13,7 +13,8 @@ async function getPhotocards() {
       // se crean y se appendean los datos en la fila
       const imgPhotocard = document.createElement("img");
       imgPhotocard.className = "card-img";
-      imgPhotocard.src = photocard.imagen;
+      let img = photocard.imagen;
+      imgPhotocard.src = img.replace("../", "");
       newContainer.appendChild(imgPhotocard);
 
       const namePhotocard = document.createElement("p");
@@ -36,9 +37,7 @@ async function getPhotocards() {
       newButtonVer.innerHTML = "Ver";
       newButtonVer.className = "button card-button";
       newButtonVer.id = "button-card";
-      newButtonVer.href =
-        "/frontend/Pagina-de-Administrador/k-card-photocard/k-card-photocard/index.html?id=" +
-        photocard.id;
+      newButtonVer.href = "./k-card-photocard/index.html?id=" + photocard.id;
       newContainer.appendChild(newButtonVer);
 
       const newButtonBorrar = document.createElement("a");
@@ -79,8 +78,7 @@ async function getPhotocards() {
       newButtonModificar.className = "button card-button";
       newButtonModificar.id = "button-card";
       newButtonModificar.href =
-        "/frontend/Pagina-de-Administrador/k-card-photocard/k-card-photocard-update/index.html?id=" +
-        photocard.id;
+        "./k-card-photocard-update/index.html?id=" + photocard.id;
 
       newContainer.appendChild(newButtonModificar);
 

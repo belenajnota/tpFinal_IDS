@@ -13,7 +13,8 @@ async function getAlbums() {
       // se crean y se appendean los datos en la fila
       const imgAlbum = document.createElement("img");
       imgAlbum.className = "card-img";
-      imgAlbum.src = album.imagen;
+      let img = album.imagen;
+      imgAlbum.src = img.replace("../", "");
       newContainer.appendChild(imgAlbum);
 
       const nameAlbum = document.createElement("p");
@@ -47,9 +48,7 @@ async function getAlbums() {
       newButtonVer.innerHTML = "Ver";
       newButtonVer.className = "card-button";
       newButtonVer.id = "button-card";
-      newButtonVer.href =
-        "/frontend/Pagina-de-Administrador/k-card-albums/k-card-album/index.html?id=" +
-        album.id;
+      newButtonVer.href = "./k-card-album/index.html?id=" + album.id;
       newContainer.appendChild(newButtonVer);
 
       const newButtonBorrar = document.createElement("a");
@@ -89,8 +88,7 @@ async function getAlbums() {
       newButtonModificar.className = "card-button";
       newButtonModificar.id = "button-card";
       newButtonModificar.href =
-        "/frontend/Pagina-de-Administrador/k-card-albums/k-card-album-update/index.html?id=" +
-        album.id;
+        "./k-card-album-update/index.html?id=" + album.id;
 
       newContainer.appendChild(newButtonModificar);
 

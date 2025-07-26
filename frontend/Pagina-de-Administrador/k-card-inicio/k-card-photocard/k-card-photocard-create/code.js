@@ -25,11 +25,11 @@ albumPhotocard.addEventListener("change", () => {
 image.addEventListener("input", () => {
   const preview = document.getElementById("cardImage");
   if (image.value.trim() == "") {
-    preview.src = "/images/resources/no-img.jpeg";
+    preview.src = "../../images/resources/no-img.jpeg";
   } else if (image.value == "sin-imagen") {
-    preview.src = "/images/resources/no-img.jpeg";
+    preview.src = "../../images/resources/no-img.jpeg";
   } else {
-    preview.src = "/images/photocards/" + image.value;
+    preview.src = "../../images/photocards/" + image.value;
   }
 });
 
@@ -77,7 +77,7 @@ function verifyImage(path) {
 
 async function getInfo() {
   const requestJson = {};
-  const imagePath = "/images/photocards/" + image.value;
+  const imagePath = "../../images/photocards/" + image.value;
   const regexNumber = /^[0-9]+$/;
 
   if (namePhotocard.value !== 0 && isValidInput(namePhotocard.value)) {
@@ -93,7 +93,7 @@ async function getInfo() {
   if (await verifyImage(imagePath)) {
     requestJson.imagen = imagePath;
   } else if (image.value == "sin-imagen") {
-    requestJson.imagen = "/images/resources/no-img.jpeg";
+    requestJson.imagen = "../../images/resources/no-img.jpeg";
   } else {
     alert("El nombre del archivo esta mal escrito");
   }

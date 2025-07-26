@@ -94,9 +94,9 @@ image.addEventListener("input", () => {
   if (image.value.trim() == "") {
     getImagePhotocard();
   } else if (image.value == "sin-imagen") {
-    preview.src = "/images/resources/no-img.jpeg";
+    preview.src = "../../images/resources/no-img.jpeg";
   } else {
-    preview.src = "/images/photocards/" + image.value;
+    preview.src = "../../images/photocards/" + image.value;
   }
 });
 
@@ -153,7 +153,7 @@ function verifyImage(path) {
 
 async function getInfo() {
   const requestJson = {};
-  const imagePath = "/images/photocards/" + image.value;
+  const imagePath = "../../images/photocards/" + image.value;
   const regexNumber = /^[0-9]+$/;
 
   if (namePhotocard.value !== 0 && isValidInput(namePhotocard.value)) {
@@ -169,7 +169,7 @@ async function getInfo() {
   if (await verifyImage(imagePath)) {
     requestJson.imagen = imagePath;
   } else if (image.value == "sin-imagen") {
-    requestJson.imagen = "/images/resources/no-img.jpeg";
+    requestJson.imagen = "../../images/resources/no-img.jpeg";
   }
 
   if (albumPhotocard.value !== "" && accChangeAlbum > 0) {
@@ -194,9 +194,7 @@ async function updatePhotocard() {
       });
       alert("se modifico la photocard");
       setTimeout(() => {
-        window.location.href =
-          "/frontend/Pagina-de-Administrador/k-card-photocard/index.html?nocache=" +
-          new Date().getTime();
+        window.location.href = "../index.html?nocache=" + new Date().getTime();
       }, 3000);
     }
   } catch (e) {
