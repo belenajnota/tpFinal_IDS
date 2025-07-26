@@ -48,9 +48,7 @@ async function getInfo() {
     localStorage.setItem("cart", JSON.stringify(cart));
 
     setTimeout(() => {
-      window.location.href =
-        "/frontend/Pagina-de-usuario/k-card-inicio/index.html?nocache=" +
-        new Date().getTime();
+      window.location.href = "../index.html?nocache=" + new Date().getTime();
     }, 3000);
   }
 }

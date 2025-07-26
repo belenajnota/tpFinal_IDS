@@ -8,7 +8,7 @@
       href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
     />
     <link rel="stylesheet" href="./style.css" />
-    <title>Inicio de Sesion</title>
+    <title>Registro</title>
   </head>
   <body>
     <nav
@@ -42,11 +42,17 @@
             required
           />
         </div>
+        <div>
+          <label for="phoneNumber"
+            >Numero de Telefono <br />Formato (11 o 15 XXXX-XXXX)</label
+          >
+          <input type="text" id="phoneNumber" maxlength="30" required />
+        </div>
 
-        <button id="button" type="submit">Iniciar Sesion</button>
+        <button id="button" type="submit">Crear Usuario</button>
         <h2 class="title-form">
-          Si no tiene una cuenta
-          <a href="../sign-up-page/index.html">resgistrese</a>
+          Si ya tiene una cuenta
+          <a href="../login-page/index.html">Inicie Sesion</a>
         </h2>
       </form>
     </div>
