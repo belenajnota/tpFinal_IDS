@@ -66,29 +66,26 @@ INSERT INTO albums (nombre, grupo, version_album, imagen, pais, empresa) VALUES
 
 
 INSERT INTO photocards (nombre, grupo, imagen, precio_comprada, album_id) VALUES
-
 	 ('Nayeon Formula A','TWICE','../../images/photocards/NayeonFormulaA.webp',1200,11),
 	 ('Dahyun Formula A','TWICE','../../images/photocards/DahyunFormulaA.webp',1000,11),
 	 ('Jeongyeon Formula A','TWICE','../../images/photocards/JeongyeonFormulaA.webp',900,11),
-	 ('Mark Lee Sticker','NCT','../../images/photocards/markleeSticker.webp',1600,14),
-	 ('Jisoo The Album','BLACKPINK','../../images/photocards/JisooTheAlbumPink.webp',1500,13),
-	 ('Taeyong Sticker','NCT 127','../../images/photocards/TaeyongStickerSeoulCity.webp',1100,14),
-	 ('Hyunjin Maxident','Stray Kids','../../images/photocards/HyunjinMaxidentHeart.webp',1400,15),
-	 ('Mingyu Face Compact','SEVENTEEN','../../images/photocards/MingyuFaceCompact.webp',1300,16),
-	 ('Scoups Face Compact','SEVENTEEN','../../images/photocards/ScoupsFaceCompact.webp',1350,16),
-	 ('Sana Eyes B','TWICE','../../images/photocards/SanaEyesB.webp',1100,17);
-
-	 ('Tzuyu Eyes B','TWICE','../../images/photocards/TzuyuEyesB.webp',1050,17),
-	 ('Danielle Get Up','NewJeans','../../images/photocards/DanielleGetUpBunny.webp',2000,18),
-	 ('Hanni Get Up','NewJeans','../../images/photocards/HanniGetUpBunny.webp',1900,18),
+	 ('Mark Lee Sticker','NCT','../../images/photocards/markleeSticker.webp',1600,13),
+	 ('Jisoo The Album','BLACKPINK','../../images/photocards/JisooTheAlbumPink.webp',1500,12),
+	 ('Taeyong Sticker','NCT 127','../../images/photocards/TaeyongStickerSeoulCity.webp',1100,13),
+	 ('Hyunjin Maxident','Stray Kids','../../images/photocards/HyunjinMaxidentHeart.webp',1400,9),
+	 ('Mingyu Face Compact','SEVENTEEN','../../images/photocards/MingyuFaceCompact.webp',1300,14),
+	 ('Scoups Face Compact','SEVENTEEN','../../images/photocards/ScoupsFaceCompact.webp',1350,14),
+	 ('Sana Eyes B','TWICE','../../images/photocards/SanaEyesB.webp',1100,15),
+	 ('Tzuyu Eyes B','TWICE','../../images/photocards/TzuyuEyesB.webp',1050,15),
+	 ('Danielle Get Up','NewJeans','../../images/photocards/DanielleGetUpBunny.webp',2000,16),
+	 ('Hanni Get Up','NewJeans','../../images/photocards/HanniGetUpBunny.webp',1900,16),
 	 ('Jungkook Butter','BTS','../../images/photocards/JungkookButter.webp',1550,1),
 	 ('Jimin Butter','BTS','../../images/photocards/jiminButter.webp',1000,1),
 	 ('Suga Butter','BTS','../../images/photocards/SugaButter.webp',1700,1),
 	 ('Lisa Lalisa','Blackpink','../../images/photocards/LisaLalisa.webp',1800,2),
 	 ('Jisoo Lalisa','Blackpink','../../images/photocards/Jisoolalisa.webp',1450,2),
 	 ('Jennie Lalisa','Blackpink','../../images/photocards/jennieLalisa.webp',1150,2),
-	 ('Felix Ate','Stray Kids','../../images/photocards/felixAte.webp',1300,3);
-
+	 ('Felix Ate','Stray Kids','../../images/photocards/felixAte.webp',1300,3),
 	 ('Bang Chan ATE','Stray Kids','../../images/photocards/bangchanAte.webp',1200,3),
 	 ('Lee Know ATE','Stray Kids','../../images/photocards/leeKnowAte.webp',1800,3),
 	 ('Natty Lose Yourself','Kiss of Life','../../images/photocards/nattyLoseYourself.webp',1800,4),
@@ -98,8 +95,7 @@ INSERT INTO photocards (nombre, grupo, imagen, precio_comprada, album_id) VALUES
 	 ('Winter Wiplash','Aespa','../../images/photocards/winterWiplash.webp',1600,5),
 	 ('Giselle Wiplash','Aespa','../../images/photocards/giselleWiplash.webp',1700,5),
 	 ('Lisa Born Pink','Blackpink','../../images/photocards/lisaBornPink.webp',1350,6),
-	 ('Jennie Born Pink','Blackpink','../../images/photocards/jennieBornPink.webp',1150,6);
-
+	 ('Jennie Born Pink','Blackpink','../../images/photocards/jennieBornPink.webp',1150,6),
 	 ('Jisoo Born Pink','Blackpink','../../images/photocards/jisooBornPink.webp',1600,6),
 	 ('Natty Sticky','Kiss of Life','../../images/photocards/nattySticky.webp',1750,7),
 	 ('Julie Han Sticky','Kiss of Life','../../images/photocards/julieSticky.webp',1000,7),
@@ -109,17 +105,16 @@ INSERT INTO photocards (nombre, grupo, imagen, precio_comprada, album_id) VALUES
 	 ('Minji OMG','NewJeans','../../images/photocards/minjiOMG.webp',1550,8),
 	 ('Felix Maxident','Stray Kids','../../images/photocards/felixMaxident.webp',1450,9),
 	 ('Bang Chan Maxident','Stray Kids','../../images/photocards/bangchanMaxident.webp',1900,9),
-	 ('Lee Know Maxident','Stray Kids','../../images/photocards/leeknowMaxident.webp',1250,9);
-
+	 ('Lee Know Maxident','Stray Kids','../../images/photocards/leeknowMaxident.webp',1250,9),
 	 ('Sana With YOU-th','Twice','../../images/photocards/sanaWithYou-th.webp',1800,10),
 	 ('Momo With YOU-th','Twice','../../images/photocards/momoWithYou-th.webp',1950,10),
 	 ('Nayeon With YOU-th','Twice','../../images/photocards/nayeonWithYou-th.webp',1650,10),
-	 ('Lisa The Album','Blackpink','../../images/photocards/lisaTheAlbum.webp',1850,13),
-	 ('Jennie The Album','Blackpink','../../images/photocards/jennieTheAlbum.webp',1300,13),
-	 ('Doyoung Sticker','NCT','../../images/photocards/doyoungSticker.webp',1400,14),
-	 ('Wonwoo Face The Sun','SEVENTEEN','../../images/photocards/wonwooFaceTehSun.webp',1950,16),
-	 ('Momo Eyes Wide Open','Twice','../../images/photocards/momoEyesWideOpen.webp',1750,17),
-	 ('Minji Get Up','NewJeans','../../images/photocards/minjiGetUp.webp',1200,18);
+	 ('Lisa The Album','Blackpink','../../images/photocards/lisaTheAlbum.webp',1850,12),
+	 ('Jennie The Album','Blackpink','../../images/photocards/jennieTheAlbum.webp',1300,12),
+	 ('Doyoung Sticker','NCT','../../images/photocards/doyoungSticker.webp',1400,13),
+	 ('Wonwoo Face The Sun','SEVENTEEN','../../images/photocards/wonwooFaceTehSun.webp',1950,14),
+	 ('Momo Eyes Wide Open','Twice','../../images/photocards/momoEyesWideOpen.webp',1750,15),
+	 ('Minji Get Up','NewJeans','../../images/photocards/minjiGetUp.webp',1200,16);
 
 
 
