@@ -59,7 +59,7 @@ completeSelects();
 
 function isValidInput(input) {
   // No permite repeticiones como "aaa"
-  const regexVariety = /^(?!.*(.)\1+).+$/;
+  const regexVariety = /^(?!.*(.)\1{2,}).+$/;
   // Solo letras, espacios, guiones, tildes, etc.
   const regexLetters = /^[A-Za-zÁÉÍÓÚáéíóúÑñüÜ' -]+$/;
 
@@ -117,11 +117,12 @@ async function createPhotocard() {
         },
         body: JSON.stringify(requestJson),
       });
-      alert("se creo una photocard");
+      alert("se creo la photocard");
       setTimeout(() => {
         window.location.href = "../index.html?nocache=" + new Date().getTime();
       }, 3000);
     } else {
+      console.log(requestJson);
       alert("Complete correctamente los campos");
     }
   } catch (e) {

@@ -135,7 +135,7 @@ completeSelects();
 
 function isValidInput(input) {
   // No permite repeticiones como "aaa"
-  const regexVariety = /^(?!.*(.)\1+).+$/;
+  const regexVariety = /^(?!.*(.)\1{2,}).+$/;
   // Solo letras, espacios, guiones, tildes, etc.
   const regexLetters = /^[A-Za-zÁÉÍÓÚáéíóúÑñüÜ' -]+$/;
 
