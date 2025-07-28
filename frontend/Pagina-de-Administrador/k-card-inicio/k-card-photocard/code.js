@@ -60,7 +60,7 @@ async function getPhotocards() {
                 "Content-Type": "application/json",
               },
             });
-            console.log("Se elimino correctamente");
+            alert("Se elimino correctamente");
           } catch (e) {
             alert("Ocurrio un error al intentar eliminar la photocard");
           }

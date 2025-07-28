@@ -74,9 +74,9 @@ getalbum();
 
 function isValidInput(input) {
   // No permite repeticiones como "aaa"
-  const regexVariety = /^(?!.*(.)\1+).+$/;
+  const regexVariety = /^(?!.*(.)\1{3,}).+$/;
   // Solo letras, espacios, guiones, tildes, etc.
-  const regexLetters = /^[A-Za-zÁÉÍÓÚáéíóúÑñüÜ' -]+$/;
+  const regexLetters = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü0-9' -]+$/;
 
   return regexVariety.test(input) && regexLetters.test(input);
 }
@@ -164,7 +164,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const inputImage = document.getElementById("Image");
         const imagePath = "../../images/albums/" + inputImage.value;
-        if (await verifyImage(imagePath)) {
+        if (
+          (await verifyImage(imagePath)) &&
+          imagePath.toLowerCase().endsWith(".webp")
+        ) {
           requestJson.imagen = imagePath;
         } else if (inputImage.value == "sin-imagen") {
           requestJson.imagen = "../../images/resources/no-img.jpeg";

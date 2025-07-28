@@ -2,9 +2,9 @@ const form = document.getElementById("formulario");
 
 function isValidInput(input) {
   // No permite repeticiones como "aaa"
-  const regexVariety = /^(?!.*(.)\1+).+$/;
+  const regexVariety = /^(?!.*(.)\1{3,}).+$/;
   // Solo letras, espacios, guiones, tildes, etc.
-  const regexLetters = /^[A-Za-zÁÉÍÓÚáéíóúÑñüÜ' -]+$/;
+  const regexLetters = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü0-9' -]+$/;
 
   return regexVariety.test(input) && regexLetters.test(input);
 }
@@ -21,9 +21,6 @@ async function getInfo() {
   const users = await response.json();
   const userExists = Object.values(users).some(
     (User) => User.usuario === user.value
-  );
-  const phoneNumberExists = Object.values(users).some(
-    (User) => User.telefono === user.phoneNumber
   );
 
   if (isValidInput(user.value) && !userExists) {

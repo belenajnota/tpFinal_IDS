@@ -95,7 +95,7 @@ image.addEventListener("input", () => {
     getImagePhotocard();
   } else if (image.value == "sin-imagen") {
     preview.src = "../../images/resources/no-img.jpeg";
-  } else {
+  } else if (image.value.toLowerCase().endsWith(".webp")) {
     preview.src = "../../images/photocards/" + image.value;
   }
 });
@@ -135,9 +135,9 @@ completeSelects();
 
 function isValidInput(input) {
   // No permite repeticiones como "aaa"
-  const regexVariety = /^(?!.*(.)\1{2,}).+$/;
+  const regexVariety = /^(?!.*(.)\1{3,}).+$/;
   // Solo letras, espacios, guiones, tildes, etc.
-  const regexLetters = /^[A-Za-zÁÉÍÓÚáéíóúÑñüÜ' -]+$/;
+  const regexLetters = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü0-9' -]+$/;
 
   return regexVariety.test(input) && regexLetters.test(input);
 }
@@ -166,7 +166,10 @@ async function getInfo() {
   if (regexNumber.test(price.value)) {
     requestJson.precio_comprada = parseInt(price.value);
   }
-  if (await verifyImage(imagePath)) {
+  if (
+    (await verifyImage(imagePath)) &&
+    imagePath.toLowerCase().endsWith(".webp")
+  ) {
     requestJson.imagen = imagePath;
   } else if (image.value == "sin-imagen") {
     requestJson.imagen = "../../images/resources/no-img.jpeg";
@@ -196,6 +199,8 @@ async function updatePhotocard() {
       setTimeout(() => {
         window.location.href = "../index.html?nocache=" + new Date().getTime();
       }, 3000);
+    } else {
+      alert("No se modifico la Photocard");
     }
   } catch (e) {
     console.log(e);
