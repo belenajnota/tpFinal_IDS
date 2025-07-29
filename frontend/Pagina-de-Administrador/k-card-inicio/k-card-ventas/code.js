@@ -8,6 +8,8 @@ async function getVentas() {
       // se crea la fila para toda la informacion
       const newRow = document.createElement("tr");
       // se crean y se appendean los datos en la fila
+      newRow.dataset.id = venta.id;
+
       const nombre_cliente = document.createElement("td");
       nombre_cliente.innerHTML = venta.nombre_cliente;
       newRow.appendChild(nombre_cliente);
@@ -84,25 +86,29 @@ async function getVentas() {
           }, 3000);
         }
       });
-
       const trBody = document.getElementById("tbody");
       trBody.appendChild(newRow);
-      const rows = Array.from(trBody.querySelectorAll("tr"));
-      const sortedRows = rows.sort((a, b) => {
-        return b.children[4].textContent.localeCompare(
-          a.children[4].textContent
-        );
-      });
-
-      trBody.innerHTML = "";
-
-      sortedRows.forEach((row) => {
-        trBody.appendChild(row);
-      });
     });
   } catch (e) {
     console.log(e);
   }
+  const tbody = document.querySelector("tbody");
+  const rows = Array.from(tbody.querySelectorAll("tr"));
+  const sortedRows = rows.sort((a, b) => {
+    let dataCompare = b.children[4].textContent.localeCompare(
+      a.children[4].textContent
+    );
+    if (dataCompare !== 0) {
+      return dataCompare;
+    }
+    return Number(b.dataset.id) - Number(a.dataset.id);
+  });
+
+  tbody.innerHTML = "";
+
+  sortedRows.forEach((row) => {
+    tbody.appendChild(row);
+  });
 }
 
 getVentas();
@@ -188,7 +194,13 @@ selectFilter.addEventListener("change", () => {
     });
   } else if (selectFilter.value == "oldestSale") {
     const sortedRows = rows.sort((a, b) => {
-      return a.children[4].textContent.localeCompare(b.children[4].textContent);
+      let dataCompare = a.children[4].textContent.localeCompare(
+        b.children[4].textContent
+      );
+      if (dataCompare !== 0) {
+        return dataCompare;
+      }
+      return Number(a.dataset.id) - Number(b.dataset.id);
     });
 
     tbody.innerHTML = "";
@@ -198,7 +210,13 @@ selectFilter.addEventListener("change", () => {
     });
   } else if (selectFilter.value == "newestSale") {
     const sortedRows = rows.sort((a, b) => {
-      return b.children[4].textContent.localeCompare(a.children[4].textContent);
+      let dataCompare = b.children[4].textContent.localeCompare(
+        a.children[4].textContent
+      );
+      if (dataCompare !== 0) {
+        return dataCompare;
+      }
+      return Number(b.dataset.id) - Number(a.dataset.id);
     });
 
     tbody.innerHTML = "";

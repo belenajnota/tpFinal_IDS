@@ -65,8 +65,14 @@ const saleDay = String(date.getDate()).padStart(2, "0");
 const saleMonth = String(date.getMonth() + 1).padStart(2, "0"); // Los meses van de 0 a 11
 const saleYear = date.getFullYear();
 const saleDate = `${saleYear}-${saleMonth}-${saleDay}`;
-const deliveryDay = String(date.getDate() + 4).padStart(2, "0");
-const deliveryDate = `${saleYear}-${saleMonth}-${deliveryDay}`; //Le suma cuatro dias a la fecha actual
+
+const delivery = new Date(date); // Crear una copia para no modificar el original
+delivery.setDate(delivery.getDate() + 4); // Maneja automáticamente meses/años
+
+const deliveryDay = String(delivery.getDate()).padStart(2, "0");
+const deliveryMonth = String(delivery.getMonth() + 1).padStart(2, "0");
+const deliveryYear = delivery.getFullYear();
+const deliveryDate = `${deliveryYear}-${deliveryMonth}-${deliveryDay}`;
 
 async function createVenta(json) {
   try {

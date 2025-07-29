@@ -1,11 +1,16 @@
 const photocardsBackendUrl = "http://localhost:3000/api/photocards/";
 
 async function getPhotocards() {
-  try {
-    const session = JSON.parse(localStorage.getItem("session"));
-    const idPhotocards = session.id_photocards;
-    for (const idPhotocard of idPhotocards) {
+  const session = JSON.parse(localStorage.getItem("session"));
+  const idPhotocards = session.id_photocards;
+  let notFoundIds = [];
+  for (const idPhotocard of idPhotocards) {
+    try {
       const response = await fetch(photocardsBackendUrl + idPhotocard);
+      if (!response.ok) {
+        notFoundIds.push(idPhotocard);
+        continue;
+      }
       const photocard = await response.json();
       // se crea la fila para toda la informacion
       const newContainer = document.createElement("div");
@@ -53,9 +58,29 @@ async function getPhotocards() {
 
       const containerCard = document.getElementById("containerCard");
       containerCard.appendChild(newContainer);
+    } catch (e) {
+      console.log(e);
     }
-  } catch (e) {
-    console.log(e);
+  }
+  const newIdsPhotocards = idPhotocards.filter(
+    (item) => !notFoundIds.includes(item)
+  );
+  session.id_photocards = newIdsPhotocards;
+
+  if (newIdsPhotocards !== idPhotocards) {
+    localStorage.setItem("session", JSON.stringify(session));
+    try {
+      const userBackendUrl = "http://localhost:3000/api/usuarios/" + session.id;
+      await fetch(userBackendUrl, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(session),
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
 
