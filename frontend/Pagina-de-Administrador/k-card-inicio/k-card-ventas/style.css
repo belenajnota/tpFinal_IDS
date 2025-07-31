@@ -187,3 +187,6 @@ a:hover {
   border-color: #ff99aa;
   box-shadow: 0 0 0 2px #ffc0cb55;
 }
+.button-modify {
+  margin-top: 10px;
+}

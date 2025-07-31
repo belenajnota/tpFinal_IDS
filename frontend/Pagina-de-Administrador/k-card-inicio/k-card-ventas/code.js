@@ -86,6 +86,14 @@ async function getVentas() {
           }, 3000);
         }
       });
+
+      const newButtonModificar = document.createElement("a");
+      newButtonModificar.innerHTML = "Modificar";
+      newButtonModificar.className = "button button-change button-modify";
+      newButtonModificar.id = "button-card";
+      newButtonModificar.href =
+        "./k-card-venta-update/index.html?id=" + venta.id;
+      newRow.appendChild(newButtonModificar);
       const trBody = document.getElementById("tbody");
       trBody.appendChild(newRow);
     });

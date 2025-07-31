@@ -1,0 +1,179 @@
+html,
+body {
+  background-color: #fff0f5;
+  padding: 10px;
+  height: 100%;
+  min-height: 120vh;
+  background-color: #fff8e4; /* tu color pastel */
+}
+
+.container {
+  max-width: 800px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 16px;
+  justify-content: space-around;
+  position: relative;
+  top: 120px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+}
+
+/* estilo del forms*/
+.container-form {
+  max-width: 800px;
+
+  background-color: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.title-form {
+  color: #d9488e;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #555;
+}
+
+input {
+  width: 500px;
+  padding: 10px;
+  border: 1px solid #ffc0cb;
+  border-radius: 8px;
+  background-color: #fff8e4;
+  color: #b4005a;
+}
+
+/* Select personalizado */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 500px;
+  padding: 10px 14px;
+  border: 1px solid #ffc0cb;
+  border-radius: 8px;
+  background-color: #fff8e4;
+  color: #b4005a;
+  font-size: 14px;
+  font-weight: bold;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23b4005a" height="16" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg"><polygon points="0,0 20,0 10,10"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+
+  white-space: normal; /* 🔧 permite que se vean varias líneas */
+  text-overflow: ellipsis; /* opcional si querés cortar con "..." */
+  overflow: hidden; /* evita que el texto desborde */
+}
+
+select option {
+  white-space: normal; /* permite saltos de línea si son necesarios */
+}
+
+select:hover {
+  border-color: #ff99aa;
+}
+
+select:focus {
+  border-color: #ff99aa;
+  box-shadow: 0 0 0 2px #ffc0cb55;
+}
+
+#button {
+  padding: 12px;
+  background-color: #ffc0cb;
+  color: white;
+  border: none;
+  width: 500px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#button:hover {
+  background-color: #ff99aa;
+}
+
+.color {
+  background-color: #ffc0cb !important;
+}
+
+.font {
+  color: #f8f8ff !important;
+}
+a:hover {
+  background-color: #ff99aa !important;
+}
+/* estilo de la card*/
+.container-button {
+  margin-top: 60px;
+  display: flex;
+  width: 80%;
+  margin-right: 10%;
+  margin-left: 10%;
+  justify-content: space-between;
+}
+
+.card-photocard {
+  background-color: #ffc0cb;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  color: #ffc0cb;
+  font-family: Arial, sans-serif;
+  width: 300px;
+  max-height: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.card-photocard:hover {
+  transform: scale(1.02);
+}
+
+.card-img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: fill;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.card-text {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.4;
+  color: white;
+  margin-bottom: 14px;
+}
+
+.card-button {
+  background-color: #ffe1ea;
+  border: none;
+  color: #b4005a;
+  padding: 8px 16px;
+  border-radius: 10px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s;
+}
+
+.card-button:hover {
+  background-color: #ffb6c1;
+}
