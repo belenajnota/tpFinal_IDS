@@ -17,7 +17,6 @@ async function getAlbums() {
             a.grupo AS album_grupo,
             a.version_album,
             a.imagen AS album_imagen,
-            a.pais,
             a.empresa,
 
             p.id AS photocard_id,
@@ -45,7 +44,6 @@ async function getAlbums() {
         grupo: row.album_grupo,
         version_album: row.version_album,
         imagen: row.album_imagen,
-        pais: row.pais,
         empresa: row.empresa,
         photocards: [],
       };
@@ -75,7 +73,6 @@ async function getAlbum(id) {
             a.grupo AS album_grupo,
             a.version_album,
             a.imagen AS album_imagen,
-            a.pais,
             a.empresa,
 
             p.id AS photocard_id,
@@ -104,7 +101,6 @@ async function getAlbum(id) {
     grupo: rows[0].album_grupo,
     version_album: rows[0].version_album,
     imagen: rows[0].album_imagen,
-    pais: rows[0].pais,
     empresa: rows[0].empresa,
     photocards: [],
   };
@@ -130,12 +126,11 @@ async function createAlbum(
   grupo,
   version_album,
   imagen,
-  pais,
   empresa
 ) {
   const response = await dbClient.query(
-    "INSERT INTO albums (nombre, grupo, version_album, imagen, pais, empresa) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
-    [nombre, grupo, version_album, imagen, pais, empresa]
+    "INSERT INTO albums (nombre, grupo, version_album, imagen, empresa) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+    [nombre, grupo, version_album, imagen, empresa]
   );
 
   if (response.rowCount === 0) {
