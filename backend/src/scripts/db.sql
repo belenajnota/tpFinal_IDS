@@ -41,7 +41,7 @@ CREATE TABLE usuarios(
     contrasena VARCHAR(40) NOT NULL,
     telefono VARCHAR(15) NOT NULL,
     id_photocards INTEGER[] 
-)
+);
 
 
 

@@ -51,7 +51,7 @@ Usuarios
 Se puede encontrar la estructura de la base de datos en el archivo
 
 ```
-./backend/scripts/db.sql
+./backend/src/scripts/db.sql
 ```
 
 Para levantar la base de datos y ver la Página correr:
@@ -92,6 +92,10 @@ make stop-db
 - Un carácter no puede aparecer más de dos veces consecutivas.
 - Para cargar las imagenes, se deben colocar en /frontend/Pagina-de-Administrador/k-card-inicio/images , en la carpeta que corresponda
 - En el campo de la imagen se debe poner el nombre del archivo junto al formato . webp, si es correcto el nombre en la card se verá la imagen.
+
+## Advertencia
+
+Los contenedores de docker se ejecutan en los puertos : 3000, 5432 y 8080.
 
 # Grupo
 
