@@ -2,9 +2,18 @@
 
 start-db:
 	docker compose up -d
+	@echo "Esperando que PostgreSQL acepte conexiones..."
+	@until docker exec tpfinal_ids-postgres-1 psql -U postgres -c '\q' > /dev/null 2>&1; do \
+		sleep 1; \
+	done
+	@echo "Base de datos conectada. Insertando datos..."
+	docker exec -i tpfinal_ids-postgres-1 psql -U postgres -d k-cards < ./backend/src/scripts/db.sql
+
+
 
 stop-db:
-	 docker compose down
+	 docker compose down -v
+
 
 run-frontend:
 	xdg-open "http://localhost:8080/"
