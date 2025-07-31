@@ -2,10 +2,12 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 app.use(express.json());
+app.use(cors());
+
 
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+
 
 const {
   getPhotocards,
@@ -66,7 +68,6 @@ const camposAlbums = [
   "grupo",
   "version_album",
   "imagen",
-  "pais",
   "empresa",
 ];
 
@@ -88,7 +89,6 @@ const camposUsuarios = ["usuario", "contrasena", "telefono", "id_photocards"];
 
 const longitud_valores_photocards = {
   nombre: 40,
-
   grupo: 30,
   imagen: 200,
 };
@@ -98,14 +98,12 @@ const longitud_valores_albums = {
   grupo: 30,
   version_album: 30,
   imagen: 200,
-  pais: 15,
   empresa: 15,
 };
 
 const longitud_valores_ventas = {
   nombre_cliente: 40,
   telefono_cliente: 15,
-
   medio_de_pago: 20,
   lugar_entrega: 30,
 };
@@ -362,7 +360,7 @@ app.post("/api/albums", async (req, res) => {
       });
     }
   }
-  const { nombre, grupo, version_album, imagen, pais, empresa } = req.body;
+  const { nombre, grupo, version_album, imagen, empresa } = req.body;
 
   try {
     const album = await createAlbum(
@@ -370,7 +368,6 @@ app.post("/api/albums", async (req, res) => {
       grupo,
       version_album,
       imagen,
-      pais,
       empresa
     );
 

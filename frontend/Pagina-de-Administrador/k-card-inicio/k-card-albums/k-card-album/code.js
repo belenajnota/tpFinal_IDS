@@ -7,7 +7,7 @@ async function getalbum() {
   try {
     const responseAlbum = await fetch(albumBackendUrl);
     const album = await responseAlbum.json();
-    //Llamo a todas la filas de la columna
+
     const imgAlbum = document.getElementById("imgAlbum");
     imgAlbum.src = album.imagen;
 
@@ -15,14 +15,13 @@ async function getalbum() {
     const versionAlbum = document.getElementById("version-album");
     const group = document.getElementById("group");
     const company = document.getElementById("company");
-    const country = document.getElementById("country");
     const price = document.getElementById("price");
-    //Appendeo la informacion a la tabla
+
     nameAlbum.innerHTML = album.nombre;
     versionAlbum.innerHTML = album.version_album;
     group.innerHTML = album.grupo;
     company.innerHTML = album.empresa;
-    country.innerHTML = album.pais;
+
     if (album.photocards.length > 0) {
       let totalPrice = 0;
       for (const photocard of album.photocards) {
@@ -30,6 +29,7 @@ async function getalbum() {
       }
       price.innerHTML = totalPrice;
     }
+
     const associatedPhotocards = album.photocards;
     associatedPhotocards.forEach((photocard) => {
       const containerCard = document.getElementById("containerCard");
@@ -92,7 +92,6 @@ function verifyImage(path) {
 
 //codigo para que funcione el modal
 document.addEventListener("DOMContentLoaded", () => {
-  // ... (Tus funciones de modal existentes) ...
   function openModal($el) {
     $el.classList.add("is-active");
   }
@@ -107,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Add a click event on buttons to open a specific modal
   (document.querySelectorAll(".js-modal-trigger") || []).forEach(($trigger) => {
     const modal = $trigger.dataset.target;
     const $target = document.getElementById(modal);
@@ -117,7 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Add a click event on various child elements to close the parent modal
   (
     document.querySelectorAll(
       ".modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button"
@@ -130,17 +127,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Add a keyboard event to close all modals
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeAllModals();
     }
   });
-  //aca se procesa la informacion del formulario
+
   const formDentroModal = document.querySelector("#formulario");
   if (formDentroModal) {
     formDentroModal.addEventListener("submit", (event) => {
-      event.preventDefault(); // Esto detiene el envío del formulario y la recarga de la página.
+      event.preventDefault();
+
       async function getInfoForm() {
         const requestJson = {};
 

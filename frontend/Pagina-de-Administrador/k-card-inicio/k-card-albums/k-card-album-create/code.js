@@ -5,6 +5,8 @@ const versionAlbum = document.getElementById("versionAlbum");
 const group = document.getElementById("group");
 const image = document.getElementById("image");
 const company = document.getElementById("company");
+const price = document.getElementById("price");
+
 
 nameAlbum.addEventListener("input", () => {
   const preview = document.getElementById("cardName");
@@ -52,32 +54,52 @@ function verifyImage(path) {
 
 async function getInfo() {
   const requestJson = {};
-  const imagePath = "../../images/albums/" + image.value;
 
-  if (nameAlbum.value !== 0 && isValidInput(nameAlbum.value)) {
-    requestJson.nombre = nameAlbum.value;
+  if (nameAlbum.value.trim() === "" || !isValidInput(nameAlbum.value)) {
+     return null;
   }
-  if (versionAlbum.value !== 0 && isValidInput(versionAlbum.value)) {
-    requestJson.version_album = versionAlbum.value;
+  if (versionAlbum.value.trim() === "" || !isValidInput(versionAlbum.value)) {
+    return null;
   }
-  if (group.value !== 0 && isValidInput(group.value)) {
-    requestJson.grupo = group.value;
+  if (group.value.trim() === "" || !isValidInput(group.value)) {
+    return null;
   }
-  if (
-    (await verifyImage(imagePath)) &&
-    imagePath.toLowerCase().endsWith(".webp")
-  ) {
-    requestJson.imagen = imagePath;
-  } else if (image.value == "sin-imagen") {
+  requestJson.nombre = nameAlbum.value;
+  requestJson.grupo = group.value; 
+  requestJson.version_album = versionAlbum.value;
+
+  if (image.value == "sin-imagen") {
     requestJson.imagen = "../../images/resources/no-img.jpeg";
+  } else if (!image.value.toLowerCase().endsWith(".webp")) {
+    alert("Solo se permiten imágenes con extensión .webp");
+    return null;
   } else {
-    alert("El nombre del archivo esta mal escrito");
+    const imagePath = "../../images/albums/" + image.value;
+    const exists = await verifyImage(imagePath);
+
+    if (!exists) {
+      alert("La imagen no existe en la carpeta correspondiente.");
+      return null;
+    }
+
+    requestJson.imagen = imagePath; 
   }
 
-  if (company.value !== 0 && isValidInput(company.value)) {
-    requestJson.empresa = company.value;
+
+  if (company.value.trim() === "" || !isValidInput(company.value)) {
+    return null;
   }
-  requestJson.pais = "Corea";
+  requestJson.empresa = company.value;
+
+
+  const priceValue = parseInt(price.value, 10);
+
+  if (isNaN(priceValue) || priceValue <= 0) {
+    alert("El precio debe ser un número entero positivo.");
+    return null;
+  }
+
+  requestJson.precio = priceValue;
 
   return requestJson;
 }
@@ -85,14 +107,12 @@ async function getInfo() {
 async function createAlbum() {
   try {
     const requestJson = await getInfo();
-    const fields = [
-      "nombre",
-      "version_album",
-      "grupo",
-      "imagen",
-      "empresa",
-      "pais",
-    ];
+    console.log(requestJson);
+    if (requestJson === null) {
+      alert("No se pudo completar porque los datos son invalidos");
+      return;
+    }
+    const fields = ["nombre", "grupo", "version_album", "imagen", "empresa", "precio"];
     const receivedFields = Object.keys(requestJson);
     let missingFields = fields.filter(
       (field) => !receivedFields.includes(field)

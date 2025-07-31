@@ -50,12 +50,19 @@
             Las imagenes deben estar en formato .webp</label
           >
           <input type="text" id="image" />
+
         </div>
 
         <div>
           <label for="company">Empresa</label>
           <input type="text" id="company" required />
         </div>
+
+        <div>
+          <label for="price">Precio</label>
+          <input type="text" id="price" name="price" required />
+        </div>
+
 
         <button id="button" type="submit">Guardar Cambios</button>
       </form>
@@ -72,8 +79,6 @@
         <p id="cardName" class="card-text card-name">Nombre del Álbum</p>
         <p id="cardGroup" class="card-text card-group">Grupo</p>
         <p id="cardVersion" class="card-text card-version">Version del Álbum</p>
-        <button class="card-button">Ver</button>
-        <button class="card-button">Añadir al Carrito</button>
       </div>
     </div>
     <script src="./code.js"></script>
