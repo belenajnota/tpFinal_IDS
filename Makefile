@@ -1,4 +1,4 @@
-.PHONY: start-db  stop-db run-frontend run-frontend-alt start-page start-page-alt logs-backend logs-frontend
+.PHONY: start-db  stop-db run-frontend run-frontend-alt start-page start-page-alt logs-backend logs-frontend run-backend
 
 start-db:
 	docker compose up --build -d
@@ -32,6 +32,8 @@ logs-backend:
 logs-frontend:
 	docker logs -f tpfinal_ids-frontend-1
 
+run-backend:
+	cd ./backend && npm run dev
 
 
 

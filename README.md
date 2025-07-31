@@ -2,51 +2,8 @@
 
 # KpopCardz
 
-KpopCardz es una página web de registro de ventas y coleccion de photocards. Permite agregar photocards a tu coleccion o eliminarlas, ademas de poder venderlas y tener un registro a quien y datos de la venta.
+KpopCardz es una página web de registro de ventas y coleccion de photocards. Permite agregar photocards y albums desde un apartado en modo administrador y permite comprar photocards y albums con photocards los cuales se registran. Los registros de ventas se guardan en el apartado de administrador con el nombre del usuario con el que se registro.
 
-Las entidades representadas en tablas de la base de datos son:
-
-Albums
-
-- id
-- nombre
-- grupo
-- version_album
-- imagen
-- pais
-- empresa
-
-Ventas
-
-- id
-- nombre_cliente
-- telefono_cliente
-- precio_venta
-- medio_de_pago
-- fecha_venta
-- lugar_entrega
-- fecha_entrega
-- hora_entrega
-- costo_entrega
-- id_photocard
-
-Photocards
-
-- id
-- nombre
-- grupo
-- imagen
-- precio_comprada
-- album_id
-- disponible
-
-Usuarios
-
-- id
-- usuario
-- contrasena
-- telefono
-- id_photocards
 
 Se puede encontrar la estructura de la base de datos en el archivo
 
@@ -58,6 +15,11 @@ Para levantar la base de datos y ver la Página correr:
 
 ```
 make start-page
+```
+
+Para levantar solo el backend 
+```
+run-backend
 ```
 
 Si esta en macOS y el primer comando no funciona, pruebe para levantar la base de datos y ver la Página:
@@ -83,6 +45,28 @@ Si quiere cerrar la base de datos:
 ```
 make stop-db
 ```
+
+# Funcionamiento de la página
+## Pagina del administrador
+Se pueden crear photocards con un formulario el cual se verifica antes de crearlo
+![crearphotocard](crearPhotocard.png)
+Tambien se pueden crear photocards con un formulario el cual se verifica antes de crearlo
+![](crearAlbum.png)
+Se puede ver el registro de ventas
+![](registroVentas.png)
+
+## Pagina del usuario
+Se pueden agregar photocards al carrito y verlas
+![](photocardsUsuario.png)
+Tambien se pueden agregar albums al carrito pero solo se agregan las photocards que contiene. El precio que contiene es el total con las photocards que contiene
+![](AlbumsUsuario.png)
+Al seleccionar el carrito aparecen todas las photocards y el precio total a pagar
+![](carritoUsuario.png)
+Al seguir con la compra se pide los datos de compra. Al finalizar la compra esta se registra en la página del administrador
+![](procesoCompra.png)
+
+
+
 
 # Consideraciones Importantes al Usar la Página
 
