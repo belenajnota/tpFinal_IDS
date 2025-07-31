@@ -1,7 +1,7 @@
 .PHONY: start-db  stop-db run-frontend run-frontend-alt start-page start-page-alt logs-backend logs-frontend
 
 start-db:
-	docker compose up -d
+	docker compose up --build -d
 	@echo "Esperando que PostgreSQL acepte conexiones..."
 	@until docker exec tpfinal_ids-postgres-1 psql -U postgres -c '\q' > /dev/null 2>&1; do \
 		sleep 1; \
