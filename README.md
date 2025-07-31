@@ -60,6 +60,12 @@ make stop-db
 
 # Funcionamiento de la página
 
+### Existen 2 páginas: la página de administrador y la página de usuario
+
+![](pagina-de-inicio.png)
+
+### Para el funcionamiento de página de usuario se debe registrar e iniciar sesion
+
 ## Pagina del administrador
 
 #### Se pueden crear photocards con un formulario el cual se verifica antes de crearlo
