@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photocard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <nav
+      class="navbar is-fixed-top color"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item font" href="../../index.html"> Inicio </a>
+          <a class="navbar-item font" href="../index.html"> Photocards </a>
+          <a class="navbar-item font" href="../../k-card-albums/index.html">
+            Albums
+          </a>
+          <a class="navbar-item font" href="../../k-card-ventas/index.html">
+            Ventas
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container color-bg">
+      <div id="content">
+        <div id="container-img"><img id="imgPhotocard" src="" alt="" /></div>
+        <div class="detail-table">
+          <div class="title-table">DETALLE DEL ALBUM</div>
+          <table>
+            <tr>
+              <td>Nombre de la Photocard</td>
+              <td id="name-photocard"></td>
+            </tr>
+            <tr>
+              <td>Grupo</td>
+              <td id="group"></td>
+            </tr>
+            <tr>
+              <td>Precio</td>
+              <td id="price"></td>
+            </tr>
+            <tr>
+              <td>disponibilidad</td>
+              <td id="availability"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- el modal es para modifcar-->
+    <div id="modificar" class="modal">
+      <div class="modal-background"></div>
+
+      <div class="modal-content">
+        <div class="box color-bg">
+          <p class="title-form">Modificar Informacion</p>
+          <p class="title-form">Los cambios se realizaran una vez guardados.</p>
+          <div class="container-form">
+            <form id="formulario">
+              <div>
+                <label for="namePhotocard">Nombre de la Photocard</label>
+                <input type="text" id="namePhotocard" maxlength="30" />
+              </div>
+              <div>
+                <label for="Group">Grupo</label>
+                <input type="text" id="Group" maxlength="30" />
+              </div>
+              <div>
+                <label for="Price">Precio</label>
+                <input type="text" id="Price" maxlength="15" />
+              </div>
+              <div>
+                <label for="Image"
+                  >Imagen<br />
+                  Sino quiere poner una imagen escriba "sin-imagen"<br />
+                  Las imagenes deben estar en formato .webp</label
+                >
+                <input type="text" id="Image" />
+              </div>
+              <div>
+                <label for="albumPhotocard">Album de la Photocard</label>
+                <select name="albumPhotocard" id="albumPhotocard">
+                  <option selected value="no album">Sin Album</option>
+                  <option value="">Hola</option>
+                </select>
+              </div>
+
+              <button class="button-change modal-button" type="submit">
+                Guardar Cambios
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    <div
+      class="containerModals is-flex is-justify-content-space-evenly buttons-container"
+    >
+      <button
+        class="js-modal-trigger button-change modificar"
+        data-target="modificar"
+      >
+        Modificar
+      </button>
+      <button id="deleteButton" class="button-change modificar">
+        Eliminar
+      </button>
+    </div>
+    <div style="margin-top: 60px">
+      <h2 class="title-Album">Album Asociado</h2>
+      <div id="containerCard" class="container is-fluid container-card">
+        <div id="cardAlbum" class="card-album">
+          <img id="cardImage" class="card-img" src="" alt="" />
+          <p id="cardName" class="card-text"></p>
+          <p id="cardGroup" class="card-text"></p>
+          <p id="cardVersion" class="card-text"></p>
+          <a id="cardButton" class="card-button" href="">Ver</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="./code.js"></script>
+  </body>
+</html>

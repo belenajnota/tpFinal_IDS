@@ -1,0 +1,59 @@
+const form = document.getElementById("formulario");
+
+function isValidInput(input) {
+  // No permite repeticiones como "aaa"
+  const regexVariety = /^(?!.*(.)\1{3,}).+$/;
+  // Solo letras, espacios, guiones, tildes, etc.
+  const regexLetters = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü0-9' -]+$/;
+
+  return regexVariety.test(input) && regexLetters.test(input);
+}
+
+const user = document.getElementById("user");
+const password = document.getElementById("password");
+
+async function getInfo() {
+  const Session = {};
+
+  const signInBackendUrl = "http://localhost:3000/api/usuarios";
+  try {
+    const response = await fetch(signInBackendUrl);
+    const users = await response.json();
+    const userExists = Object.values(users).find(
+      (User) => User.usuario === user.value
+    );
+
+    if (isValidInput(user.value) && userExists.usuario == user.value) {
+      Session.usuario = user.value;
+    }
+    if (userExists.contrasena == password.value) {
+      Session.contrasena = password.value;
+      Session.id = userExists.id;
+      Session.telefono = parseInt(userExists.telefono);
+      if (userExists.id_photocards == null) {
+        Session.id_photocards = "";
+      } else {
+        Session.id_photocards = userExists.id_photocards;
+      }
+    } else {
+      alert("La contraseña es incorrecta");
+    }
+  } catch (e) {
+    alert("El usuario no existe");
+  }
+
+  if (Object.keys(Session).length == 5) {
+    localStorage.setItem("session", JSON.stringify(Session));
+    const cart = [];
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    setTimeout(() => {
+      window.location.href = "../index.html?nocache=" + new Date().getTime();
+    }, 3000);
+  }
+}
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  getInfo();
+});

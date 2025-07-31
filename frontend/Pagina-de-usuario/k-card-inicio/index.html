@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Inicio</title>
+  </head>
+  <body>
+    <nav
+      class="navbar is-fixed-top color"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item font"> Inicio </a>
+          <a id="buttonNavPhotocards" class="navbar-item font"> Photocards </a>
+          <a id="buttonNavAlbums" class="navbar-item font"> Albums </a>
+          <a id="buttonNavColeccion" class="navbar-item font">Coleccion</a>
+        </div>
+        <div id="containerActions" class="navbar-end">
+          <a
+            id="buttonNavLogIn"
+            class="navbar-item font"
+            href="./login-page/index.html"
+          >
+            Iniciar Sesion
+          </a>
+          <a
+            id="buttonNavSignUp"
+            class="navbar-item font"
+            href="./sign-up-page/index.html"
+          >
+            Registrarse
+          </a>
+          <a id="cartLink" href="./k-card-carrito/index.html"></a>
+        </div>
+      </div>
+    </nav>
+    <div class="container-img">
+      <img
+        src="../../Pagina-de-Administrador/k-card-inicio/images/resources/logopagina.jpeg"
+        alt=""
+      />
+    </div>
+
+    <div class="container">
+      <div class="notification bg-color mt-2">
+        <a
+          id="buttonBodyPhotocards"
+          class="button is-medium is-fullwidth button-change"
+          href="#"
+          >Photocards</a
+        >
+        <a
+          id="buttonBodyAlbums"
+          class="button is-medium is-fullwidth button-change"
+          href="#"
+          >Albums</a
+        >
+        <a
+          id="buttonBodyColeccion"
+          class="button is-medium is-fullwidth button-change"
+          href="#"
+          >Coleccion</a
+        >
+      </div>
+    </div>
+    <script src="./code.js"></script>
+  </body>
+</html>

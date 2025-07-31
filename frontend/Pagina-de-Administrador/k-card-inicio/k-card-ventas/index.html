@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ventas</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <nav
+      class="navbar is-fixed-top color"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item font" href="../index.html"> Inicio </a>
+          <a class="navbar-item font" href="../k-card-photocard/index.html">
+            Photocards
+          </a>
+          <a class="navbar-item font" href="../k-card-albums/index.html">
+            Albums
+          </a>
+          <a class="navbar-item font" href="#"> Ventas </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container-button-venta is-flex">
+      <div class="dropdown custom-dropdown">
+        <div class="dropdown-trigger">
+          <button
+            class="button filter-button"
+            aria-haspopup="true"
+            aria-controls="dropdown-menu"
+          >
+            <span>Filtros</span>
+          </button>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+          <div class="dropdown-content filter-content">
+            <span class="dropdown-title">Ordenar las Ventas por:</span>
+            <select name="order-by" id="order-by" class="custom-select">
+              <option value="NameA-Z">Nombre (A-Z)</option>
+              <option value="NameZ-A">Nombre (Z-A)</option>
+              <option value="priceLowHigh">Precio (menor a mayor)</option>
+              <option value="priceHighLow">Precio (mayor a menor)</option>
+              <option selected value="newestSale">
+                Fecha de Venta (más reciente)
+              </option>
+              <option value="oldestSale">Fecha de Venta (más antigua)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>Registro de Ventas</h2>
+
+      <div class="tabla-container">
+        <table>
+          <thead>
+            <tr>
+              <th class="font">Cliente</th>
+              <th class="font">Teléfono</th>
+              <th class="font">Precio</th>
+              <th class="font">Medio de Pago</th>
+              <th class="font">Fecha de Venta</th>
+              <th class="font">Lugar de Entrega</th>
+              <th class="font">Fecha Entrega</th>
+              <th class="font">Hora</th>
+              <th class="font">Costo Entrega</th>
+              <th class="font">Ver</th>
+              <th class="font">Borrar</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <!-- Las filas se agregan aquí -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="./code.js"></script>
+  </body>
+</html>

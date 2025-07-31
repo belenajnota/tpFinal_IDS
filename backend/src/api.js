@@ -35,7 +35,16 @@ const {
   validarHora,
   extraerCamposPermitidos,
   esFechaValida,
+  esTelefonoValido,
 } = require("./utils/validaciones");
+
+const {
+  getUsuarios,
+  getUsuario,
+  createUsuario,
+  deleteUsuario,
+  updateUsuario,
+} = require("./scripts/usuarios");
 
 const camposObligatoriosPhotocards = [
   "nombre",
@@ -74,6 +83,9 @@ const camposVentas = [
   "id_photocard",
 ];
 
+const camposObligatoriosUsuarios = ["usuario", "contrasena", "telefono"];
+const camposUsuarios = ["usuario", "contrasena", "telefono", "id_photocards"];
+
 const longitud_valores_photocards = {
   nombre: 40,
 
@@ -96,6 +108,12 @@ const longitud_valores_ventas = {
 
   medio_de_pago: 20,
   lugar_entrega: 30,
+};
+
+const longitud_valores_usuarios = {
+  usuario: 40,
+  contrasena: 20,
+  telefono: 15,
 };
 
 app.get("/api/health", (req, res) => {
@@ -1298,6 +1316,172 @@ app.patch("/api/ventas/:id", async (req, res) => {
   } catch (e) {
     console.error("Error:", e);
     return res.status(500).json({ error: "Error al actualizar el album" });
+  }
+});
+
+/*
+
+////////////////CRUD USUARIOS///////////////////////////////////////////////////////////////////////////////////////////////////
+
+*/
+
+app.get("/api/usuarios", async (req, res) => {
+  try {
+    const usuarios = await getUsuarios();
+
+    if (!usuarios) {
+      return res.status(404).json({ error: "Usuarios no encontrados" });
+    }
+    return res.json(usuarios);
+  } catch (e) {
+    return res.status(500).json({ error: "Error interno del servidor" });
+  }
+});
+
+app.get("/api/usuarios/:id", async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+
+  if (isNaN(id) || id <= 0) {
+    return res
+      .status(400)
+      .json({ error: "El ID debe ser un número entero positivo mayor a 0" });
+  }
+
+  try {
+    const usuario = await getUsuario(id);
+
+    if (!usuario) {
+      return res.status(404).json({ error: "Usuario no encontrada" });
+    }
+    return res.json(usuario);
+  } catch (e) {
+    return res.status(500).json({ error: "Error interno del servidor" });
+  }
+});
+
+app.post("/api/usuarios", async (req, res) => {
+  const { usuario, contrasena, telefono } = req.body;
+
+  for (const campo of camposObligatoriosUsuarios) {
+    if (req.body[campo] == null) {
+      return res
+        .status(400)
+        .json({ error: `Falta el campo obligatorio: ${campo}` });
+    }
+  }
+
+  for (const campo of Object.keys(longitud_valores_usuarios)) {
+    const valor = req.body[campo];
+    if (valor != null && valor.length > longitud_valores_usuarios[campo]) {
+      return res.status(400).json({
+        error: `${campo} no puede tener más de ${longitud_valores_usuarios[campo]} caracteres`,
+      });
+    }
+  }
+
+  if (!esTelefonoValido(telefono)) {
+    return res.status(400).json({
+      error: "El Telefono debe ser un número entero",
+    });
+  }
+
+  try {
+    const Usuario = await createUsuario(usuario, contrasena, telefono);
+
+    if (!Usuario) {
+      return res.status(500).json({ error: "Error al crear el usuario" });
+    }
+
+    return res.status(201).json(Usuario);
+  } catch (e) {
+    console.error("Error al crear el usuario:", e);
+    return res
+      .status(500)
+      .json({ error: "Error del servidor al crear el usuario" });
+  }
+});
+
+app.delete("/api/usuarios/:id", async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+
+  if (isNaN(id) || id <= 0) {
+    return res
+      .status(400)
+      .json({ error: "El ID debe ser un número entero positivo mayor a 0" });
+  }
+  try {
+    const usuario = await deleteUsuario(id);
+    if (!usuario) {
+      return res
+        .status(404)
+        .json({ error: "No se encontró el usuario id: " + id });
+    }
+    return res.json(usuario);
+  } catch (e) {
+    return res.status(500).json({ error: "Error al eliminar el usuario" });
+  }
+});
+
+app.patch("/api/usuarios/:id", async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+
+  if (isNaN(id) || id <= 0) {
+    return res
+      .status(400)
+      .json({ error: "El ID debe ser un número entero positivo mayor a 0" });
+  }
+
+  const datos = extraerCamposPermitidos(req.body, camposUsuarios);
+
+  if (Object.keys(datos).length === 0) {
+    return res
+      .status(400)
+      .json({ error: "No se enviaron campos válidos para actualizar" });
+  }
+
+  for (const campo of Object.keys(longitud_valores_usuarios)) {
+    const valor = datos[campo];
+    if (
+      typeof valor === "string" &&
+      valor.length > longitud_valores_usuarios[campo]
+    ) {
+      return res.status(400).json({
+        error: `${campo} no puede tener más de ${longitud_valores_usuarios[campo]} caracteres`,
+      });
+    }
+  }
+
+  if (!esTelefonoValido(datos.telefono)) {
+    return res.status(400).json({
+      error: "El Telefono debe ser un número entero",
+    });
+  }
+
+  for (let id_photocard of datos.id_photocards) {
+    try {
+      const photocard = await getPhotocard(id_photocard);
+
+      if (Number.isInteger(id_photocard) && photocard == undefined) {
+        return res
+          .status(404)
+          .json({ error: `Venta con id ${id_photocard} no encontrada ` });
+      }
+    } catch (e) {
+      return res.status(500).json({ error: "Error interno del servidor" });
+    }
+  }
+
+  try {
+    const Usuario = await updateUsuario(id, datos);
+    if (!Usuario) {
+      return res
+        .status(404)
+        .json({ error: `El usuario con id ${id} no fue encontrado` });
+    }
+    return res.json(Usuario);
+  } catch (e) {
+    console.error("Error:", e);
+    return res.status(500).json({ error: "Error al actualizar el usuario" });
   }
 });
 

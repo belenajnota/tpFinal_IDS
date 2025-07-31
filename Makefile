@@ -1,17 +1,28 @@
-.PHONY: start-db run-backend stop-db run-frontend run-pagina
+.PHONY: start-db  stop-db run-frontend run-frontend-alt start-page start-page-alt logs-backend logs-frontend
 
 start-db:
-	cd ./backend && docker compose up -d
+	docker compose up -d
 
 stop-db:
-	cd ./backend && docker compose down
+	 docker compose down
 
-start-backend:
-	cd ./backend && npm run dev
-	
 run-frontend:
-	cd ./frontend && http-server
+	xdg-open "http://localhost:8080/"
+
+start-page: start-db run-frontend
+	
+run-frontend-alt:
+	open "http://localhost:8080/"
+
+start-page-alt: star-db run-frontend-alt
+
+logs-backend:
+	docker logs -f tpfinal_ids-backend-1
 
 
-run-backend: start-db start-backend
+logs-frontend:
+	docker logs -f tpfinal_ids-frontend-1
+
+
+
 

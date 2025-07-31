@@ -1,0 +1,33 @@
+html,
+body {
+  background-color: #fff0f5;
+  padding: 10px;
+  height: 100%;
+  min-height: 100vh;
+  background-color: #fff8e4; /* tu color pastel */
+}
+
+.button-change {
+  grid-column: span 2;
+  padding: 12px;
+  background-color: #ffc0cb;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  margin: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button-change:hover,
+a:hover {
+  background-color: #ff99aa;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
