@@ -48,23 +48,23 @@ make stop-db
 
 # Funcionamiento de la página
 ## Pagina del administrador
-Se pueden crear photocards con un formulario el cual se verifica antes de crearlo
+#### Se pueden crear photocards con un formulario el cual se verifica antes de crearlo
 ![crearphotocard](crearPhotocard.png)
-Tambien se pueden crear photocards con un formulario el cual se verifica antes de crearlo
+#### Tambien se pueden crear photocards con un formulario el cual se verifica antes de crearlo
 ![](crearAlbum.png)
-Se puede ver el registro de ventas
+#### Se puede ver el registro de ventas
 ![](registroVentas.png)
 
 ## Pagina del usuario
-Se pueden agregar photocards al carrito y verlas
+#### Se pueden agregar photocards al carrito y verlas
 ![](photocardsUsuario.png)
-Tambien se pueden agregar albums al carrito pero solo se agregan las photocards que contiene. El precio que contiene es el total con las photocards que contiene
+#### Tambien se pueden agregar albums al carrito pero solo se agregan las photocards que contiene. El precio que contiene es el total con las photocards que contiene
 ![](AlbumsUsuario.png)
-Al seleccionar el carrito aparecen todas las photocards y el precio total a pagar
+#### Al seleccionar el carrito aparecen todas las photocards y el precio total a pagar
 ![](carritoUsuario.png)
-Al seguir con la compra se pide los datos de compra. Al finalizar la compra esta se registra en la página del administrador
+#### Al seguir con la compra se pide los datos de compra.
 ![](procesoCompra.png)
-
+#### Al finalizar la compra esta se registra en la página del administrador
 
 
 
